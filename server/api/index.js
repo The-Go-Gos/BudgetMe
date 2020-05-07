@@ -1,6 +1,15 @@
 const router = require('express').Router()
 module.exports = router
 
+/* const isLoggedIn = (req, res, next) => {
+  const {user} = req
+  if (!user) {
+    return res.sendStatus(403)
+  }
+  next()
+} 
+*/
+
 router.use('/users', require('./users'))
 
 router.use((req, res, next) => {

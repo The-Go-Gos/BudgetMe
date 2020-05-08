@@ -1,19 +1,130 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Category, Product, Receipt} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      id: 1,
+      firstName: 'Leslie',
+      lastName: 'Knope',
+      email: 'leslie@aol.com',
+      budget: '40000',
+      password: '1234'
+    }),
+    User.create({
+      id: 2,
+      firstName: 'Andy',
+      lastName: 'Dwyer',
+      email: 'andy@aol.com',
+      budget: '60000',
+      password: '1234'
+    }),
+    User.create({
+      id: 3,
+      firstName: 'Donna',
+      lastName: 'Meagle',
+      email: 'donna@aol.com',
+      budget: '50000',
+      password: '1234'
+    }),
+    User.create({
+      id: 4,
+      firstName: 'Ron',
+      lastName: 'Swanson',
+      email: 'ron@aol.com',
+      budget: '30000',
+      password: '1234'
+    })
   ])
-
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+  const categories = await Promise.all([
+    Category.create({id: 1, title: 'Clothing'}),
+    Category.create({id: 2, title: 'Shoes'}),
+    Category.create({id: 3, title: 'Groceries'}),
+    Category.create({id: 4, title: 'Dining Out'}),
+    Category.create({id: 5, title: 'Crafts & Hobbies'}),
+    Category.create({id: 6, title: 'Travel'}),
+    Category.create({id: 7, title: 'Sports & Athletics'}),
+    Category.create({id: 8, title: 'Fees & Service Charges'})
+  ])
+  const receipts = await Promise.all([
+    Receipt.create({
+      id: 1,
+      vendor: 'Bluebell Cafe',
+      totalPrice: 16.0,
+      userId: 1
+    }),
+    Receipt.create({id: 2, vendor: 'Kroger', totalPrice: 11.5, userId: 2})
+  ])
+  const products = await Promise.all([
+    Product.create({
+      name: 'Waffles',
+      price: 7.0,
+      receiptId: 1,
+      categoryId: 4,
+      userId: 1
+    }),
+    Product.create({
+      name: 'Coffee',
+      price: 1.5,
+      receiptId: 1,
+      categoryId: 4,
+      userId: 1
+    }),
+    Product.create({
+      name: 'Tax',
+      price: 5.95,
+      receiptId: 1,
+      categoryId: 8,
+      userId: 1
+    }),
+    Product.create({
+      name: 'Tip',
+      price: 1.55,
+      receiptId: 1,
+      categoryId: 8,
+      userId: 1
+    }),
+    Product.create({
+      name: 'Butter',
+      price: 5.0,
+      receiptId: 2,
+      categoryId: 3,
+      userId: 2
+    }),
+    Product.create({
+      name: 'Eggs',
+      price: 2.0,
+      receiptId: 2,
+      categoryId: 3,
+      userId: 2
+    }),
+    Product.create({
+      name: 'Milk',
+      price: 1.5,
+      receiptId: 2,
+      categoryId: 3,
+      userId: 2
+    }),
+    Product.create({
+      name: 'Bread',
+      price: 1.5,
+      receiptId: 2,
+      categoryId: 3,
+      userId: 2
+    }),
+    Product.create({
+      name: 'Grapes',
+      price: 1.5,
+      receiptId: 2,
+      categoryId: 3,
+      userId: 2
+    })
+  ])
 }
 
 // We've separated the `seed` function from the `runSeed` function.

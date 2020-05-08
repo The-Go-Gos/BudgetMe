@@ -12,9 +12,6 @@ Product.belongsTo(Receipt)
 Category.hasMany(Product)
 Product.belongsTo(Category)
 
-User.hasMany(Product)
-Product.belongsTo(User)
-
 module.exports = {
   User,
   Product,

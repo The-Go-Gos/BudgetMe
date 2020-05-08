@@ -65,64 +65,55 @@ async function seed() {
       name: 'Waffles',
       price: 7.0,
       receiptId: 1,
-      categoryId: 4,
-      userId: 1
+      categoryId: 4
     }),
     Product.create({
       name: 'Coffee',
       price: 1.5,
       receiptId: 1,
-      categoryId: 4,
-      userId: 1
+      categoryId: 4
     }),
     Product.create({
       name: 'Tax',
       price: 5.95,
       receiptId: 1,
-      categoryId: 8,
-      userId: 1
+      categoryId: 8
     }),
     Product.create({
       name: 'Tip',
       price: 1.55,
       receiptId: 1,
-      categoryId: 8,
-      userId: 1
+      categoryId: 8
     }),
     Product.create({
       name: 'Butter',
       price: 5.0,
       receiptId: 2,
-      categoryId: 3,
-      userId: 2
+      categoryId: 3
     }),
     Product.create({
       name: 'Eggs',
       price: 2.0,
       receiptId: 2,
-      categoryId: 3,
-      userId: 2
+      categoryId: 3
     }),
     Product.create({
       name: 'Milk',
       price: 1.5,
       receiptId: 2,
-      categoryId: 3,
-      userId: 2
+      categoryId: 3
     }),
     Product.create({
       name: 'Bread',
       price: 1.5,
       receiptId: 2,
-      categoryId: 3,
-      userId: 2
+      categoryId: 3
     }),
     Product.create({
       name: 'Grapes',
       price: 1.5,
       receiptId: 2,
-      categoryId: 3,
-      userId: 2
+      categoryId: 3
     })
   ])
 }

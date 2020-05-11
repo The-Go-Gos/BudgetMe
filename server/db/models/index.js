@@ -4,7 +4,7 @@ const Receipt = require('./receipt')
 const Category = require('./category')
 const Tag = require('./tag')
 const Finance = require('./finance')
-
+const productTag = require('./productTag')
 User.hasMany(Receipt)
 Receipt.belongsTo(User)
 
@@ -14,8 +14,8 @@ Product.belongsTo(Receipt)
 Category.hasMany(Product)
 Product.belongsTo(Category)
 
-Tag.belongsToMany(Product)
-Product.belongsToMany(Tag)
+Tag.belongsToMany(Product,  {through: productTag})
+Product.belongsToMany(Tag,  {through: productTag})
 //include tags and many to many/through table here
 
 User.hasOne(Finance)
@@ -26,5 +26,7 @@ module.exports = {
   Product,
   Receipt,
   Category,
-  Tag
+  Finance,
+  Tag,
+  productTag
 }

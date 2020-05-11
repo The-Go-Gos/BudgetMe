@@ -1,4 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
@@ -25,5 +26,14 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    // Other plugins...
+
+    new WorkboxPlugin.GenerateSW({
+      swDest: '../public/sw.js',
+      clientsClaim: true,
+      skipWaiting: true
+    })
+  ]
 }

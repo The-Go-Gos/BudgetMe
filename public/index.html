@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset='utf-8'>
-    <meta name='viewport' content='width=device-width initial-scale=1.0'>
-    <title>Boilermaker</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0" />
+    <title>BudgetMe</title>
     <link rel="stylesheet" href="/style.css" />
     <script defer src="/bundle.js"></script>
   </head>
   <body>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/sw.js')
+            .then((registration) => {
+              console.log(
+                `Service Worker registered! Scope: ${registration.scope}`
+              )
+            })
+            .catch((err) => {
+              console.log(`Service Worker registration failed: ${err}`)
+            })
+        })
+      }
+    </script>
     <div id="app"></div>
   </body>
 </html>
-

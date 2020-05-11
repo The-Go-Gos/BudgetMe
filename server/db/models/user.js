@@ -15,18 +15,11 @@ const User = db.define('user', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
-    validate:{
+    validate: {
       isEmail: true
     }
   },
-  budget: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    validate: {
-      min: 0,
-      isDecimal: false
-    },
-  },
+
   isAdmin: {
     type: Sequelize.BOOLEAN,
     allowNull: false,

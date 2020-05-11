@@ -7,6 +7,7 @@
   },
   "main": "index.js",
   "scripts": {
+    "build": "workbox injectManifest workbox-config.js",
     "build-client": "webpack",
     "build-client-watch": "webpack -w",
     "deploy": "script/deploy",

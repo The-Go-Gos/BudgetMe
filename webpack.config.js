@@ -30,10 +30,14 @@ module.exports = {
   plugins: [
     // Other plugins...
 
-    new WorkboxPlugin.GenerateSW({
-      swDest: '../public/sw.js',
-      clientsClaim: true,
-      skipWaiting: true
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: '../public/sw.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
+    new WorkboxWebpackPlugin.InjectManifest({
+      swSrc: '../public/sw.js',
+      swDest: 'serviceWorker.js'
     })
   ]
 }

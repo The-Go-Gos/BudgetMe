@@ -7,6 +7,10 @@ const Finance = db.define('finance', {
     validate: {
       min: 0,
       isDecimal: false
+    },
+    get() {
+      const inPennies = this.getDataValue('budget')
+      return inPennies / 100
     }
   }
 })

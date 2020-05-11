@@ -7,10 +7,11 @@ module.exports = router
     return res.sendStatus(403)
   }
   next()
-} 
+}
 */
 
 router.use('/users', require('./users'))
+router.use('/receipts', require('./receipt'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')

@@ -15,8 +15,18 @@ const Receipt = db.define('receipt', {
     validate: {
       min: 0,
       isDecimal: true
+    },
+    get() {
+      const inDecimal = this.getDataValue('totalPrice')
+      return inDecimal * 100
     }
   }
 })
+
+// Receipt.findByUser = function(userId) {
+//   return Receipt.findAll({
+//     where: {userId: userId}
+//   })
+// }
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook
 module.exports = Receipt

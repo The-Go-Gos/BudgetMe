@@ -1,7 +1,15 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Category, Product, Receipt, Finance, Tag} = require('../server/db/models')
+const {
+  User,
+  Category,
+  Product,
+  Receipt,
+  Finance,
+  Tag,
+  productTag
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -121,43 +129,43 @@ async function seed() {
       categoryId: 3
     })
   ])
+
+  const finance = await Promise.all([
+    Finance.create({
+      budget: 40000,
+      userId: 1
+    }),
+    Finance.create({
+      budget: 20000,
+      userId: 2
+    }),
+    Finance.create({
+      budget: 30000,
+      userId: 3
+    }),
+    Finance.create({
+      budget: 50000,
+      userId: 4
+    })
+  ])
+
+  const tag = await Promise.all([
+    Tag.create({
+      tagName: 'dairy'
+    })
+  ])
+
+  const productTags = await Promise.all([
+    productTag.create({
+      productId: 5,
+      tagId: 1
+    }),
+    productTag.create({
+      productId: 7,
+      tagId: 1
+    })
+  ])
 }
-
-const finance = await Promise.all([
-  Finance.create({
-    budget: 40000,
-    userId: 1
-  }),
-  Finance.create({
-    budget: 20000,
-    userId: 2
-  }),
-  Finance.create({
-    budget: 30000,
-    userId: 3
-  }),
-  Finance.create({
-    budget: 50000,
-    userId: 4
-  })
-])
-
-const tag = await Promise.all([
-  Tag.create({
-    tagName: 'dairy'
-  })
-])
-
-const productTags = await Promise.all([
-  productTag.create({
-    productId: 5,
-    tagId: 1
-  }),
-  productTag.create({
-    productId: 7,
-    tagId: 1
-  })
-])
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.
 // The `seed` function is concerned only with modifying the database.

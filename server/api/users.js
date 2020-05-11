@@ -27,7 +27,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/:categoryId', async (req, res, next) => {
+router.get('/:userId/categories', async (req, res, next) => {
+  try {
+  const {userId} = req.params
+   const categories = await Product.findAllCategory(userId)
+   res.json(categories)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:userId/categories/:categoryId', async (req, res, next) => {
   try {
     const {userId, categoryId} = req.params
     const categoryTotal = await Product.categoryTotal(userId, categoryId)

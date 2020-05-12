@@ -8,19 +8,34 @@ const dummy = {
   products: [
     {
       name: 'OVF LG EGGS',
-      price: 6.19
+      price: 6.19,
+      category: 0
     },
     {
       name: 'OG HASS AVOCADO BAG',
-      price: 6.99
+      price: 6.99,
+      category: 0
     },
     {
       name: 'CRUNCHY ALMD BTR',
-      price: 7.99
+      price: 7.99,
+      category: 0
     }
   ],
   totalPrice: 21.17
 }
+
+const categories = [
+  'Select Category',
+  'Clothing',
+  'Shoes',
+  'Groceries',
+  'Dining Out',
+  'Crafts and Hobbies',
+  'Travel',
+  'Sports and Athletics',
+  'Fees and Service Charges'
+]
 
 const defaultState = {
   vendor: '',
@@ -37,6 +52,7 @@ class ReceiptDetail extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handlePriceChange = this.handlePriceChange.bind(this)
+    this.handleCategoryChange = this.handleCategoryChange.bind(this)
   }
 
   handleChange(e) {
@@ -63,9 +79,14 @@ class ReceiptDetail extends React.Component {
     })
   }
 
+  handleCategoryChange(e) {
+    const newProducts = [...this.state.products]
+    const index = parseInt(e.target.id)
+    newProducts[index].category = parseInt(e.target.value)
+  }
+
   handleSubmit(e) {
     e.preventDefault()
-
     this.props.addReceipt(this.state)
     this.setState(defaultState)
   }
@@ -106,18 +127,17 @@ class ReceiptDetail extends React.Component {
                     value={list.price}
                   />
 
-                  <select>
-                    <option value="0" hidden>
-                      Select Category
-                    </option>
-                    <option value="1">Clothing</option>
-                    <option value="2">Shoes</option>
-                    <option value="3">Groceries</option>
-                    <option value="4">Dining Out</option>
-                    <option value="5">Crafts and Hobbies</option>
-                    <option value="6">Travel</option>
-                    <option value="7">Sports and Athletics</option>
-                    <option value="8">Fees and Service Charges</option>
+                  <select
+                    id={index}
+                    onChange={e => this.handleCategoryChange(e)}
+                  >
+                    {categories.map((c, optionIndex) => {
+                      return (
+                        <option key={optionIndex} value={optionIndex}>
+                          {c}
+                        </option>
+                      )
+                    })}
                   </select>
                 </div>
               )
@@ -147,4 +167,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(null, mapDispatch)(ReceiptDetail)
-// export default ReceiptDetail

@@ -60,18 +60,18 @@ export class AddProductForm extends React.Component {
           />
 
           <select>
-            <option value="1" hidden>
+            <option value="0" hidden>
               Select Category
             </option>
-            <option value="2">Grocery</option>
-            <option value="3">Sports</option>
-            <option value="4">Education</option>
-            <option value="5">Pets</option>
-            <option value="6">Gas</option>
+            <option value="1">Clothing</option>
+            <option value="2">Shoes</option>
+            <option value="3">Groceries</option>
+            <option value="4">Dining Out</option>
+            <option value="5">Crafts and Hobbies</option>
+            <option value="6">Travel</option>
+            <option value="7">Sports and Athletics</option>
+            <option value="8">Fees and Service Charges</option>
           </select>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
         </form>
       </div>
     )

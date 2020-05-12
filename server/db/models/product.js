@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
+const d3 = require("d3");
 const Receipt = require('./receipt')
 const Category = require('./category')
 
@@ -45,26 +46,33 @@ Product.categoryTotal = async function(userId, categoryId) {
     return acc + cur.price
   }, 0)
   const category = {}
-   category[categoryName] = (categoryTotal / 100);
+  category[categoryName] = (categoryTotal / 100);
   return category
 }
 
 Product.findAllCategory = async function(userId){
   const categories = await this.findAll({
-    include: {
+    include:[{
       model: Receipt,
       where: {
         userId: userId
       }
-    },
-    include: {
+    }, {
       model: Category,
       attributes: ['title']
-    }
+    }]
   })
-  
-  
-  return categories
+ 
+  const expense = d3.nest()
+  .key(function(d) { return d.category.title; })
+  .rollup(function(v) { return {
+    quantity: v.length,
+    totalSpent: d3.sum(v, function(d) { return ( d.price / 100); }),
+    avgerageSpent: d3.mean(v, function(d) { return ( d.price / 100); })
+  }; })
+  .entries(categories);
+
+  return expense
 }
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook
 //Create Tag model with many to many relationship with product, belongsToMany with through table

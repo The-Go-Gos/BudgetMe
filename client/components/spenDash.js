@@ -7,32 +7,45 @@ export class SpenDash extends React.Component {
     super(props)
   }
   componentDidMount() {
-    console.log('props in componentDidMount: ', this.props)
-    this.props.fetchAllCategories(this.props.match.params.userId)
+    const {id} = this.props
+    this.props.getCategories(id)
   }
   render() {
-    console.log('SpenDash props: ', this.props)
-    console.log('SpenDash state: ~~', this.state)
-    const {categories} = this.props
+    const {categories} = this.props.categories
+    console.log('CATEGORIES ========> ', categories.length )
+
+    if(categories.length === 0){
+      return(<h1>You have nothing to show</h1>)
+    } else{
     return (
-      <div className="columns is-multiline is-mobile">
-        {categories.map(category => (
-          <div className="column is-half" key={category}>
+      <div className="columns is-multiline is-mobile"> 
+         {categories && categories.map((category, index) => (
+          <div className="column is-half" key={index}>
           <h1>{category.key}</h1>
-          <h2>${category.value.totalSpent}</h2>
+          <h2>$ {category.value.totalSpent.toFixed(2)}</h2>
         </div>)
-        )}
+        )} 
       </div>
     )
+  }
   }
 }
 
 const mapState = state => {
-  return {categories: state.categories}
+  return {categories: state.categoryReducer, id: state.user.id}
 }
 
 const mapDispatch = dispatch => ({
-  fetchAllCategories: (userId) => dispatch(fetchAllCategories(userId))
+  getCategories: (userId) => dispatch(fetchAllCategories(userId))
 })
 
 export default connect(mapState, mapDispatch)(SpenDash)
+
+{/* <div className="columns is-multiline is-mobile">
+         {categories && categories.map(category => (
+          <div className="column is-half" key={category}>
+          <h1>{category.key}</h1>
+          <h2>${category.value.totalSpent}</h2>
+        </div>)
+        )} 
+      </div> */}

@@ -3,33 +3,35 @@ import history from '../history'
 
 // ACTION TYPE
 
-const GET_ALL_CATEGORIES = "GET_ALL_CATEGORIES"
+const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 
 const defaultState = {
-    categories: []
+  categories: [],
 }
 
 //Action creator
-const getAllCategories = categories => ({type: GET_ALL_CATEGORIES, categories})
+const getAllCategories = (category) => ({
+  type: GET_ALL_CATEGORIES,
+  category,
+})
 
 //thunk
 
-export const fetchAllCategories = (userId) => async dispatch => {
-    try {
-        const {data} = await axios.get(`/api/users/${userId}/categories`)
-        console.log('thunk data: ', data)
-        dispatch(getAllCategories(data))
-    } catch (error) {
-        console.error(error)
-    }
+export const fetchAllCategories = (userId) => async (dispatch) => {
+  try {
+    const {data} = await axios.get(`/api/users/${userId}/categories`)
+    dispatch(getAllCategories(data))
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 //reducer
-export default function categoryReducer (state = defaultState, action) {
-    switch (action.type) {
-        case GET_ALL_CATEGORIES:
-            return {...state, categories: action.categories}
-        default:
-            return state
-    }
+export default function categoryReducer(state = defaultState, action) {
+  switch (action.type) {
+    case GET_ALL_CATEGORIES:
+      return {...state, categories: action.category}
+    default:
+      return state
+  }
 }

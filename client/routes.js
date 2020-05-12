@@ -23,9 +23,9 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         {isLoggedIn && (
           <Switch>
-            <Route path="/home" component={UserHome} />
-          {/* <Route path="/users/:userId" render={routeProps => <SpenDash {...routeProps} />} /> */}
-        <Route path="/users/:userId/categories" render={routeProps => <SpenDash {...routeProps} />} />
+          <Route path="/home" component={UserHome} />
+        {/* <Route path="/users/:userId/categories" render={routeProps => <SpenDash {...routeProps} />} /> */}
+          <Route exact path="/spendDash" render={routeProps => <SpenDash {...routeProps} />} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

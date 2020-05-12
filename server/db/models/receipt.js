@@ -11,7 +11,7 @@ const Receipt = db.define('receipt', {
   },
   totalPrice: {
     type: Sequelize.DECIMAL,
-    allowNull: false,
+    // allowNull: false,
     validate: {
       min: 0,
       isDecimal: true
@@ -28,5 +28,6 @@ const Receipt = db.define('receipt', {
 //     where: {userId: userId}
 //   })
 // }
+
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook
 module.exports = Receipt

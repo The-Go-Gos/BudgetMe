@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product, User} = require('../db/models')
+const {Product, Receipt, Category} = require('../db/models')
 
 // router.get('/', async (req, res, next) => {
 //   try {
@@ -12,9 +12,20 @@ const {Product, User} = require('../db/models')
 
 router.post('/', async (req, res, next) => {
   try {
-    await Product.create(req.body)
-    const products = await Product.findAll()
-    res.json(products)
+    const recentReceipt = await Receipt.create(req.user.id)
+    const [product] = await Product.create(
+      {
+        where: {
+          receiptId: recentReceipt[0].dataValues.id
+        },
+        include: [{model: Category}]
+      },
+      req.body
+    )
+    console.log('@@@@@@', product)
+    // await product.create(req.body);
+    // const products = await Product.findAll()
+    // res.json(products)
   } catch (err) {
     next(err)
   }

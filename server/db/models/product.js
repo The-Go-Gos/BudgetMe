@@ -39,6 +39,7 @@ Product.categoryTotal = async function(userId, categoryId) {
   }, 0)
   return categoryTotal / 100
 }
+
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook
 //Create Tag model with many to many relationship with product, belongsToMany with through table
 //normalization: data redundancy - in RD, want to avoid data redundancy - saving things in array - strawberry and apple both red fruits - would repeat data - best to abstract to another table

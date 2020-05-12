@@ -28,18 +28,16 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   const {vendor, products, totalPrice} = req.body
   try {
-    const [receipt] = await Receipt.findOrCreate({
-      where: {
-        userId: req.user.id,
-        vendor: vendor,
-        totalPrice: totalPrice
-      },
+    const receipt = await Receipt.create({
+      userId: req.user.id,
+      vendor: vendor,
+      totalPrice: totalPrice,
       include: [{model: Product}]
     })
 
-    await Product.destroy({
-      where: {receiptId: receipt.id}
-    })
+    // await Product.destroy({
+    //   where: { receiptId: receipt.id }
+    // })
 
     for (let i = 0; i < products.length; i++) {
       const product = await Product.create({

@@ -9,17 +9,17 @@ const dummy = {
     {
       name: 'OVF LG EGGS',
       price: 6.19,
-      categoryId: 0
+      categoryId: 9
     },
     {
       name: 'OG HASS AVOCADO BAG',
       price: 6.99,
-      categoryId: 0
+      categoryId: 9
     },
     {
       name: 'CRUNCHY ALMD BTR',
       price: 7.99,
-      categoryId: 0
+      categoryId: 9
     }
   ],
   totalPrice: 21.17

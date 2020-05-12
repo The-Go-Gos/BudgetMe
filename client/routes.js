@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
+import AddRecordForm from './components/AddRecordForm'
 
 /**
  * COMPONENT
@@ -23,6 +24,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/receiptdetail" component={ReceiptDetail} />
+        <Route exact path="/manualreceipt" component={AddRecordForm} />
 
         {isLoggedIn && (
           <Switch>

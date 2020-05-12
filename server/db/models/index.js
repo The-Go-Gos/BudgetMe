@@ -9,7 +9,7 @@ User.hasMany(Receipt)
 Receipt.belongsTo(User)
 
 Receipt.hasMany(Product)
-Product.belongsTo(Receipt)
+Product.belongsTo(Receipt, {foreignKey: 'receiptId'})
 
 Category.hasMany(Product)
 Product.belongsTo(Category)

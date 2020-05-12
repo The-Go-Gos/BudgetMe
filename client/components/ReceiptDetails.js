@@ -146,20 +146,20 @@ class ReceiptDetail extends React.Component {
               )
             })}
           </div>
+          <div>
+            <label htmlFor="totalPrice"> Total Price: </label>
+            <input
+              onChange={e => this.handleChange(e)}
+              name="totalPrice"
+              type="number"
+              value={this.state.totalPrice}
+            />
+          </div>
+          <br />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
         </form>
-        <div>
-          <label htmlFor="totalPrice"> Total Price: </label>
-          <input
-            onChange={e => this.handleChange(e)}
-            name="totalPrice"
-            type="number"
-            value={this.state.totalPrice}
-          />
-        </div>
-        <br />
-        <div>
-          <button type="submit">Submit</button>
-        </div>
       </div>
     )
   }

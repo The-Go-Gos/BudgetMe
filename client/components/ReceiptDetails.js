@@ -9,17 +9,17 @@ const dummy = {
     {
       name: 'OVF LG EGGS',
       price: 6.19,
-      category: 0
+      categoryId: 0
     },
     {
       name: 'OG HASS AVOCADO BAG',
       price: 6.99,
-      category: 0
+      categoryId: 0
     },
     {
       name: 'CRUNCHY ALMD BTR',
       price: 7.99,
-      category: 0
+      categoryId: 0
     }
   ],
   totalPrice: 21.17
@@ -82,7 +82,10 @@ class ReceiptDetail extends React.Component {
   handleCategoryChange(e) {
     const newProducts = [...this.state.products]
     const index = parseInt(e.target.id)
-    newProducts[index].category = parseInt(e.target.value)
+    newProducts[index].categoryId = parseInt(e.target.value)
+    this.setState({
+      products: newProducts
+    })
   }
 
   handleSubmit(e) {

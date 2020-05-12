@@ -22,7 +22,6 @@ router.post('/', async (req, res, next) => {
       },
       req.body
     )
-    console.log('@@@@@@', product)
     // await product.create(req.body);
     // const products = await Product.findAll()
     // res.json(products)

@@ -11,7 +11,7 @@ const Receipt = db.define('receipt', {
   },
   totalPrice: {
     type: Sequelize.DECIMAL,
-    // allowNull: false,
+    allowNull: false,
     validate: {
       min: 0,
       isDecimal: true

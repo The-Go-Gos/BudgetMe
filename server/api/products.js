@@ -10,25 +10,25 @@ const {Product, Receipt, Category} = require('../db/models')
 //   }
 // })
 
-router.post('/', async (req, res, next) => {
-  try {
-    const recentReceipt = await Receipt.create(req.user.id)
-    const [product] = await Product.create(
-      {
-        where: {
-          receiptId: recentReceipt[0].dataValues.id
-        },
-        include: [{model: Category}]
-      },
-      req.body
-    )
-    // await product.create(req.body);
-    // const products = await Product.findAll()
-    // res.json(products)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.post('/', async (req, res, next) => {
+//   try {
+//     const recentReceipt = await Receipt.create(req.user.id)
+//     const [product] = await Product.create(
+//       {
+//         where: {
+//           receiptId: recentReceipt[0].dataValues.id
+//         },
+//         include: [{model: Category}]
+//       },
+//       req.body
+//     )
+//     // await product.create(req.body);
+//     // const products = await Product.findAll()
+//     // res.json(products)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 // router.put('/:productId', isAdmin, async (req, res, next) => {
 //   try {

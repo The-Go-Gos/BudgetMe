@@ -40,8 +40,8 @@ Product.categoryTotal = async function(userId, categoryId) {
       attributes: ['title']
     }
   })
-  const categoryName = products[0].category.title 
-  
+  const categoryName = products[0].category.title
+
   const categoryTotal = products.reduce((acc, cur) => {
     return acc + cur.price
   }, 0)
@@ -59,16 +59,16 @@ Product.findAllCategory = async function(userId){
       }
     }, {
       model: Category,
-      attributes: ['title']
+      attributes: ['id', 'title']
     }]
   })
- 
+
   const expense = d3.nest()
   .key(function(d) { return d.category.title; })
   .rollup(function(v) { return {
     quantity: v.length,
     totalSpent: d3.sum(v, function(d) { return ( d.price / 100); }),
-    avgerageSpent: d3.mean(v, function(d) { return ( d.price / 100); })
+    averageSpent: d3.mean(v, function(d) { return ( d.price / 100); })
   }; })
   .entries(categories);
 

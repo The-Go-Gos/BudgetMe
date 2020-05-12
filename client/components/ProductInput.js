@@ -1,16 +1,25 @@
 import React from 'react'
 
+const categories = [
+  'Select Category',
+  'Clothing',
+  'Shoes',
+  'Groceries',
+  'Dining Out',
+  'Crafts and Hobbies',
+  'Travel',
+  'Sports and Athletics',
+  'Fees and Service Charges'
+]
+
 const ProductInputs = props => {
   return props.products.map((val, idx) => {
-    // let catId = `cat-${idx}`,
-    //   ageId = `age-${idx}`
     return (
       <div key={idx}>
         <label htmlFor="name">Name</label>
         <input
           type="text"
           name="name"
-          // data-id={idx}
           id={idx}
           value={props.products[idx].name}
           className="name"
@@ -19,11 +28,19 @@ const ProductInputs = props => {
         <input
           type="number"
           name="price"
-          // data-id={idx}
           id={idx}
           value={props.products[idx].price}
           className="price"
         />
+        <select id={idx} className="categoryId">
+          {categories.map((c, optionIndex) => {
+            return (
+              <option key={optionIndex} value={optionIndex}>
+                {c}
+              </option>
+            )
+          })}
+        </select>
       </div>
     )
   })

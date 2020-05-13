@@ -39,11 +39,3 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(SpenDash)
 
-{/* <div className="columns is-multiline is-mobile">
-         {categories && categories.map(category => (
-          <div className="column is-half" key={category}>
-          <h1>{category.key}</h1>
-          <h2>${category.value.totalSpent}</h2>
-        </div>)
-        )} 
-      </div> */}

@@ -4,6 +4,7 @@
  * having to figure out which file they belong to!
  */
 export {default as SpenDash} from './spenDash'
+export {default as Setting} from './settings'
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'

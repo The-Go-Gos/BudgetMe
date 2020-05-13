@@ -11,19 +11,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
-  const {params} = req
-  try {
-    const receipt = await Receipt.findOne({
-      where: {
-        id: params.id
-      }
-    })
-    res.json(receipt)
-  } catch (err) {
-    next(err)
-  }
-})
+// router.get('/:id', async (req, res, next) => {
+//   const {params} = req
+//   try {
+//     const receipt = await Receipt.findOne({
+//       where: {
+//         id: params.id
+//       }
+//     })
+//     res.json(receipt)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 router.post('/', async (req, res, next) => {
   const {vendor, products, totalPrice} = req.body

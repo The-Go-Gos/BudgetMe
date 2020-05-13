@@ -17,112 +17,108 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      id: 1,
       firstName: 'Leslie',
       lastName: 'Knope',
       email: 'leslie@aol.com',
       password: '1234'
     }),
     User.create({
-      id: 2,
       firstName: 'Andy',
       lastName: 'Dwyer',
       email: 'andy@aol.com',
       password: '1234'
     }),
     User.create({
-      id: 3,
       firstName: 'Donna',
       lastName: 'Meagle',
       email: 'donna@aol.com',
       password: '1234'
     }),
     User.create({
-      id: 4,
       firstName: 'Ron',
       lastName: 'Swanson',
       email: 'ron@aol.com',
       password: '1234'
     })
   ])
+
   const categories = await Promise.all([
-    Category.create({id: 1, title: 'Clothing'}),
-    Category.create({id: 2, title: 'Shoes'}),
-    Category.create({id: 3, title: 'Groceries'}),
+    Category.create({id: 1, title: 'Other'}),
+    Category.create({id: 2, title: 'Apparel'}),
+    Category.create({id: 3, title: 'Accessaries'}),
     Category.create({id: 4, title: 'Dining Out'}),
-    Category.create({id: 5, title: 'Crafts & Hobbies'}),
-    Category.create({id: 6, title: 'Travel'}),
-    Category.create({id: 7, title: 'Sports & Athletics'}),
-    Category.create({id: 8, title: 'Fees & Service Charges'})
+    Category.create({id: 5, title: 'Fees & Service Charges'}),
+    Category.create({id: 6, title: 'Groceries'}),
+    Category.create({id: 7, title: 'Household'}),
+    Category.create({id: 8, title: 'Hobbies'}),
+    Category.create({id: 9, title: 'Personal Care'}),
+    Category.create({id: 10, title: 'Sports'}),
+    Category.create({id: 11, title: 'Travel'})
   ])
+
   const receipts = await Promise.all([
     Receipt.create({
-      id: 1,
       vendor: 'Bluebell Cafe',
       totalPrice: 16.0,
       userId: 1
     }),
-    Receipt.create({id: 2, vendor: 'Kroger', totalPrice: 11.5, userId: 2})
+    Receipt.create({
+      vendor: 'Kroger',
+      totalPrice: 11.5,
+      userId: 2
+    })
   ])
+
   const products = await Promise.all([
     Product.create({
-      id: 1,
       name: 'Waffles',
       price: 7.0,
       receiptId: 1,
       categoryId: 4
     }),
     Product.create({
-      id: 2,
       name: 'Coffee',
       price: 1.5,
       receiptId: 1,
       categoryId: 4
     }),
     Product.create({
-      id: 3,
       name: 'Tax',
       price: 5.95,
       receiptId: 1,
       categoryId: 8
     }),
     Product.create({
-      id: 4,
       name: 'Tip',
       price: 1.55,
       receiptId: 1,
       categoryId: 8
     }),
     Product.create({
-      id: 5,
       name: 'Butter',
       price: 5.0,
       receiptId: 2,
       categoryId: 3
     }),
     Product.create({
-      id: 6,
       name: 'Eggs',
       price: 2.0,
       receiptId: 2,
       categoryId: 3
     }),
     Product.create({
-      id: 7,
       name: 'Milk',
       price: 1.5,
       receiptId: 2,
       categoryId: 3
     }),
     Product.create({
-      id: 8,
       name: 'Bread',
       price: 1.5,
       receiptId: 2,
       categoryId: 3
     }),
     Product.create({
-      id: 9,
       name: 'Grapes',
       price: 1.5,
       receiptId: 2,

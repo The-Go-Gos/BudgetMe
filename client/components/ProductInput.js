@@ -1,15 +1,17 @@
 import React from 'react'
 
 const categories = [
-  'Select Category',
-  'Clothing',
-  'Shoes',
-  'Groceries',
+  'Choose a Category', //category 'other' in db
+  'Apparel',
+  'Accessaries',
   'Dining Out',
-  'Crafts and Hobbies',
-  'Travel',
-  'Sports and Athletics',
-  'Fees and Service Charges'
+  'Fees & Service Charges',
+  'Groceries',
+  'Household',
+  'Hobbies',
+  'Personal Care',
+  'Sports',
+  'Travel'
 ]
 
 const ProductInputs = props => {
@@ -35,7 +37,7 @@ const ProductInputs = props => {
         <select id={idx} className="categoryId">
           {categories.map((c, optionIndex) => {
             return (
-              <option key={optionIndex} value={optionIndex}>
+              <option key={optionIndex} value={optionIndex + 1}>
                 {c}
               </option>
             )

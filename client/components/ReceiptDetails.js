@@ -9,32 +9,34 @@ const dummy = {
     {
       name: 'OVF LG EGGS',
       price: 6.19,
-      categoryId: 0
+      categoryId: 1
     },
     {
       name: 'OG HASS AVOCADO BAG',
       price: 6.99,
-      categoryId: 0
+      categoryId: 1
     },
     {
       name: 'CRUNCHY ALMD BTR',
       price: 7.99,
-      categoryId: 0
+      categoryId: 1
     }
   ],
   totalPrice: 21.17
 }
 
 const categories = [
-  'Select Category',
-  'Clothing',
-  'Shoes',
-  'Groceries',
+  'Choose a Category', //category 'other' in db
+  'Apparel',
+  'Accessaries',
   'Dining Out',
-  'Crafts and Hobbies',
-  'Travel',
-  'Sports and Athletics',
-  'Fees and Service Charges'
+  'Fees & Service Charges',
+  'Groceries',
+  'Household',
+  'Hobbies',
+  'Personal Care',
+  'Sports',
+  'Travel'
 ]
 
 const defaultState = {
@@ -136,7 +138,7 @@ class ReceiptDetail extends React.Component {
                   >
                     {categories.map((c, optionIndex) => {
                       return (
-                        <option key={optionIndex} value={optionIndex}>
+                        <option key={optionIndex} value={optionIndex + 1}>
                           {c}
                         </option>
                       )

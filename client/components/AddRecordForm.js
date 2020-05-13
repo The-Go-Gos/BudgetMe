@@ -5,7 +5,7 @@ import {addReceiptThunk} from '../store/receipts'
 
 const defaultState = {
   vendor: '',
-  products: [{name: '', price: 0, categoryId: 0}],
+  products: [{name: '', price: 0, categoryId: 1}],
   totalPrice: 0
 }
 
@@ -14,7 +14,7 @@ class AddRecordForm extends React.Component {
     super()
     this.state = {
       vendor: '',
-      products: [{name: '', price: 0, categoryId: 0}],
+      products: [{name: '', price: 0, categoryId: 1}],
       totalPrice: 0
     }
   }
@@ -30,7 +30,7 @@ class AddRecordForm extends React.Component {
   }
   addProduct = e => {
     this.setState(prevState => ({
-      products: [...prevState.products, {name: '', price: 0, categoryId: 0}]
+      products: [...prevState.products, {name: '', price: 0, categoryId: 1}]
     }))
   }
   handleSubmit = e => {

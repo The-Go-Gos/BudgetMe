@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Product} = require('../db/models')
+const {User, Product, Finance} = require('../db/models')
 module.exports = router
 
 /*  const isAdmin = (req, res, next) => {
@@ -27,6 +27,26 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:userId', async (req, res, next) => {
+  const {userId} = req.params
+  try {
+    const user = await User.findOne({
+      where:{
+        id: userId
+      },
+      attributes: ['id', 'firstName', 'lastName', 'email']
+    })
+    if (user) {
+      res.json(user)
+    } else {
+      res.status(404).json('User not found')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 router.get('/:userId/categories', async (req, res, next) => {
   try {
   const {userId} = req.params
@@ -42,6 +62,34 @@ router.get('/:userId/categories/:categoryId', async (req, res, next) => {
     const {userId, categoryId} = req.params
     const categoryTotal = await Product.categoryTotal(userId, categoryId)
     res.json(categoryTotal)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/:userId/finance', async (req, res, next) => {
+  try {
+  const {userId} = req.params
+   const finances = await Finance.findAllFinance(userId)
+   if (finances) {
+    res.json(finances)
+  } else {
+    res.json('You have not declared a budget, please do so on Settings')
+  }
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.post('/:userId/finance', async (req, res, next) => {
+  const {userId} = req.params
+  const {body} = req
+  try {
+    const createdBudget = await Finance.create({
+      userId: userId,
+      budget: body.budget
+    })
+    res.json(createdBudget)
   } catch (error) {
     next(error)
   }

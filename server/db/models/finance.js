@@ -15,4 +15,14 @@ const Finance = db.define('finance', {
   }
 })
 
+Finance.findAllFinance = async function(userId){
+  const finance = await this.findOne({
+    where: {
+      userId: userId
+    }
+  })
+
+  return finance
+}
+
 module.exports = Finance

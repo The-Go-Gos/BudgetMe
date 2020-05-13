@@ -13,6 +13,7 @@ module.exports = router
 router.use('/users', require('./users'))
 router.use('/receipts', require('./receipt'))
 
+
 router.use((req, res, next) => {
   const error = new Error('Not Found')
   error.status = 404

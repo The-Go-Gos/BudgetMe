@@ -161,6 +161,13 @@ async function seed() {
       tagId: 1
     })
   ])
+  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${receipts.length} receipts`)
+  console.log(`seeded ${finance.length} finance`)
+  console.log(`seeded ${tag.length} tag`)
+  console.log(`seeded ${productTags.length} productTags`)
 }
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.

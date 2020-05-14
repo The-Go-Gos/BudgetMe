@@ -28,7 +28,7 @@ class AddRecordForm extends React.Component {
       this.setState({[e.target.name]: e.target.value})
     }
   }
-  addProduct = e => {
+  addProduct = () => {
     this.setState(prevState => ({
       products: [...prevState.products, {name: '', price: 0, categoryId: 1}]
     }))

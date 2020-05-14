@@ -3,10 +3,10 @@ const {Finance} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-    try {
-      const finance = await Finance.findAll()
-      res.json(finance)
-    } catch (err) {
-      next(err)
-    }
-  })
+  try {
+    const finance = await Finance.findAll()
+    res.json(finance)
+  } catch (err) {
+    next(err)
+  }
+})

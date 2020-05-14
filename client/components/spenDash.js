@@ -3,9 +3,7 @@ import {connect} from 'react-redux'
 import {fetchAllCategories} from '../store'
 
 export class SpenDash extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+ 
   componentDidMount() {
     const {id} = this.props
     this.props.getCategories(id)

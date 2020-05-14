@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {Login, Signup, UserHome, SpenDash, Setting} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
@@ -28,8 +28,14 @@ class Routes extends Component {
 
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            {/* <Route path="/users/:userId/categories" render={routeProps => <SpenDash {...routeProps} />} /> */}
+            <Route
+              exact
+              path="/spendDash"
+              render={routeProps => <SpenDash {...routeProps} />}
+            />
+            <Route exact path="/settings" component={Setting} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

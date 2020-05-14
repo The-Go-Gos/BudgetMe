@@ -136,7 +136,7 @@ async function seed() {
       userId: 2
     }),
     Finance.create({
-      budget: 30000,
+      budget: 30065,
       userId: 3
     }),
     Finance.create({

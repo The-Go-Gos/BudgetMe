@@ -83,7 +83,7 @@ module.exports = runReadReceipt
 runReadReceipt(imagePath)
 
 //helper functions
-function getVendor(s) {
+const getVendor = s => {
   const myRe = /.*\d.*/g
   let first3line = s.split('\n').slice(0, 2)
   let res = ''

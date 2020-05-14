@@ -9,18 +9,18 @@ const initialState = []
 
 //action creator
 
-const addReceipt = (receipt) => ({
+const addReceipt = receipt => ({
   type: ADD_RECEIPT,
-  receipt,
+  receipt
 })
 
-const analyzeReceipt = (receipt) => ({
+const analyzeReceipt = receipt => ({
   type: ANALYZE_RECEIPT,
-  receipt,
+  receipt
 })
 
 //thunk
-export const addReceiptThunk = (receipt) => async (dispatch) => {
+export const addReceiptThunk = receipt => async dispatch => {
   try {
     const res = await axios.post('/api/receipts', receipt)
     dispatch(addReceipt(res.data))
@@ -29,10 +29,13 @@ export const addReceiptThunk = (receipt) => async (dispatch) => {
   }
 }
 
-export const analyzeReceiptThunk = (receipt) => async (dispatch) => {
+export const analyzeReceiptThunk = receipt => async dispatch => {
   try {
-    dispatch(analyzeReceipt(receipt))
-  } catch (error) {}
+    const res = await axios.post('/api/receipts/google', receipt)
+    dispatch(analyzeReceipt(res.data))
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 //reducer

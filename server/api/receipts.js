@@ -1,10 +1,13 @@
 const router = require('express').Router()
 const {Receipt, Product} = require('../db/models')
 const vision = require('@google-cloud/vision')
+const resizeOptimizeImages = require('resize-optimize-images')
+const readReceipt = require('./anaysis')
+
 const client = new vision.ImageAnnotatorClient({
-  keyFilename:
-    '/Users/carolinexiao/Desktop/GraceHopper/Capstone/BudgetMe/BudgetMe-b920c8b06de1.json',
+  keyFilename: '/Users/linweiliu/Desktop/BudgetMe/budgetMe-0e9157b3d18d.json'
 })
+
 module.exports = router
 
 // router.get('/', async (req, res, next) => {
@@ -37,7 +40,7 @@ router.post('/', async (req, res, next) => {
       userId: req.user.id,
       vendor: vendor,
       totalPrice: totalPrice,
-      include: [{model: Product}],
+      include: [{model: Product}]
     })
 
     // await Product.destroy({
@@ -49,7 +52,7 @@ router.post('/', async (req, res, next) => {
         name: products[i].name,
         price: products[i].price,
         receiptId: receipt.id,
-        categoryId: products[i].categoryId,
+        categoryId: products[i].categoryId
       })
       await receipt.addProduct(product)
     }
@@ -59,24 +62,25 @@ router.post('/', async (req, res, next) => {
     next(err)
   }
 })
-//helper function
 
-const resize = async (image) => {
+const resize = async image => {
   const options = {
     images: [image],
     width: 900,
-    quality: 100,
+    quality: 100
   }
   await resizeOptimizeImages(options)
 }
 
-router.get('/google', async (req, res, next) => {
+router.post('/google', async (req, res, next) => {
   // const buffer = Buffer.from(req.body.image, "base64");
-  const imagePath = 'server/googleOcr/traderJoes.jpg'
+  const imagePath = req.body
   try {
-    const resizedImg = await resize(imagePath)
-    const parsed = await client.documentTextDetection(resizedImg)
-    res.json(parsed[0])
+    // const imagePath = '/Users/linweiliu/Desktop/BudgetMe/server/googleOcr/crabapple.jpg'
+    await resize(imagePath)
+    const [parsed] = await client.documentTextDetection(imagePath)
+    const result = readReceipt(parsed)
+    res.json(result)
   } catch (err) {
     console.error(err)
     next()

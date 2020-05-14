@@ -35,30 +35,140 @@ const categories = [
   'Hobbies',
   'Personal Care',
   'Sports',
-  'Travel',
+  'Travel'
 ]
 
 const defaultState = {
   vendor: '',
   products: [],
-  totalPrice: 0,
+  totalPrice: 0
 }
 
 class ReceiptDetail extends React.Component {
   constructor(props) {
     super(props)
-    this.state = dummy
+    this.state = {}
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
+    // this.analyze = this.analyze.bind(this)
   }
+
+  componentDidMount() {
+    const image =
+      '/Users/linweiliu/Desktop/BudgetMe/server/googleOcr/crabapple.jpg'
+    this.setState(this.props.analyzeReceipt(image))
+  }
+
+  //helper functions
+  // getVendor = (s) => {
+  //   const myRe = /.*\d.*/g
+  //   let first3line = s.split('\n').slice(0, 2)
+  //   let res = ''
+  //   first3line.forEach(line => {
+  //     if (!myRe.exec(line)) {
+  //       res += line + ' '
+  //     }
+  //   })
+  //   res = res.trim().toUpperCase()
+  //   return res
+  // }
+
+  // isFloat = x => {
+  //   return !!(x % 1)
+  // }
+
+  // makeLine = (dict, x, y, part) => {
+  //   let range = []
+  //   for (let i = y - 20; i < y + 20; i++) {
+  //     range.push(i)
+  //   }
+
+  //   for (let each of range) {
+  //     // ** if on the same line
+  //     if (dict.hasOwnProperty(each)) {
+  //       if (x > 600) {
+  //         dict[each].price += part
+  //       } else {
+  //         dict[each].name += part
+  //       }
+  //       return
+  //     }
+  //   }
+  //   // ** if on a different line
+  //   if (x > 600) {
+  //     dict[y] = {
+  //       name: '',
+  //       price: part
+  //     }
+  //   } else {
+  //     dict[y] = {
+  //       name: part,
+  //       price: ''
+  //     }
+  //   }
+  // }
+
+  // analyze(image) {
+  //   const parsed = this.props.analyzeReceipt(image)
+  //   let document = parsed.fullTextAnnotation
+  //   //get vendor name
+  //   let vendorStr = document.text
+  //   let vendor = this.getVendor(vendorStr)
+  //   // get products array
+  //   let blocks = document.pages[0].blocks
+  //   let dictionary = {}
+  //   for (let block of blocks) {
+  //     block.paragraphs.forEach(paragraph =>
+  //       paragraph.words.forEach(word => {
+  //         let x = word.boundingBox.vertices[0].x
+  //         let y = word.boundingBox.vertices[0].y
+  //         let part = word.symbols.map(symbol => symbol.text).join('')
+  //         if (part !== '$') this.makeLine(dictionary, x, y, part)
+  //       })
+  //     )
+  //   }
+  //   let products = []
+  //   let totalPrice
+  //   for (let itemKey in dictionary) {
+  //     let item = dictionary[itemKey]
+  //     if (
+  //       item.price &&
+  //       !isNaN(item.price) &&
+  //       this.isFloat(item.price) &&
+  //       !item.name.toLowerCase().includes('total') &&
+  //       !item.name.toLowerCase().includes('due')
+  //     ) {
+  //       item.price = item.price[0] === '$' ? item.price.slice(1) : item.price
+  //       item.categoryId = 1
+  //       products.push(item)
+  //     }
+  //     //get total price
+  //     if (
+  //       item.price &&
+  //       !isNaN(item.price) &&
+  //       this.isFloat(item.price) &&
+  //       (item.name.toLowerCase().includes('total') ||
+  //         item.name.toLowerCase().includes('due'))
+  //     ) {
+  //       totalPrice = item.price[0] === '$' ? item.price.slice(1) : item.price
+  //     }
+  //   }
+  //   let receiptDetails = {
+  //     vendor: vendor,
+  //     products: products,
+  //     totalPrice: totalPrice
+  //   }
+  //   // return receiptDetails
+  //   this.setState({receiptDetails})
+  // }
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -67,7 +177,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].name = e.target.value
     this.setState({
-      products: newProducts,
+      products: newProducts
     })
   }
 
@@ -76,7 +186,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].price = e.target.value
     this.setState({
-      products: newProducts,
+      products: newProducts
     })
   }
 
@@ -85,7 +195,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].categoryId = parseInt(e.target.value)
     this.setState({
-      products: newProducts,
+      products: newProducts
     })
   }
 
@@ -98,11 +208,11 @@ class ReceiptDetail extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={(e) => this.handleSubmit(e)}>
+        <form onSubmit={e => this.handleSubmit(e)}>
           <div>
             <label htmlFor="vendor"> Vendor: </label>
             <input
-              onChange={(e) => this.handleChange(e)}
+              onChange={e => this.handleChange(e)}
               name="vendor"
               type="text"
               value={this.state.vendor}
@@ -115,7 +225,7 @@ class ReceiptDetail extends React.Component {
                 <div key={index}>
                   <label htmlFor="name"> Name: </label>
                   <input
-                    onChange={(e) => this.handleNameChange(e)}
+                    onChange={e => this.handleNameChange(e)}
                     name="name"
                     type="text"
                     id={index}
@@ -124,7 +234,7 @@ class ReceiptDetail extends React.Component {
 
                   <label htmlFor="price"> Price: </label>
                   <input
-                    onChange={(e) => this.handlePriceChange(e)}
+                    onChange={e => this.handlePriceChange(e)}
                     name="price"
                     type="number"
                     id={index}
@@ -133,7 +243,7 @@ class ReceiptDetail extends React.Component {
 
                   <select
                     id={index}
-                    onChange={(e) => this.handleCategoryChange(e)}
+                    onChange={e => this.handleCategoryChange(e)}
                   >
                     {categories.map((c, optionIndex) => {
                       return (
@@ -150,7 +260,7 @@ class ReceiptDetail extends React.Component {
           <div>
             <label htmlFor="totalPrice"> Total Price: </label>
             <input
-              onChange={(e) => this.handleChange(e)}
+              onChange={e => this.handleChange(e)}
               name="totalPrice"
               type="number"
               value={this.state.totalPrice}
@@ -166,9 +276,9 @@ class ReceiptDetail extends React.Component {
   }
 }
 
-const mapDispatch = (dispatch) => ({
-  addReceipt: (receipt) => dispatch(addReceiptThunk(receipt)),
-  analyzeReceipt: (receipt) => dispatch(analyzeReceiptThunk(receipt)),
+const mapDispatch = dispatch => ({
+  addReceipt: receipt => dispatch(addReceiptThunk(receipt)),
+  analyzeReceipt: receipt => dispatch(analyzeReceiptThunk(receipt))
 })
 
 export default connect(null, mapDispatch)(ReceiptDetail)

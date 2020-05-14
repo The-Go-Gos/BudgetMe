@@ -1,28 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addReceiptThunk} from '../store/receipts'
+import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
 
-const dummy = {
-  vendor: 'whole foods',
-  products: [
-    {
-      name: 'OVF LG EGGS',
-      price: 6.19,
-      categoryId: 1
-    },
-    {
-      name: 'OG HASS AVOCADO BAG',
-      price: 6.99,
-      categoryId: 1
-    },
-    {
-      name: 'CRUNCHY ALMD BTR',
-      price: 7.99,
-      categoryId: 1
-    }
-  ],
-  totalPrice: 21.17
-}
+// const dummy = {
+//   vendor: 'whole foods',
+//   products: [
+//     {
+//       name: 'OVF LG EGGS',
+//       price: 6.19,
+//       categoryId: 1,
+//     },
+//     {
+//       name: 'OG HASS AVOCADO BAG',
+//       price: 6.99,
+//       categoryId: 1,
+//     },
+//     {
+//       name: 'CRUNCHY ALMD BTR',
+//       price: 7.99,
+//       categoryId: 1,
+//     },
+//   ],
+//   totalPrice: 21.17,
+// }
 
 const categories = [
   'Choose a Category', //category 'other' in db
@@ -35,13 +35,13 @@ const categories = [
   'Hobbies',
   'Personal Care',
   'Sports',
-  'Travel'
+  'Travel',
 ]
 
 const defaultState = {
   vendor: '',
   products: [],
-  totalPrice: 0
+  totalPrice: 0,
 }
 
 class ReceiptDetail extends React.Component {
@@ -58,7 +58,7 @@ class ReceiptDetail extends React.Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
@@ -67,7 +67,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].name = e.target.value
     this.setState({
-      products: newProducts
+      products: newProducts,
     })
   }
 
@@ -76,7 +76,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].price = e.target.value
     this.setState({
-      products: newProducts
+      products: newProducts,
     })
   }
 
@@ -85,7 +85,7 @@ class ReceiptDetail extends React.Component {
     const index = parseInt(e.target.id)
     newProducts[index].categoryId = parseInt(e.target.value)
     this.setState({
-      products: newProducts
+      products: newProducts,
     })
   }
 
@@ -98,11 +98,11 @@ class ReceiptDetail extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={e => this.handleSubmit(e)}>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <div>
             <label htmlFor="vendor"> Vendor: </label>
             <input
-              onChange={e => this.handleChange(e)}
+              onChange={(e) => this.handleChange(e)}
               name="vendor"
               type="text"
               value={this.state.vendor}
@@ -115,7 +115,7 @@ class ReceiptDetail extends React.Component {
                 <div key={index}>
                   <label htmlFor="name"> Name: </label>
                   <input
-                    onChange={e => this.handleNameChange(e)}
+                    onChange={(e) => this.handleNameChange(e)}
                     name="name"
                     type="text"
                     id={index}
@@ -124,7 +124,7 @@ class ReceiptDetail extends React.Component {
 
                   <label htmlFor="price"> Price: </label>
                   <input
-                    onChange={e => this.handlePriceChange(e)}
+                    onChange={(e) => this.handlePriceChange(e)}
                     name="price"
                     type="number"
                     id={index}
@@ -133,7 +133,7 @@ class ReceiptDetail extends React.Component {
 
                   <select
                     id={index}
-                    onChange={e => this.handleCategoryChange(e)}
+                    onChange={(e) => this.handleCategoryChange(e)}
                   >
                     {categories.map((c, optionIndex) => {
                       return (
@@ -150,7 +150,7 @@ class ReceiptDetail extends React.Component {
           <div>
             <label htmlFor="totalPrice"> Total Price: </label>
             <input
-              onChange={e => this.handleChange(e)}
+              onChange={(e) => this.handleChange(e)}
               name="totalPrice"
               type="number"
               value={this.state.totalPrice}
@@ -166,8 +166,9 @@ class ReceiptDetail extends React.Component {
   }
 }
 
-const mapDispatch = dispatch => ({
-  addReceipt: receipt => dispatch(addReceiptThunk(receipt))
+const mapDispatch = (dispatch) => ({
+  addReceipt: (receipt) => dispatch(addReceiptThunk(receipt)),
+  analyzeReceipt: (receipt) => dispatch(analyzeReceiptThunk(receipt)),
 })
 
 export default connect(null, mapDispatch)(ReceiptDetail)

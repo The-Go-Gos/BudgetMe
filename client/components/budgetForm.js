@@ -3,15 +3,12 @@ import {connect} from 'react-redux'
 import {addBudgetThunk} from '../store/budget'
 
 const AddBudgetForm = props => {
-    const {state, handleChange, handleSubmit} = props
+    const {state, handleChange, handleSubmit, userId} = props
   
     const onSubmit = async e => {
       e.preventDefault()
-      const budget = e.target.budget.value
+      const budget = (e.target.budget.value * 100)
       const budgetElement = {budget}
-
-      const userId = this.props.userId
-
       await props.addBudget(userId, budgetElement)
   
       handleSubmit()
@@ -26,9 +23,10 @@ const AddBudgetForm = props => {
           <input
             onChange={handleChange}
             name="budget"
-            type="text"
-            pattern="[0-9]*"
-            title="i.e. 50 = $50"
+            type="number"
+            pattern = "[0-9]*[.]?[0-9]+"
+            step="0.01"
+            title="i.e. 100.56 = $100.56"
             value={state.budget}
           />
         </div>
@@ -44,10 +42,6 @@ const AddBudgetForm = props => {
       </form>
     )
   }
-  
-  const mapState = (state) => {
-    return {userId: state.user.id}
-  }
 
   const mapDispatch = (dispatch) => {
     return {
@@ -56,9 +50,4 @@ const AddBudgetForm = props => {
     }
   }
   
-  export default connect(mapState, mapDispatch)(AddBudgetForm)
-
-  /* type="number" 
-            min="0.00" 
-            max="10000.00" 
-            step="0.01"  */
+export default connect(null, mapDispatch)(AddBudgetForm)

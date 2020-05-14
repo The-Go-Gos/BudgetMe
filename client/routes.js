@@ -6,6 +6,7 @@ import {Login, Signup, UserHome, SpenDash, Setting} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
+import Receipts from './components/Receipts'
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/receiptdetail" component={ReceiptDetail} />
         <Route exact path="/manualreceipt" component={AddRecordForm} />
+        <Route exact path="/receipts" component={Receipts} />
 
         {isLoggedIn && (
           <Switch>

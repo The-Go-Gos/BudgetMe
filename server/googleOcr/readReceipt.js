@@ -71,11 +71,14 @@ async function readReceipt(receipt) {
   return receiptDetails
 }
 
-async function runReadReceipt(image) {
+const runReadReceipt = async function runReadReceipt(image) {
   await resize()
   const res = await readReceipt(image)
   console.log(res)
+  return res
 }
+
+module.exports = runReadReceipt
 
 runReadReceipt(imagePath)
 

@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addReceiptThunk} from '../store/receipts'
 
-// parsed from google OCR
 const dummy = {
   vendor: 'whole foods',
   products: [

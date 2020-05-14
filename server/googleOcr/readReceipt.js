@@ -2,10 +2,12 @@ const vision = require('@google-cloud/vision')
 const resizeOptimizeImages = require('resize-optimize-images')
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: '/Users/linweiliu/Desktop/BudgetMe/budgetMe-0e9157b3d18d.json'
+  keyFilename:
+    '/Users/carolinexiao/Desktop/GraceHopper/Capstone/BudgetMe/BudgetMe-b920c8b06de1.json'
 })
+
 const imagePath =
-  '/Users/linweiliu/Desktop/BudgetMe/server/googleOcr/crabapple.jpg'
+  '/Users/carolinexiao/Desktop/GraceHopper/Capstone/BudgetMe/server/googleOcr/traderJoes.jpg'
 
 const resize = async () => {
   const options = {
@@ -14,41 +16,6 @@ const resize = async () => {
     quality: 100
   }
   await resizeOptimizeImages(options)
-}
-
-const isFloat = x => {
-  return !!(x % 1)
-}
-
-const makeLine = (dict, x, y, part) => {
-  let range = []
-  for (let i = y - 20; i < y + 20; i++) {
-    range.push(i)
-  }
-
-  for (let each of range) {
-    // ** if on the same line
-    if (dict.hasOwnProperty(each)) {
-      if (x > 600) {
-        dict[each].price += part
-      } else {
-        dict[each].name += part
-      }
-      return
-    }
-  }
-  // ** if on a different line
-  if (x > 600) {
-    dict[y] = {
-      name: '',
-      price: part
-    }
-  } else {
-    dict[y] = {
-      name: part,
-      price: ''
-    }
-  }
 }
 
 async function readReceipt(receipt) {
@@ -124,4 +91,39 @@ function getVendor(s) {
   })
   res = res.trim().toUpperCase()
   return res
+}
+
+const isFloat = x => {
+  return !!(x % 1)
+}
+
+const makeLine = (dict, x, y, part) => {
+  let range = []
+  for (let i = y - 20; i < y + 20; i++) {
+    range.push(i)
+  }
+
+  for (let each of range) {
+    // ** if on the same line
+    if (dict.hasOwnProperty(each)) {
+      if (x > 600) {
+        dict[each].price += part
+      } else {
+        dict[each].name += part
+      }
+      return
+    }
+  }
+  // ** if on a different line
+  if (x > 600) {
+    dict[y] = {
+      name: '',
+      price: part
+    }
+  } else {
+    dict[y] = {
+      name: part,
+      price: ''
+    }
+  }
 }

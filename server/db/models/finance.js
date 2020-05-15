@@ -19,10 +19,15 @@ Finance.findAllFinance = async function(userId) {
   const finance = await this.findOne({
     where: {
       userId: userId
-    }
+    },
+    attributes: ['budget']
   })
 
+  if(!finance){
+    return 'not Found'
+  }else{
   return finance
+}
 }
 
 module.exports = Finance

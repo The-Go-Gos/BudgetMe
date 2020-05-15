@@ -41,6 +41,7 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/vision": "^1.11.0",
     "axios": "^0.19.0",
     "bulma": "^0.8.2",
     "compression": "^1.7.3",
@@ -62,8 +63,10 @@
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "resize-optimize-images": "^1.1.0",
     "sequelize": "^5.3.1",
-    "socket.io": "^2.2.0"
+    "socket.io": "^2.2.0",
+    "victory": "^34.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

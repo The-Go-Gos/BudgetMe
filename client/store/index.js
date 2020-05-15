@@ -5,11 +5,13 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import receiptsReducer from './receipts'
 import categoryReducer from './category'
+import budgetReducer from './budget'
 
 const reducer = combineReducers({
   user,
   receiptsReducer,
-  categoryReducer
+  categoryReducer,
+  budgetReducer
 })
 
 const middleware = composeWithDevTools(
@@ -20,3 +22,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './category'
+export * from './budget'

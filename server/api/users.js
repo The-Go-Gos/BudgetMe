@@ -56,6 +56,20 @@ router.get('/:userId/categories', async (req, res, next) => {
   }
 })
 
+router.get('/:userId/total', async (req, res, next) => {
+  try {
+    const {userId} = req.params
+    const total = await Product.findTotal(userId)
+    if(total){
+      res.json(total)
+    }else{
+      res.json('Information not found')
+    }
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/:userId/categories/:categoryId', async (req, res, next) => {
   try {
     const {userId, categoryId} = req.params

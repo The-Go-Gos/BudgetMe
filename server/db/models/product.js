@@ -3,6 +3,7 @@ const db = require('../db')
 const d3 = require('d3')
 const Receipt = require('./receipt')
 const Category = require('./category')
+const Finance = require('./finance')
 
 const Product = db.define('product', {
   name: {
@@ -84,6 +85,48 @@ Product.findAllCategory = async function(userId) {
     .entries(categories)
 
   return expense
+}
+
+Product.findTotal = async function(userId) {
+  const categories = await this.findAll({
+    include: [
+      {
+        model: Receipt,
+        where: {
+          userId: userId
+        }
+      },
+      {
+        model: Category,
+        attributes: ['id', 'title']
+      }
+    ]
+  })
+  
+  const budget = await Finance.findAllFinance(userId)
+
+  const expense = d3
+    .nest()
+    .rollup(function(v) {
+      return {
+        total: d3.sum(v, function(d) {
+          return d.price / 100
+        })
+      }
+    })
+    .entries(categories)
+    const totalBudget = budget.budget
+    const total = expense.total
+    const percentageSpent = (total * 100) / totalBudget
+    const percentageNotSpent = 100 - percentageSpent
+
+    const calculations = {}
+    calculations['totalSpend'] = total
+    calculations['totalBudget'] = totalBudget 
+    calculations['percentageSpent'] = Math.round(percentageSpent) 
+    calculations['percentageNotSpent'] = Math.round(percentageNotSpent)
+
+  return calculations
 }
 
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook

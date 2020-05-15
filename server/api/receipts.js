@@ -74,9 +74,8 @@ const resize = async image => {
 
 router.post('/google', async (req, res, next) => {
   // const buffer = Buffer.from(req.body.image, "base64");
-  const imagePath = req.body
+  const imagePath = req.body.url
   try {
-    // const imagePath = '/Users/linweiliu/Desktop/BudgetMe/server/googleOcr/crabapple.jpg'
     await resize(imagePath)
     const [parsed] = await client.documentTextDetection(imagePath)
     const result = readReceipt(parsed)

@@ -2,30 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
 
-// const dummy = {
-//   vendor: 'whole foods',
-//   products: [
-//     {
-//       name: 'OVF LG EGGS',
-//       price: 6.19,
-//       categoryId: 1,
-//     },
-//     {
-//       name: 'OG HASS AVOCADO BAG',
-//       price: 6.99,
-//       categoryId: 1,
-//     },
-//     {
-//       name: 'CRUNCHY ALMD BTR',
-//       price: 7.99,
-//       categoryId: 1,
-//     },
-//   ],
-//   totalPrice: 21.17,
-// }
-
 const categories = [
-  'Choose a Category', //category 'other' in db
+  'Choose a Category',
   'Apparel',
   'Accessaries',
   'Dining Out',
@@ -45,126 +23,35 @@ const defaultState = {
 }
 
 class ReceiptDetail extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+  constructor() {
+    super()
+    this.state = {
+      vendor: '',
+      products: [],
+      totalPrice: 0
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
-    // this.analyze = this.analyze.bind(this)
   }
 
   componentDidMount() {
     const image =
-      '/Users/linweiliu/Desktop/BudgetMe/server/googleOcr/crabapple.jpg'
-    this.setState(this.props.analyzeReceipt(image))
+      '/Users/linweiliu/Desktop/BudgetMe/server/receiptImage/crabapple.jpg'
+    this.props.analyzeReceipt({url: image})
   }
 
-  //helper functions
-  // getVendor = (s) => {
-  //   const myRe = /.*\d.*/g
-  //   let first3line = s.split('\n').slice(0, 2)
-  //   let res = ''
-  //   first3line.forEach(line => {
-  //     if (!myRe.exec(line)) {
-  //       res += line + ' '
-  //     }
-  //   })
-  //   res = res.trim().toUpperCase()
-  //   return res
-  // }
-
-  // isFloat = x => {
-  //   return !!(x % 1)
-  // }
-
-  // makeLine = (dict, x, y, part) => {
-  //   let range = []
-  //   for (let i = y - 20; i < y + 20; i++) {
-  //     range.push(i)
-  //   }
-
-  //   for (let each of range) {
-  //     // ** if on the same line
-  //     if (dict.hasOwnProperty(each)) {
-  //       if (x > 600) {
-  //         dict[each].price += part
-  //       } else {
-  //         dict[each].name += part
-  //       }
-  //       return
-  //     }
-  //   }
-  //   // ** if on a different line
-  //   if (x > 600) {
-  //     dict[y] = {
-  //       name: '',
-  //       price: part
-  //     }
-  //   } else {
-  //     dict[y] = {
-  //       name: part,
-  //       price: ''
-  //     }
-  //   }
-  // }
-
-  // analyze(image) {
-  //   const parsed = this.props.analyzeReceipt(image)
-  //   let document = parsed.fullTextAnnotation
-  //   //get vendor name
-  //   let vendorStr = document.text
-  //   let vendor = this.getVendor(vendorStr)
-  //   // get products array
-  //   let blocks = document.pages[0].blocks
-  //   let dictionary = {}
-  //   for (let block of blocks) {
-  //     block.paragraphs.forEach(paragraph =>
-  //       paragraph.words.forEach(word => {
-  //         let x = word.boundingBox.vertices[0].x
-  //         let y = word.boundingBox.vertices[0].y
-  //         let part = word.symbols.map(symbol => symbol.text).join('')
-  //         if (part !== '$') this.makeLine(dictionary, x, y, part)
-  //       })
-  //     )
-  //   }
-  //   let products = []
-  //   let totalPrice
-  //   for (let itemKey in dictionary) {
-  //     let item = dictionary[itemKey]
-  //     if (
-  //       item.price &&
-  //       !isNaN(item.price) &&
-  //       this.isFloat(item.price) &&
-  //       !item.name.toLowerCase().includes('total') &&
-  //       !item.name.toLowerCase().includes('due')
-  //     ) {
-  //       item.price = item.price[0] === '$' ? item.price.slice(1) : item.price
-  //       item.categoryId = 1
-  //       products.push(item)
-  //     }
-  //     //get total price
-  //     if (
-  //       item.price &&
-  //       !isNaN(item.price) &&
-  //       this.isFloat(item.price) &&
-  //       (item.name.toLowerCase().includes('total') ||
-  //         item.name.toLowerCase().includes('due'))
-  //     ) {
-  //       totalPrice = item.price[0] === '$' ? item.price.slice(1) : item.price
-  //     }
-  //   }
-  //   let receiptDetails = {
-  //     vendor: vendor,
-  //     products: products,
-  //     totalPrice: totalPrice
-  //   }
-  //   // return receiptDetails
-  //   this.setState({receiptDetails})
-  // }
+  componentDidUpdate(preProps) {
+    if (
+      this.props.receipt.products !== undefined &&
+      this.props.receipt !== preProps.receipt
+    ) {
+      this.setState(this.props.receipt)
+    }
+  }
 
   handleChange(e) {
     this.setState({
@@ -206,6 +93,9 @@ class ReceiptDetail extends React.Component {
   }
 
   render() {
+    if (!this.props.receipt.products) {
+      return <div className="loader" />
+    }
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
@@ -276,9 +166,15 @@ class ReceiptDetail extends React.Component {
   }
 }
 
+const mapState = state => {
+  return {
+    receipt: state.receiptsReducer
+  }
+}
+
 const mapDispatch = dispatch => ({
   addReceipt: receipt => dispatch(addReceiptThunk(receipt)),
   analyzeReceipt: receipt => dispatch(analyzeReceiptThunk(receipt))
 })
 
-export default connect(null, mapDispatch)(ReceiptDetail)
+export default connect(mapState, mapDispatch)(ReceiptDetail)

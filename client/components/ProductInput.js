@@ -25,6 +25,7 @@ const ProductInputs = props => {
           id={idx}
           value={props.products[idx].name}
           className="name"
+          onChange={props.onChangeHandler}
         />
         <label htmlFor="price">Price</label>
         <input
@@ -33,11 +34,16 @@ const ProductInputs = props => {
           id={idx}
           value={props.products[idx].price}
           className="price"
+          onChange={props.onChangeHandler}
         />
         <select id={idx} className="categoryId">
           {categories.map((c, optionIndex) => {
             return (
-              <option key={optionIndex} value={optionIndex + 1}>
+              <option
+                key={optionIndex}
+                value={optionIndex + 1}
+                onChange={props.onChangeHandler}
+              >
                 {c}
               </option>
             )
@@ -47,4 +53,5 @@ const ProductInputs = props => {
     )
   })
 }
+
 export default ProductInputs

@@ -43,19 +43,32 @@ class AddRecordForm extends React.Component {
     let {vendor, products, totalPrice} = this.state
     return (
       <div>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="vendor">Vendor</label>
-            <input type="text" name="vendor" value={vendor} />
+            <input
+              type="text"
+              name="vendor"
+              value={vendor}
+              onChange={this.handleChange}
+            />
           </div>
           <br />
           <div>
-            <ProductInputs products={products} />
+            <ProductInputs
+              products={products}
+              onChangeHandler={this.handleChange}
+            />
           </div>
           <br />
           <div>
             <label htmlFor="totalPrice">totalPrice</label>
-            <input type="number" name="totalPrice" value={totalPrice} />
+            <input
+              type="number"
+              name="totalPrice"
+              value={totalPrice}
+              onChange={this.handleChange}
+            />
           </div>
           <br />
           <button type="submit">Submit</button>

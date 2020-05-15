@@ -1,8 +1,12 @@
 const router = require('express').Router()
 const {Receipt, Product} = require('../db/models')
 const vision = require('@google-cloud/vision')
-const resizeOptimizeImages = require('resize-optimize-images')
 const readReceipt = require('./anaysis')
+const multer = require('multer')
+const path = require('path')
+const sharp = require('sharp')
+const {uuid: uuidv4} = require('uuidv4')
+const upload = multer({})
 
 const client = new vision.ImageAnnotatorClient({
   keyFilename: '/mnt/c/Users/Naomi Moreira/Desktop/GraceHopper/SeniorPhase/projects/quiz/quiz/read-image-276618-b1b87960fbb9.json'
@@ -63,21 +67,39 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-const resize = async image => {
-  const options = {
-    images: [image],
-    width: 900,
-    quality: 100
+class Resize {
+  constructor(folder) {
+    this.folder = folder
   }
-  await resizeOptimizeImages(options)
+  async save(buffer) {
+    const filename = Resize.filename()
+    const filepath = this.filepath(filename)
+
+    await sharp(buffer)
+      .resize({width: 900})
+      .toFile(filepath)
+
+    return filename
+  }
+  static filename() {
+    return `${uuidv4()}.png`
+  }
+  filepath(filename) {
+    return path.resolve(`${this.folder}/${filename}`)
+  }
 }
 
-router.post('/google', async (req, res, next) => {
-  // const buffer = Buffer.from(req.body.image, "base64");
-  const imagePath = req.body.url
+router.post('/google', upload.single('image'), async (req, res, next) => {
   try {
-    await resize(imagePath)
-    const [parsed] = await client.documentTextDetection(imagePath)
+    const imagePath = path.join(__dirname, '/image')
+    const fileUpload = new Resize(imagePath)
+    if (!req.file) {
+      res.status(401).json({error: 'Please provide an image'})
+    }
+    const filename = await fileUpload.save(req.file.buffer)
+    const [parsed] = await client.documentTextDetection(
+      `${imagePath}/${filename}`
+    )
     const result = readReceipt(parsed)
     res.json(result)
   } catch (err) {

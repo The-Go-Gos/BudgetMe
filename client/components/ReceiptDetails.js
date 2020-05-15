@@ -36,12 +36,7 @@ class ReceiptDetail extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
-  }
-
-  componentDidMount() {
-    const image =
-      '/mnt/c/Users/Naomi Moreira/Desktop/GraceHopper/SeniorPhase/receipts/Trader-Joes-Receipt.jpg'
-    this.props.analyzeReceipt({url: image})
+    this.handleUpload = this.handleUpload.bind(this)
   }
 
   componentDidUpdate(preProps) {
@@ -92,75 +87,88 @@ class ReceiptDetail extends React.Component {
     this.setState(defaultState)
   }
 
+  handleUpload(event) {
+    let image = event.target.files[0]
+    let form = new FormData()
+    form.append('image', image)
+    this.props.analyzeReceipt(form)
+  }
+
   render() {
-    if (!this.props.receipt.products) {
-      return <div className="loader" />
-    }
+    // if (!this.props.receipt.products) {
+    //   return <div className="loader" />
+    // }
     return (
       <div>
-        <form onSubmit={e => this.handleSubmit(e)}>
-          <div>
-            <label htmlFor="vendor"> Vendor: </label>
-            <input
-              onChange={e => this.handleChange(e)}
-              name="vendor"
-              type="text"
-              value={this.state.vendor}
-            />
-          </div>
+        <div>
+          <input type="file" onChange={this.handleUpload} />
+        </div>
 
-          <div>
-            {this.state.products.map((list, index) => {
-              return (
-                <div key={index}>
-                  <label htmlFor="name"> Name: </label>
-                  <input
-                    onChange={e => this.handleNameChange(e)}
-                    name="name"
-                    type="text"
-                    id={index}
-                    value={list.name}
-                  />
+        <div>
+          <form onSubmit={e => this.handleSubmit(e)}>
+            <div>
+              <label htmlFor="vendor"> Vendor: </label>
+              <input
+                onChange={e => this.handleChange(e)}
+                name="vendor"
+                type="text"
+                value={this.state.vendor}
+              />
+            </div>
 
-                  <label htmlFor="price"> Price: </label>
-                  <input
-                    onChange={e => this.handlePriceChange(e)}
-                    name="price"
-                    type="number"
-                    id={index}
-                    value={list.price}
-                  />
+            <div>
+              {this.state.products.map((list, index) => {
+                return (
+                  <div key={index}>
+                    <label htmlFor="name"> Name: </label>
+                    <input
+                      onChange={e => this.handleNameChange(e)}
+                      name="name"
+                      type="text"
+                      id={index}
+                      value={list.name}
+                    />
 
-                  <select
-                    id={index}
-                    onChange={e => this.handleCategoryChange(e)}
-                  >
-                    {categories.map((c, optionIndex) => {
-                      return (
-                        <option key={optionIndex} value={optionIndex + 1}>
-                          {c}
-                        </option>
-                      )
-                    })}
-                  </select>
-                </div>
-              )
-            })}
-          </div>
-          <div>
-            <label htmlFor="totalPrice"> Total Price: </label>
-            <input
-              onChange={e => this.handleChange(e)}
-              name="totalPrice"
-              type="number"
-              value={this.state.totalPrice}
-            />
-          </div>
-          <br />
-          <div>
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+                    <label htmlFor="price"> Price: </label>
+                    <input
+                      onChange={e => this.handlePriceChange(e)}
+                      name="price"
+                      type="number"
+                      id={index}
+                      value={list.price}
+                    />
+
+                    <select
+                      id={index}
+                      onChange={e => this.handleCategoryChange(e)}
+                    >
+                      {categories.map((c, optionIndex) => {
+                        return (
+                          <option key={optionIndex} value={optionIndex + 1}>
+                            {c}
+                          </option>
+                        )
+                      })}
+                    </select>
+                  </div>
+                )
+              })}
+            </div>
+            <div>
+              <label htmlFor="totalPrice"> Total Price: </label>
+              <input
+                onChange={e => this.handleChange(e)}
+                name="totalPrice"
+                type="number"
+                value={this.state.totalPrice}
+              />
+            </div>
+            <br />
+            <div>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
     )
   }

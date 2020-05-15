@@ -29,16 +29,18 @@ Product.categoryTotal = async function(userId, categoryId) {
     where: {
       categoryId: categoryId
     },
-    include: {
-      model: Receipt,
-      where: {
-        userId: userId
+    include: [
+      {
+        model: Receipt,
+        where: {
+          userId: userId
+        }
+      },
+      {
+        model: Category,
+        attributes: ['title']
       }
-    },
-    include: {
-      model: Category,
-      attributes: ['title']
-    }
+    ]
   })
   const categoryName = products[0].category.title
 

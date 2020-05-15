@@ -6,6 +6,7 @@ import {Login, Signup, UserHome, SpenDash, Setting} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
+import Receipts from './components/Receipts'
 
 /**
  * COMPONENT
@@ -21,25 +22,25 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route exact path="/receiptdetail" component={ReceiptDetail} />
-        <Route exact path="/manualreceipt" component={AddRecordForm} />
+        <Route  path="/login" component={Login} />
+        <Route  path="/signup" component={Signup} />
 
         {isLoggedIn && (
           <Switch>
             <Route path="/home" component={UserHome} />
-            {/* <Route path="/users/:userId/categories" render={routeProps => <SpenDash {...routeProps} />} /> */}
             <Route
               exact
               path="/spendDash"
-              render={routeProps => <SpenDash {...routeProps} />}
+              render={(routeProps) => <SpenDash {...routeProps} />}
             />
             <Route exact path="/settings" component={Setting} />
+            <Route exact path="/receiptdetail" component={ReceiptDetail} />
+            <Route exact path="/manualreceipt" component={AddRecordForm} />
+            <Route exact path="/receipts" component={Receipts} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        
       </Switch>
     )
   }

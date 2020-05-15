@@ -1,32 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addReceiptThunk} from '../store/receipts'
-
-// parsed from google OCR
-const dummy = {
-  vendor: 'whole foods',
-  products: [
-    {
-      name: 'OVF LG EGGS',
-      price: 6.19,
-      categoryId: 1
-    },
-    {
-      name: 'OG HASS AVOCADO BAG',
-      price: 6.99,
-      categoryId: 1
-    },
-    {
-      name: 'CRUNCHY ALMD BTR',
-      price: 7.99,
-      categoryId: 1
-    }
-  ],
-  totalPrice: 21.17
-}
+import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
 
 const categories = [
-  'Choose a Category', //category 'other' in db
+  'Choose a Category',
   'Apparel',
   'Accessaries',
   'Dining Out',
@@ -46,15 +23,34 @@ const defaultState = {
 }
 
 class ReceiptDetail extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = dummy
+  constructor() {
+    super()
+    this.state = {
+      vendor: '',
+      products: [],
+      totalPrice: 0
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleNameChange = this.handleNameChange.bind(this)
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
+  }
+
+  componentDidMount() {
+    const image =
+      '/mnt/c/Users/Naomi Moreira/Desktop/GraceHopper/SeniorPhase/receipts/Trader-Joes-Receipt.jpg'
+    this.props.analyzeReceipt({url: image})
+  }
+
+  componentDidUpdate(preProps) {
+    if (
+      this.props.receipt.products !== undefined &&
+      this.props.receipt !== preProps.receipt
+    ) {
+      this.setState(this.props.receipt)
+    }
   }
 
   handleChange(e) {
@@ -97,6 +93,9 @@ class ReceiptDetail extends React.Component {
   }
 
   render() {
+    if (!this.props.receipt.products) {
+      return <div className="loader" />
+    }
     return (
       <div>
         <form onSubmit={e => this.handleSubmit(e)}>
@@ -167,8 +166,15 @@ class ReceiptDetail extends React.Component {
   }
 }
 
+const mapState = state => {
+  return {
+    receipt: state.receiptsReducer
+  }
+}
+
 const mapDispatch = dispatch => ({
-  addReceipt: receipt => dispatch(addReceiptThunk(receipt))
+  addReceipt: receipt => dispatch(addReceiptThunk(receipt)),
+  analyzeReceipt: receipt => dispatch(analyzeReceiptThunk(receipt))
 })
 
-export default connect(null, mapDispatch)(ReceiptDetail)
+export default connect(mapState, mapDispatch)(ReceiptDetail)

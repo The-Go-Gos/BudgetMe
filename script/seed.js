@@ -45,7 +45,7 @@ async function seed() {
   const categories = await Promise.all([
     Category.create({id: 1, title: 'Other'}),
     Category.create({id: 2, title: 'Apparel'}),
-    Category.create({id: 3, title: 'Accessaries'}),
+    Category.create({id: 3, title: 'Accessories'}),
     Category.create({id: 4, title: 'Dining Out'}),
     Category.create({id: 5, title: 'Fees & Service Charges'}),
     Category.create({id: 6, title: 'Groceries'}),
@@ -161,6 +161,13 @@ async function seed() {
       tagId: 1
     })
   ])
+  console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${receipts.length} receipts`)
+  console.log(`seeded ${finance.length} finance`)
+  console.log(`seeded ${tag.length} tag`)
+  console.log(`seeded ${productTags.length} productTags`)
 }
 // We've separated the `seed` function from the `runSeed` function.
 // This way we can isolate the error handling and exit trapping.

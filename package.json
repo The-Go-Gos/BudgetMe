@@ -59,6 +59,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-html5-camera-photo": "^1.5.4",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
@@ -66,11 +67,11 @@
     "redux-thunk": "^2.3.0",
     "resize-optimize-images": "^1.1.0",
     "sequelize": "^5.3.1",
-    "socket.io": "^2.2.0",
-    "victory": "^34.3.4",
     "sharp": "^0.25.2",
+    "socket.io": "^2.2.0",
     "uuid": "^8.0.0",
-    "uuidv4": "^6.0.8"
+    "uuidv4": "^6.0.8",
+    "victory": "^34.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

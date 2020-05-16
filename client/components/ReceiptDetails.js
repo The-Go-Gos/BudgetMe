@@ -103,6 +103,9 @@ class ReceiptDetail extends React.Component {
         <div>
           <input type="file" onChange={this.handleUpload} />
         </div>
+        {/* <div>
+          <input type="file" accept="image/*" capture="camera" />
+        </div> */}
 
         <div>
           <form onSubmit={e => this.handleSubmit(e)}>

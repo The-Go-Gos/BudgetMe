@@ -104,7 +104,7 @@ Product.findTotal = async function(userId) {
       }
     ]
   })
-  
+
   const budget = await Finance.findAllFinance(userId)
 
   const expense = d3
@@ -117,16 +117,16 @@ Product.findTotal = async function(userId) {
       }
     })
     .entries(categories)
-    const totalBudget = budget.budget
-    const total = expense.total
-    const percentageSpent = (total * 100) / totalBudget
-    const percentageNotSpent = 100 - percentageSpent
+  const totalBudget = budget.budget
+  const total = expense.total.toFixed(2)
+  const percentageSpent = total * 100 / totalBudget
+  const percentageNotSpent = 100 - percentageSpent
 
-    const calculations = {}
-    calculations['totalSpend'] = total
-    calculations['totalBudget'] = totalBudget 
-    calculations['percentageSpent'] = Math.round(percentageSpent) 
-    calculations['percentageNotSpent'] = Math.round(percentageNotSpent)
+  const calculations = {}
+  calculations.totalSpend = total
+  calculations.totalBudget = totalBudget
+  calculations.percentageSpent = Math.round(percentageSpent)
+  calculations.percentageNotSpent = Math.round(percentageNotSpent)
 
   return calculations
 }

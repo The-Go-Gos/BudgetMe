@@ -4,24 +4,45 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-   <nav>
-    {isLoggedIn && ( 
-      <div>
-          <Link to="/receipts">Receipts</Link>
-          <Link to="/spendDash">SpenDash</Link>
-          <Link to="/settings">Settings</Link> 
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
+const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
+  return (
+    <div>
+      <nav className="navbar is-info">
+        {isLoggedIn && (
+          <div>
+            <div id="burger">
+              <div id="mySidenav" className="sidenav">
+                <a href="#" className="closebtn" onClick={closeNav}>
+                  &times;
+                </a>
+                <a href="/receipts">Receipts</a>
+                <a href="/spendDash">SpenDash</a>
+                <a href="/settings">Settings</a>
+                <a href="#" onClick={handleClick}>
+                  Logout
+                </a>
+              </div>
+              <span className="is-size-5" onClick={openNav}>
+                &#9776;
+              </span>
+            </div>
           </div>
-      )}      
-    </nav>
-    <hr />
-  </div>
-)
+        )}
+        <div id="user">
+          <span className="icon">
+            <i className="fas fa-lg fa-user-circle" />
+          </span>
+        </div>
+      </nav>
+    </div>
+  )
+}
 
+{
+  /* <span className="icon">
+            <i className="fas fa-user-circle"></i>
+          </span> */
+}
 /**
  * CONTAINER
  */
@@ -35,6 +56,12 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    openNav() {
+      document.getElementById('mySidenav').style.width = '50%'
+    },
+    closeNav() {
+      document.getElementById('mySidenav').style.width = '0'
     }
   }
 }
@@ -49,18 +76,19 @@ Navbar.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired
 }
 
-/* {isLoggedIn ? (
+/*
+ <nav>
+      {isLoggedIn && (
         <div>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-          <Link to="/receipts">Receipts</Link>
-          <Link to="/spendDash">SpenDash</Link>
-          <Link to="/settings">Settings</Link>
-        </div>
-      ) : (
-        <div>
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )} */
+            <Link to="/receipts">Receipts</Link>
+            <Link to="/spendDash">SpenDash</Link>
+            <Link to="/settings">Settings</Link>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+            </div>
+      )}
+    </nav>
+    <hr />
+
+    */

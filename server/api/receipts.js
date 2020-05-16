@@ -9,7 +9,8 @@ const {uuid: uuidv4} = require('uuidv4')
 const upload = multer({})
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: 'budgetMe-0e9157b3d18d.json'
+  keyFilename:
+    '/mnt/c/Users/Naomi Moreira/Desktop/GraceHopper/SeniorPhase/projects/quiz/quiz/read-image-276618-b1b87960fbb9.json'
 })
 
 module.exports = router

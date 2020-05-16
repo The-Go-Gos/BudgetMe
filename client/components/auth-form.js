@@ -6,18 +6,18 @@ import {auth, authSignup} from '../store'
 /**
  * COMPONENT
  */
-const AuthForm = (props) => {
+const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   if (name === 'signup') {
     return (
-      <div className='mobile'>
+      <div className="mobile">
         <h1>BudgetMe</h1>
         <div id="logo">
-          <img
+          {/* <img
             src="https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/95/87/1a/95871a38-02a6-567b-4899-a15c64d6ff52/source/512x512bb.jpg"
             height="150px"
             width="150px"
-          />
+          /> */}
           <h1>Sign up</h1>
         </div>
         <div className="input_container mobile">
@@ -60,16 +60,15 @@ const AuthForm = (props) => {
                   placeholder="Email"
                 />
                 <span className="mobile icon is-small is-left">
-                  <i className="mobile fas fa-envelope"></i>
+                  <i className="mobile fas fa-envelope" />
                 </span>
               </div>
             </div>
             <div className="mobile field">
-              
-                <label htmlFor="password">
-                  <small>Password</small>
-                </label>
-                <div className="mobile control has-icons-left has-icons-right">
+              <label htmlFor="password">
+                <small>Password</small>
+              </label>
+              <div className="mobile control has-icons-left has-icons-right">
                 <input
                   className="mobile input"
                   name="password"
@@ -77,10 +76,9 @@ const AuthForm = (props) => {
                   placeholder="Password"
                 />
                 <span className="mobile icon is-small is-left">
-                  <i className="mobile fas fa-lock"></i>
+                  <i className="mobile fas fa-lock" />
                 </span>
-                </div>
-              
+              </div>
             </div>
             <div className="mobile field">
               <p className="mobile control">
@@ -100,11 +98,11 @@ const AuthForm = (props) => {
       <div>
         <h1>BudgetMe</h1>
         <div id="logo">
-          <img
+          {/* <img
             src="https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/95/87/1a/95871a38-02a6-567b-4899-a15c64d6ff52/source/512x512bb.jpg"
             height="150px"
             width="150px"
-          />
+          /> */}
           <h1>Log in</h1>
         </div>
         <div className="input_container">
@@ -140,23 +138,23 @@ const AuthForm = (props) => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-const mapLogin = (state) => {
+const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error,
+    error: state.user.error
   }
 }
 
-const mapSignup = (state) => {
+const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error,
+    error: state.user.error
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -164,11 +162,11 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName))
-    },
+    }
   }
 }
 
-const mapDispatchSignUp = (dispatch) => {
+const mapDispatchSignUp = dispatch => {
   return {
     handleSubmit(evt) {
       evt.preventDefault()
@@ -178,7 +176,7 @@ const mapDispatchSignUp = (dispatch) => {
       const firstName = evt.target.firstName.value
       const lastName = evt.target.lastName.value
       dispatch(authSignup(firstName, lastName, email, password, formName))
-    },
+    }
   }
 }
 
@@ -192,5 +190,5 @@ AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object,
+  error: PropTypes.object
 }

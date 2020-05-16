@@ -13,11 +13,16 @@ class Receipts extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/receiptdetail">
-          <h4>Upload</h4>
+        <Link to="/carema">
+          <img src="camera-icon.png" height="100px" width="90px" />
         </Link>
+        <br />
+        <Link to="/receiptdetail">
+          <img src="upload-icon.jpg" height="100px" width="100px" />
+        </Link>
+        <br />
         <Link to="/manualreceipt">
-          <h4>Manual</h4>
+          <img src="keyboard-icon.jpg" height="100px" width="100px" />
         </Link>
       </div>
     )

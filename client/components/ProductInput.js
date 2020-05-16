@@ -36,14 +36,14 @@ const ProductInputs = props => {
           className="price"
           onChange={props.onChangeHandler}
         />
-        <select id={idx} className="categoryId">
+        <select
+          id={idx}
+          className="categoryId"
+          onChange={props.onChangeHandler}
+        >
           {categories.map((c, optionIndex) => {
             return (
-              <option
-                key={optionIndex}
-                value={optionIndex + 1}
-                onChange={props.onChangeHandler}
-              >
+              <option key={optionIndex} value={optionIndex + 1}>
                 {c}
               </option>
             )

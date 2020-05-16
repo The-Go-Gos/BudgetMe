@@ -5,7 +5,7 @@ import {addReceiptThunk} from '../store/receipts'
 
 const defaultState = {
   vendor: '',
-  products: [{name: '', price: 0, categoryId: 1}],
+  products: [],
   totalPrice: 0
 }
 
@@ -43,6 +43,8 @@ class AddRecordForm extends React.Component {
     let {vendor, products, totalPrice} = this.state
     return (
       <div>
+        <button onClick={this.addProduct}>Add new product</button>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="vendor">Vendor</label>
@@ -53,16 +55,16 @@ class AddRecordForm extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <br />
+
           <div>
             <ProductInputs
               products={products}
               onChangeHandler={this.handleChange}
             />
           </div>
-          <br />
+
           <div>
-            <label htmlFor="totalPrice">totalPrice</label>
+            <label htmlFor="totalPrice">Total Price</label>
             <input
               type="number"
               name="totalPrice"
@@ -73,7 +75,6 @@ class AddRecordForm extends React.Component {
           <br />
           <button type="submit">Submit</button>
         </form>
-        <button onClick={this.addProduct}>Add new product</button>
       </div>
     )
   }

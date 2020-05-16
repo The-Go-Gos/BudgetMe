@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
+import {Redirect} from 'react-router'
 
 const categories = [
   'Choose a Category',
@@ -84,7 +85,7 @@ class ReceiptDetail extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     this.props.addReceipt(this.state)
-    this.setState(defaultState)
+    this.setState({...defaultState, redirect: true})
   }
 
   handleUpload(event) {
@@ -95,6 +96,9 @@ class ReceiptDetail extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect push to="/home" />
+    }
     return (
       <div>
         {!this.props.receipt.products ||

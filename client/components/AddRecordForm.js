@@ -2,6 +2,7 @@ import React from 'react'
 import ProductInputs from './ProductInput'
 import {connect} from 'react-redux'
 import {addReceiptThunk} from '../store/receipts'
+import {Redirect} from 'react-router'
 
 const defaultState = {
   vendor: '',
@@ -36,11 +37,14 @@ class AddRecordForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.addReceipt(this.state)
-    this.setState(defaultState)
+    this.setState({...defaultState, redirect: true})
   }
 
   render() {
     let {vendor, products, totalPrice} = this.state
+    if (this.state.redirect) {
+      return <Redirect push to="/home" />
+    }
     return (
       <div>
         <button onClick={this.addProduct}>Add new product</button>
@@ -55,14 +59,14 @@ class AddRecordForm extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-
+          <br />
           <div>
             <ProductInputs
               products={products}
               onChangeHandler={this.handleChange}
             />
           </div>
-
+          <br />
           <div>
             <label htmlFor="totalPrice">Total Price</label>
             <input

@@ -104,11 +104,24 @@ class ReceiptDetail extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.addReceipt(this.state)
+    let newReceipt = {
+      vendor: this.state.vendor,
+      products: this.state.products,
+      totalPrice: this.state.totalPrice
+    }
+    this.props.addReceipt(newReceipt)
     this.setState({...defaultState, redirect: true})
   }
 
   handleUpload(event) {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader()
+      reader.onload = e => {
+        this.setState({image: e.target.result})
+      }
+      reader.readAsDataURL(event.target.files[0])
+    }
+
     let image = event.target.files[0]
     let form = new FormData()
     form.append('image', image)
@@ -121,6 +134,7 @@ class ReceiptDetail extends React.Component {
     }
     return (
       <div>
+        <img id="target" src={this.state.image} width="300px" />
         {!this.props.receipt.products ||
         this.props.receipt.products.length === 0 ||
         !this.state.vendor ? (

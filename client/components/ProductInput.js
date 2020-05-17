@@ -16,7 +16,9 @@ const ProductInputs = props => {
   return props.products.map((val, idx) => {
     return (
       <div key={idx}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">
+          <small>Name</small>
+        </label>
         <input
           type="text"
           name="name"
@@ -25,7 +27,9 @@ const ProductInputs = props => {
           className="name"
           onChange={props.onChangeHandler}
         />
-        <label htmlFor="price">Price</label>
+        <label htmlFor="price">
+          <small>Price</small>
+        </label>
         <input
           type="number"
           name="price"

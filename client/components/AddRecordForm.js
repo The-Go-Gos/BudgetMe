@@ -51,7 +51,9 @@ class AddRecordForm extends React.Component {
         <br />
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label htmlFor="vendor">Vendor</label>
+            <label htmlFor="vendor">
+              <small>Vendor</small>
+            </label>
             <input
               type="text"
               name="vendor"
@@ -68,7 +70,9 @@ class AddRecordForm extends React.Component {
           </div>
           <br />
           <div>
-            <label htmlFor="totalPrice">Total Price</label>
+            <label htmlFor="totalPrice">
+              <small>Total Price</small>
+            </label>
             <input
               type="number"
               name="totalPrice"

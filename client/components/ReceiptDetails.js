@@ -150,7 +150,9 @@ class ReceiptDetail extends React.Component {
           <div>
             <form onSubmit={e => this.handleSubmit(e)}>
               <div>
-                <label htmlFor="vendor"> Vendor: </label>
+                <label htmlFor="vendor">
+                  <small>Vendor</small>
+                </label>
                 <input
                   onChange={e => this.handleChange(e)}
                   name="vendor"
@@ -160,7 +162,7 @@ class ReceiptDetail extends React.Component {
               </div>
               <br />
               <div>
-                <h4>Choose a category for all items:</h4>
+                <small>Choose a category for all items:</small>
                 <select onChange={e => this.handleAllCategoryChange(e)}>
                   {categories.map((c, optionIndex) => {
                     return (
@@ -176,7 +178,9 @@ class ReceiptDetail extends React.Component {
                 {this.state.products.map((list, index) => {
                   return (
                     <div key={index}>
-                      <label htmlFor="name"> Name: </label>
+                      <label htmlFor="name">
+                        <small>Name</small>
+                      </label>
                       <input
                         onChange={e => this.handleNameChange(e)}
                         name="name"
@@ -185,7 +189,9 @@ class ReceiptDetail extends React.Component {
                         value={list.name}
                       />
 
-                      <label htmlFor="price"> Price: </label>
+                      <label htmlFor="price">
+                        <small>Price</small>
+                      </label>
                       <input
                         onChange={e => this.handlePriceChange(e)}
                         name="price"
@@ -215,7 +221,9 @@ class ReceiptDetail extends React.Component {
                 })}
               </div>
               <div>
-                <label htmlFor="totalPrice"> Total Price: </label>
+                <label htmlFor="totalPrice">
+                  <small>Total Price</small>
+                </label>
                 <input
                   onChange={e => this.handleChange(e)}
                   name="totalPrice"

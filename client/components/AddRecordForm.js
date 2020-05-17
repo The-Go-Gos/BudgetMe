@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductInputs from './ProductInput'
 import {connect} from 'react-redux'
-import {addReceiptThunk} from '../store/receipts'
+import {addReceiptThunk} from '../store/allReceipts'
 import {Redirect} from 'react-router'
 
 const defaultState = {

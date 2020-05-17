@@ -4,21 +4,12 @@ import axios from 'axios'
 const ANALYZE_RECEIPT = 'ANALYZE_RECEIPT'
 
 //initial state
-const initialState = []
+const initialState = {}
 
 const analyzeReceipt = receipt => ({
   type: ANALYZE_RECEIPT,
   receipt
 })
-
-//thunk
-export const addReceiptThunk = receipt => async dispatch => {
-  try {
-    await axios.post('/api/receipts', receipt)
-  } catch (error) {
-    console.error(error)
-  }
-}
 
 export const analyzeReceiptThunk = formData => async dispatch => {
   try {
@@ -30,7 +21,7 @@ export const analyzeReceiptThunk = formData => async dispatch => {
 }
 
 //reducer
-export default function receiptsReducer(state = initialState, action) {
+export default function receiptReducer(state = initialState, action) {
   switch (action.type) {
     case ANALYZE_RECEIPT:
       return action.receipt

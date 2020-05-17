@@ -3,15 +3,17 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import receiptsReducer from './receipts'
+import receiptReducer from './receipt'
 import categoryReducer from './category'
 import budgetReducer from './budget'
+import allReceiptsReducer from './allReceipts'
 
 const reducer = combineReducers({
   user,
-  receiptsReducer,
+  receiptReducer,
   categoryReducer,
-  budgetReducer
+  budgetReducer,
+  allReceiptsReducer
 })
 
 const middleware = composeWithDevTools(

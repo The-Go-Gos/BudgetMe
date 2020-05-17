@@ -14,14 +14,18 @@ const client = new vision.ImageAnnotatorClient({
 
 module.exports = router
 
-// router.get('/', async (req, res, next) => {
-//   try {
-//     const receipts = await Receipt.findAll()
-//     res.json(receipts)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+router.get('/', async (req, res, next) => {
+  try {
+    const receipts = await Receipt.findAll({
+      where: {
+        userId: req.user.id
+      }
+    })
+    res.json(receipts)
+  } catch (err) {
+    next(err)
+  }
+})
 
 // router.get('/:id', async (req, res, next) => {
 //   const {params} = req

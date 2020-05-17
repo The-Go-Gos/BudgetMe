@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
+import {analyzeReceiptThunk} from '../store/receipt'
+import {addReceiptThunk} from '../store/allReceipts'
 import {Redirect} from 'react-router'
 
 const categories = [
@@ -236,7 +237,7 @@ class ReceiptDetail extends React.Component {
 
 const mapState = state => {
   return {
-    receipt: state.receiptsReducer
+    receipt: state.receiptReducer
   }
 }
 

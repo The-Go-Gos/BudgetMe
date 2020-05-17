@@ -59,8 +59,10 @@ const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
           </div>
         )}
         <div id="user">
-          <span className="icon">
-            <i className="fas fa-lg fa-user-circle" />
+          <span className="icon has-text-white">
+            <a href="/view" className="has-text-white">
+              <i className="fas fa-lg fa-user-circle" />
+            </a>
           </span>
         </div>
       </nav>

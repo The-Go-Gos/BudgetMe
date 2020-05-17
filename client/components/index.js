@@ -3,6 +3,8 @@
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+export {default as ViewUser} from './user-home/viewUser'
+export {default as EditUser} from './user-home/updateUser'
 export {default as SpenDash} from './spenDash'
 export {default as Setting} from './settings'
 export {default as Navbar} from './navbar'

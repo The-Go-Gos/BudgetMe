@@ -8,7 +8,9 @@ import {
   UserHome,
   SpenDash,
   Setting,
-  StartHome
+  StartHome,
+  ViewUser,
+  EditUser
 } from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
@@ -44,6 +46,8 @@ class Routes extends Component {
             <Route exact path="/settings" component={Setting} />
             <Route exact path="/receiptdetail" component={ReceiptDetail} />
             <Route exact path="/manualreceipt" component={AddRecordForm} />
+            <Route exact path="/view" component={ViewUser} />
+            <Route exact path="/update" component={EditUser} />
             <Route exact path="/receipts" component={Receipts} />
           </Switch>
         )}

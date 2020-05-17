@@ -46,6 +46,25 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
+router.put('/:userId', async (req, res, next) => {
+  const {body, params} = req
+  try {
+    const user = await User.findOne({
+      where: {
+        id: params.userId
+      }
+    })
+    if (user) {
+      const updatedUser = await user.update(body)
+      res.json(updatedUser)
+    } else {
+      res.status(404).json('User not found')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:userId/categories', async (req, res, next) => {
   try {
     const {userId} = req.params
@@ -60,9 +79,9 @@ router.get('/:userId/total', async (req, res, next) => {
   try {
     const {userId} = req.params
     const total = await Product.findTotal(userId)
-    if(total){
+    if (total) {
       res.json(total)
-    }else{
+    } else {
       res.json('Information not found')
     }
   } catch (error) {

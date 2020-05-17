@@ -30,6 +30,14 @@ export const me = () => async dispatch => {
   }
 }
 
+export const updateUserThunk = user => async () => {
+  try {
+    await axios.put(`/api/users/${user.id}`, user)
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {

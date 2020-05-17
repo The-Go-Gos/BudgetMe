@@ -18,24 +18,27 @@ class Receipts extends React.Component {
       <div>
         <div className="flex">
           <Link to="/carema">
-            <img src="camera.jpg" height="80px" width="80px" />
+            <img src="camera.jpg" height="60px" width="60px" />
           </Link>
           <Link to="/receiptdetail">
-            <img src="upload.png" height="80px" width="80px" />
+            <img src="upload.png" height="60px" width="60px" />
           </Link>
           <Link to="/manualreceipt">
-            <img src="manual.jpg" height="80px" width="80px" />
+            <img src="manual.jpg" height="60px" width="60px" />
           </Link>
         </div>
         <br />
         <br />
-        <div className="flex">
+        <div>
           {this.props.receipts.map(receipt => {
             return (
               <div key={receipt.id}>
-                <img src="receipt logo.jpg" height="60px" width="60px" />
-                <h5>{receipt.vendor}</h5>
-                <h6>${receipt.totalPrice / 100}</h6>
+                <li className="flex">
+                  <h6>{receipt.vendor}</h6>
+                  <h6>${receipt.totalPrice / 100}</h6>
+                  <h6>{receipt.date.slice(0, 10)}</h6>
+                </li>
+                <br />
               </div>
             )
           })}

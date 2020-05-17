@@ -13,6 +13,7 @@ const getReceipts = receipts => ({
 export const getReceiptsThunk = () => async dispatch => {
   try {
     const {data} = await axios.get('/api/receipts')
+    data.sort((a, b) => b.date.localeCompare(a.date))
     dispatch(getReceipts(data))
   } catch (error) {
     console.error(error)

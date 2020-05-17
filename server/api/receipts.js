@@ -7,14 +7,13 @@ const path = require('path')
 const sharp = require('sharp')
 const {uuid: uuidv4} = require('uuidv4')
 const upload = multer({})
-console.log('@@@@@@@', process.env.ocrKey)
-if (!process.env.ocrKey) {
-  console.log('@@@@@@@')
-  process.env.ocrKey = JSON.stringify(require('../../secrets'))
+
+if (!process.env.OCR_KEY) {
+  process.env.OCR_KEY = JSON.stringify(require('../../googleOcrKey'))
 }
 
 const client = new vision.ImageAnnotatorClient({
-  credentials: JSON.parse(process.env.ocrKey)
+  credentials: JSON.parse(process.env.OCR_KEY)
 })
 
 module.exports = router

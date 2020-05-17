@@ -83,10 +83,9 @@ class ReceiptDetail extends React.Component {
     })
   }
 
-  handleRemove(e) {
+  handleRemove(e, index) {
     e.preventDefault()
     const newProducts = [...this.state.products]
-    const index = parseInt(e.target.id)
     newProducts.splice(index, 1)
     this.setState({
       products: newProducts
@@ -196,6 +195,7 @@ class ReceiptDetail extends React.Component {
                         onChange={e => this.handlePriceChange(e)}
                         name="price"
                         type="number"
+                        step="any"
                         id={index}
                         value={list.price}
                       />
@@ -213,7 +213,7 @@ class ReceiptDetail extends React.Component {
                           )
                         })}
                       </select>
-                      <button onClick={e => this.handleRemove(e)}>
+                      <button onClick={e => this.handleRemove(e, index)}>
                         Remove
                       </button>
                     </div>
@@ -228,6 +228,7 @@ class ReceiptDetail extends React.Component {
                   onChange={e => this.handleChange(e)}
                   name="totalPrice"
                   type="number"
+                  step="any"
                   value={this.state.totalPrice}
                 />
               </div>

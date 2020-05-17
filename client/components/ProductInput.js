@@ -32,6 +32,7 @@ const ProductInputs = props => {
         </label>
         <input
           type="number"
+          step="any"
           name="price"
           id={idx}
           value={props.products[idx].price}

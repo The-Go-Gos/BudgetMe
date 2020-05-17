@@ -75,6 +75,7 @@ class AddRecordForm extends React.Component {
             </label>
             <input
               type="number"
+              step="any"
               name="totalPrice"
               value={totalPrice}
               onChange={this.handleChange}

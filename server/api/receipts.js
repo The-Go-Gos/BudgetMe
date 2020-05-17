@@ -7,8 +7,9 @@ const path = require('path')
 const sharp = require('sharp')
 const {uuid: uuidv4} = require('uuidv4')
 const upload = multer({})
-
+console.log('@@@@@@@', process.env.ocrKey)
 if (!process.env.ocrKey) {
+  console.log('@@@@@@@')
   process.env.ocrKey = JSON.stringify(require('../../secrets'))
 }
 

@@ -117,7 +117,7 @@ class ReceiptDetail extends React.Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to="/home" />
+      return <Redirect push to="/receipts" />
     }
     return (
       <div>

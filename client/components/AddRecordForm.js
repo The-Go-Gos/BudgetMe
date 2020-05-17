@@ -43,11 +43,11 @@ class AddRecordForm extends React.Component {
   render() {
     let {vendor, products, totalPrice} = this.state
     if (this.state.redirect) {
-      return <Redirect push to="/home" />
+      return <Redirect push to="/receipts" />
     }
     return (
       <div>
-        <button onClick={this.addProduct}>Add new product</button>
+        <button onClick={this.addProduct}>Add another item</button>
         <br />
         <form onSubmit={this.handleSubmit}>
           <div>

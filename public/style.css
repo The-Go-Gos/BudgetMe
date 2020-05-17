@@ -132,7 +132,7 @@ form div {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 1rem;
-  color: white;
+  color: #209cee;
   display: block;
   transition: 0.3s;
 }
@@ -147,7 +147,7 @@ form div {
   top: 0;
   right: 0;
   font-size: 2rem;
-  margin-left: 50px;
+  margin: 0;
 }
 
 @media screen and (max-height: 450px) {
@@ -168,4 +168,9 @@ nav #burger {
   float: left;
   padding-left: 20px;
   padding-top: 10px;
+}
+
+#sticky {
+  position: -webkit-sticky;
+  position: sticky;
 }

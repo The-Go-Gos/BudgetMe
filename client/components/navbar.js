@@ -7,20 +7,50 @@ import {logout} from '../store'
 const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
   return (
     <div>
-      <nav className="navbar is-info">
+      <nav id="sticky" className="navbar is-info">
         {isLoggedIn && (
           <div>
             <div id="burger">
               <div id="mySidenav" className="sidenav">
-                <a href="#" className="closebtn" onClick={closeNav}>
+                <a
+                  href="#"
+                  className="has-text-white closebtn"
+                  onClick={closeNav}
+                >
                   &times;
                 </a>
-                <a href="/receipts">Receipts</a>
-                <a href="/spendDash">SpenDash</a>
-                <a href="/settings">Settings</a>
-                <a href="#" onClick={handleClick}>
-                  Logout
-                </a>
+                <aside className="menu">
+                  <ul className="menu-list">
+                    <li>
+                      <a href="/receipts" className="has-background-white">
+                        &#x1F4C3; Receipts
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/spendDash" className="has-background-white">
+                        &#x1F4D1; SpenDash
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/settings" className="has-background-white">
+                        &#x1F4B2; Budget
+                      </a>
+                    </li>
+                    <hr />
+                    <li>
+                      <a
+                        href="#"
+                        onClick={handleClick}
+                        className="has-text-white has-background-success"
+                      >
+                        <span className="icon">
+                          <i className="fas fa-sign-out-alt" />
+                        </span>
+                        <strong>Logout</strong>
+                      </a>
+                    </li>
+                  </ul>
+                </aside>
               </div>
               <span className="is-size-5" onClick={openNav}>
                 &#9776;
@@ -38,11 +68,6 @@ const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
   )
 }
 
-{
-  /* <span className="icon">
-            <i className="fas fa-user-circle"></i>
-          </span> */
-}
 /**
  * CONTAINER
  */

@@ -1,7 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addReceiptThunk, analyzeReceiptThunk} from '../store/receipts'
+import {CameraResultType} from '@capacitor/core'
+import {Plugins} from '@capacitor/core'
 
+const {Camera} = Plugins
 const categories = [
   'Choose a Category',
   'Apparel',
@@ -37,6 +40,7 @@ class ReceiptDetail extends React.Component {
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
     this.handleUpload = this.handleUpload.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidUpdate(preProps) {
@@ -89,8 +93,32 @@ class ReceiptDetail extends React.Component {
 
   handleUpload(event) {
     let image = event.target.files[0]
+
     let form = new FormData()
     form.append('image', image)
+
+    this.props.analyzeReceipt(form)
+  }
+
+  handleClick = async () => {
+    async function takePicture() {
+      const image = await Camera.getPhoto({
+        resultType: CameraResultType.Uri,
+        Front: 'FRONT',
+        Rear: 'REAR',
+        allowEditing: true
+      })
+      const imageUrl = image.webPath
+      return image
+    }
+    const result = await takePicture()
+
+    const imgSrc = result.webPath
+    const image = new File([''], imgSrc)
+    console.log('^^^^^', image)
+    let form = new FormData()
+    form.append('image', image)
+
     this.props.analyzeReceipt(form)
   }
 
@@ -103,9 +131,9 @@ class ReceiptDetail extends React.Component {
         <div>
           <input type="file" onChange={this.handleUpload} />
         </div>
-        {/* <div>
-          <input type="file" accept="image/*" capture="camera" />
-        </div> */}
+        <div>
+          <button onClick={this.handleClick}>Take photo</button>
+        </div>
 
         <div>
           <form onSubmit={e => this.handleSubmit(e)}>

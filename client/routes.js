@@ -6,7 +6,6 @@ import {Login, Signup, UserHome, SpenDash, Setting} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
-import TakePhoto from './components/Camera'
 import Receipts from './components/Receipts'
 
 /**
@@ -38,7 +37,6 @@ class Routes extends Component {
             <Route exact path="/receiptdetail" component={ReceiptDetail} />
             <Route exact path="/manualreceipt" component={AddRecordForm} />
             <Route exact path="/receipts" component={Receipts} />
-            <Route exact path="/camera" component={TakePhoto} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

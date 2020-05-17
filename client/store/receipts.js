@@ -20,9 +20,9 @@ export const addReceiptThunk = receipt => async dispatch => {
   }
 }
 
-export const analyzeReceiptThunk = formData => async dispatch => {
+export const analyzeReceiptThunk = formdata => async dispatch => {
   try {
-    const res = await axios.post('/api/receipts/google', formData)
+    const res = await axios.post('/api/receipts/google', formdata)
     dispatch(analyzeReceipt(res.data))
   } catch (error) {
     console.error(error)

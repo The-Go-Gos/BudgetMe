@@ -44,16 +44,14 @@ async function seed() {
 
   const categories = await Promise.all([
     Category.create({id: 1, title: 'Other'}),
-    Category.create({id: 2, title: 'Apparel'}),
-    Category.create({id: 3, title: 'Accessories'}),
-    Category.create({id: 4, title: 'Dining Out'}),
-    Category.create({id: 5, title: 'Fees & Service Charges'}),
-    Category.create({id: 6, title: 'Groceries'}),
-    Category.create({id: 7, title: 'Household'}),
-    Category.create({id: 8, title: 'Hobbies'}),
-    Category.create({id: 9, title: 'Personal Care'}),
-    Category.create({id: 10, title: 'Sports'}),
-    Category.create({id: 11, title: 'Travel'})
+    Category.create({id: 2, title: 'Food & Dining'}),
+    Category.create({id: 3, title: 'Shopping'}),
+    Category.create({id: 4, title: 'Home'}),
+    Category.create({id: 5, title: 'Auto & Transport'}),
+    Category.create({id: 6, title: 'Health & Fitness'}),
+    Category.create({id: 7, title: 'Pets'}),
+    Category.create({id: 8, title: 'Travel'}),
+    Category.create({id: 9, title: 'Fees & Charges'})
   ])
 
   const receipts = await Promise.all([

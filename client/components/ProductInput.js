@@ -1,17 +1,15 @@
 import React from 'react'
 
 const categories = [
-  'Choose a Category', //category 'other' in db
-  'Apparel',
-  'Accessaries',
-  'Dining Out',
-  'Fees & Service Charges',
-  'Groceries',
-  'Household',
-  'Hobbies',
-  'Personal Care',
-  'Sports',
-  'Travel'
+  'Choose a Category',
+  'Food & Dining',
+  'Shopping',
+  'Home',
+  'Auto & Transport',
+  'Health & Fitness',
+  'Pets',
+  'Travel',
+  'Fees & Charges'
 ]
 
 const ProductInputs = props => {
@@ -36,6 +34,7 @@ const ProductInputs = props => {
           className="price"
           onChange={props.onChangeHandler}
         />
+        <br />
         <select
           id={idx}
           className="categoryId"

@@ -5,16 +5,14 @@ import {Redirect} from 'react-router'
 
 const categories = [
   'Choose a Category',
-  'Apparel',
-  'Accessaries',
-  'Dining Out',
-  'Fees & Service Charges',
-  'Groceries',
-  'Household',
-  'Hobbies',
-  'Personal Care',
-  'Sports',
-  'Travel'
+  'Food & Dining',
+  'Shopping',
+  'Home',
+  'Auto & Transport',
+  'Health & Fitness',
+  'Pets',
+  'Travel',
+  'Fees & Charges'
 ]
 
 const defaultState = {
@@ -38,6 +36,8 @@ class ReceiptDetail extends React.Component {
     this.handlePriceChange = this.handlePriceChange.bind(this)
     this.handleCategoryChange = this.handleCategoryChange.bind(this)
     this.handleUpload = this.handleUpload.bind(this)
+    this.handleAllCategoryChange = this.handleAllCategoryChange.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
   }
 
   componentDidUpdate(preProps) {
@@ -77,6 +77,26 @@ class ReceiptDetail extends React.Component {
     const newProducts = [...this.state.products]
     const index = parseInt(e.target.id)
     newProducts[index].categoryId = parseInt(e.target.value)
+    this.setState({
+      products: newProducts
+    })
+  }
+
+  handleRemove(e) {
+    e.preventDefault()
+    const newProducts = [...this.state.products]
+    const index = parseInt(e.target.id)
+    newProducts.splice(index, 1)
+    this.setState({
+      products: newProducts
+    })
+  }
+
+  handleAllCategoryChange(e) {
+    const newProducts = [...this.state.products]
+    newProducts.forEach(item => {
+      item.categoryId = parseInt(e.target.value)
+    })
     this.setState({
       products: newProducts
     })
@@ -123,6 +143,19 @@ class ReceiptDetail extends React.Component {
                   value={this.state.vendor}
                 />
               </div>
+              <br />
+              <div>
+                <h4>Choose a category for all items:</h4>
+                <select onChange={e => this.handleAllCategoryChange(e)}>
+                  {categories.map((c, optionIndex) => {
+                    return (
+                      <option key={optionIndex} value={optionIndex + 1}>
+                        {c}
+                      </option>
+                    )
+                  })}
+                </select>
+              </div>
 
               <div>
                 {this.state.products.map((list, index) => {
@@ -145,10 +178,11 @@ class ReceiptDetail extends React.Component {
                         id={index}
                         value={list.price}
                       />
-
+                      <br />
                       <select
                         id={index}
                         onChange={e => this.handleCategoryChange(e)}
+                        value={list.categoryId}
                       >
                         {categories.map((c, optionIndex) => {
                           return (
@@ -158,6 +192,9 @@ class ReceiptDetail extends React.Component {
                           )
                         })}
                       </select>
+                      <button onClick={e => this.handleRemove(e)}>
+                        Remove
+                      </button>
                     </div>
                   )
                 })}

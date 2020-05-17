@@ -84,7 +84,9 @@ class Resize {
     const filepath = this.filepath(filename)
 
     await sharp(buffer)
+      .rotate()
       .resize({width: 900})
+      .withMetadata()
       .toFile(filepath)
 
     return filename

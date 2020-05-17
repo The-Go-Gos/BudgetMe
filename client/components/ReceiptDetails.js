@@ -162,6 +162,7 @@ class ReceiptDetail extends React.Component {
               <br />
               <div>
                 <small>Choose a category for all items:</small>
+                <br />
                 <select onChange={e => this.handleAllCategoryChange(e)}>
                   {categories.map((c, optionIndex) => {
                     return (
@@ -213,6 +214,7 @@ class ReceiptDetail extends React.Component {
                           )
                         })}
                       </select>
+                      <br />
                       <button onClick={e => this.handleRemove(e, index)}>
                         Remove
                       </button>

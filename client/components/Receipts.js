@@ -17,11 +17,8 @@ class Receipts extends React.Component {
     return (
       <div>
         <div className="flex">
-          <Link to="/carema">
-            <img src="camera.jpg" height="60px" width="60px" />
-          </Link>
           <Link to="/receiptdetail">
-            <img src="upload.png" height="60px" width="60px" />
+            <img src="add.png" height="60px" width="60px" />
           </Link>
           <Link to="/manualreceipt">
             <img src="manual.jpg" height="60px" width="60px" />

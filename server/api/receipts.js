@@ -8,8 +8,12 @@ const sharp = require('sharp')
 const {uuid: uuidv4} = require('uuidv4')
 const upload = multer({})
 
+if (!process.env.ocrKey) {
+  process.env.ocrKey = JSON.stringify(require('../../secrets'))
+}
+
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: 'budgetMe-0e9157b3d18d.json'
+  credentials: JSON.parse(process.env.ocrKey)
 })
 
 module.exports = router

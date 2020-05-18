@@ -5,8 +5,8 @@ const Finance = db.define('finance', {
   budget: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 0,
-      isDecimal: false
+      min: 0
+      // isDecimal: false
     },
     get() {
       const inPennies = this.getDataValue('budget')
@@ -23,11 +23,11 @@ Finance.findAllFinance = async function(userId) {
     attributes: ['budget']
   })
 
-  if(!finance){
+  if (!finance) {
     return 'not Found'
-  }else{
-  return finance
-}
+  } else {
+    return finance
+  }
 }
 
 module.exports = Finance

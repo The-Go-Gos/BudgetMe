@@ -135,15 +135,16 @@ router.post('/finance/:userId', async (req, res, next) => {
 })
 
 router.put('/finance/:userId', async (req, res, next) => {
-  const {body, params} = req
+  const {body} = req
+  const {userId} = req.params
   try {
-    const finance = await Finance.findOne({
-      userId: params.userId,
-      budget: body.budget
+    const financeFound = await Finance.findOne({
+      where: {
+        userId: userId
+      }
     })
-
-    if (finance) {
-      const updatedFinance = await finance.update(body)
+    if (financeFound) {
+      const updatedFinance = await financeFound.update(body)
       res.json(updatedFinance)
     } else {
       res.status(404).json('Not found')

@@ -15,10 +15,12 @@ export class Setting extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+
   componentDidMount() {
     const {id} = this.props
     this.props.getTotal(id)
   }
+
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -34,7 +36,7 @@ export class Setting extends React.Component {
   render() {
     const {id} = this.props
     const {total} = this.props
-
+    console.log('BUDGET -====>>>', total)
     if (!total.totalBudget) {
       return (
         <div>
@@ -47,6 +49,7 @@ export class Setting extends React.Component {
             state={this.state}
             userId={id}
           />
+          <h2>Current Budget: No Budget Recorded Yet</h2>
         </div>
       )
     } else {
@@ -61,6 +64,7 @@ export class Setting extends React.Component {
             state={this.state}
             userId={id}
           />
+          <h2>Current Budget: ${total.totalBudget}</h2>
         </div>
       )
     }

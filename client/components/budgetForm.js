@@ -21,7 +21,7 @@ const AddBudgetForm = props => {
     <form onSubmit={onSubmit}>
       <div>
         <label htmlFor="budget">
-          <small>Budget</small>
+          <small>Add Budget</small>
         </label>
         <input
           onChange={handleChange}

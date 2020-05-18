@@ -18,7 +18,7 @@ const getAllCategories = category => ({
 
 export const fetchAllCategories = userId => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/users/${userId}/categories`)
+    const {data} = await axios.get(`/api/users/categories/${userId}`)
     dispatch(getAllCategories(data))
   } catch (error) {
     console.error(error)

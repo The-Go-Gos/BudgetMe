@@ -17,7 +17,7 @@ const getTotal = total => ({
 //thunk
 export const addBudgetThunk = (userId, budgetElement) => async () => {
   try {
-    await axios.post(`/api/users/${userId}/finance`, budgetElement)
+    await axios.post(`/api/users/finance/${userId}`, budgetElement)
   } catch (err) {
     console.error(err)
   }
@@ -25,7 +25,7 @@ export const addBudgetThunk = (userId, budgetElement) => async () => {
 
 export const updateBudgetThunk = (userId, budgetElement) => async () => {
   try {
-    await axios.put(`/api/users/${userId}/finance`, budgetElement)
+    await axios.put(`/api/users/finance/${userId}`, budgetElement)
   } catch (err) {
     console.error(err)
   }
@@ -33,7 +33,7 @@ export const updateBudgetThunk = (userId, budgetElement) => async () => {
 
 export const getTotalThunk = userId => async dispatch => {
   try {
-    const {data} = await axios.get(`/api/users/${userId}/total`)
+    const {data} = await axios.get(`/api/users/total/${userId}`)
     dispatch(getTotal(data))
   } catch (err) {
     console.error(err)

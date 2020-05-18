@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
@@ -63,6 +62,7 @@ const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
             </div>
           </div>
         )}
+
         <div id="user">
           <span className="icon has-text-white">
             <a href="/view" className="has-text-white">

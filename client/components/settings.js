@@ -38,6 +38,9 @@ export class Setting extends React.Component {
     if (!total.totalBudget) {
       return (
         <div>
+          <h1 className="has-text-centered has-background-grey-light is-size-5">
+            Budget
+          </h1>
           <AddBudgetForm
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
@@ -49,6 +52,9 @@ export class Setting extends React.Component {
     } else {
       return (
         <div>
+          <h1 className="has-text-centered has-background-grey-light is-size-5">
+            Budget
+          </h1>
           <UpdateBudgetForm
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}

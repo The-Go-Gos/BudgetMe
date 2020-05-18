@@ -7,9 +7,9 @@ export class Pie extends React.Component {
     return (
       <div>
         <br />
-        <h4 className="has-text-centered"> Welcome, {email} </h4>
+        <h4 className="has-text-centered  is-size-5"> Welcome, {email} </h4>
         <div className="level-item">
-          <svg width={300} height={300}>
+          <svg width={300} height={240} viewBox="0 50 300 230">
             <VictoryPie
               standalone={false}
               width={300}

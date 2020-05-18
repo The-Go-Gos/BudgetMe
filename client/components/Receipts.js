@@ -54,7 +54,13 @@ class Receipts extends React.Component {
                     <td>${receipt.totalPrice / 100}</td>
                     <td>{receipt.date.slice(0, 10)}</td>
                     <td>
-                      <img src="/receipt icon.jpg" height="20px" width="20px" />
+                      <Link to={`/receipts/${receipt.id}`}>
+                        <img
+                          src="/receipt icon.jpg"
+                          height="20px"
+                          width="20px"
+                        />
+                      </Link>
                     </td>
                   </tr>
                 )

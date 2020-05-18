@@ -16,6 +16,7 @@ import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
 import Receipts from './components/Receipts'
+import SingleReceipt from './components/SingleReceipt'
 
 /**
  * COMPONENT
@@ -49,6 +50,11 @@ class Routes extends Component {
             <Route exact path="/view" component={ViewUser} />
             <Route exact path="/update" component={EditUser} />
             <Route exact path="/receipts" component={Receipts} />
+            <Route
+              exact
+              path="/receipts/:receiptId"
+              component={SingleReceipt}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

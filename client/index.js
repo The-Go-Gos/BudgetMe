@@ -5,14 +5,16 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-
+import {ToastProvider} from 'react-toast-notifications'
 // establishes socket connection
 import './socket'
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <ToastProvider autoDismiss autoDismissTimeout={3000}>
+        <App />
+      </ToastProvider>
     </Router>
   </Provider>,
   document.getElementById('app')

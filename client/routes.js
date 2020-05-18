@@ -2,7 +2,16 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, SpenDash, Setting} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  SpenDash,
+  Setting,
+  StartHome,
+  ViewUser,
+  EditUser
+} from './components'
 import {me} from './store'
 import ReceiptDetail from './components/ReceiptDetails'
 import AddRecordForm from './components/AddRecordForm'
@@ -22,8 +31,9 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/" component={StartHome} />
 
         {isLoggedIn && (
           <Switch>
@@ -36,6 +46,8 @@ class Routes extends Component {
             <Route exact path="/settings" component={Setting} />
             <Route exact path="/receiptdetail" component={ReceiptDetail} />
             <Route exact path="/manualreceipt" component={AddRecordForm} />
+            <Route exact path="/view" component={ViewUser} />
+            <Route exact path="/update" component={EditUser} />
             <Route exact path="/receipts" component={Receipts} />
           </Switch>
         )}

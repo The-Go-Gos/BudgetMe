@@ -118,7 +118,7 @@ Product.findTotal = async function(userId) {
     })
     .entries(categories)
   const totalBudget = budget.budget
-  const total = expense.total
+  const total = expense.total.toFixed(2)
   const percentageSpent = total * 100 / totalBudget
   const percentageNotSpent = 100 - percentageSpent
 

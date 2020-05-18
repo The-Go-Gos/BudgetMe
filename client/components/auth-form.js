@@ -2,7 +2,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth, authSignup} from '../store'
-
+import {Link} from 'react-router-dom'
+import LogIn from './auth-form/logIn'
+import SignUp from './auth-form/signUp'
 /**
  * COMPONENT
  */
@@ -10,123 +12,21 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
   if (name === 'signup') {
     return (
-      <div className="mobile">
-        <h1>BudgetMe</h1>
-        <div id="logo">
-          {/* <img
-            src="https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/95/87/1a/95871a38-02a6-567b-4899-a15c64d6ff52/source/512x512bb.jpg"
-            height="150px"
-            width="150px"
-          /> */}
-          <h1>Sign up</h1>
-        </div>
-        <div className="input_container mobile">
-          <form onSubmit={handleSubmit} name={name}>
-            <div className="mobile field">
-              <label className="mobile label" htmlFor="firstName">
-                <small>First Name</small>
-              </label>
-              <div className=" mobile control">
-                <input
-                  className="mobile input"
-                  name="firstName"
-                  type="text"
-                  placeholder="First Name"
-                />
-              </div>
-            </div>
-            <div className="mobile field">
-              <label className="mobile label" htmlFor="lastName">
-                <small>Last name</small>
-              </label>
-              <div className="mobile control">
-                <input
-                  className="mobile input"
-                  name="lastName"
-                  type="text"
-                  placeholder="Last Name"
-                />
-              </div>
-            </div>
-            <div className="mobile field">
-              <label className="label" htmlFor="email">
-                <small>Email</small>
-              </label>
-              <div className="mobile control has-icons-left has-icons-right">
-                <input
-                  className="mobile input"
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                />
-                <span className="mobile icon is-small is-left">
-                  <i className="mobile fas fa-envelope" />
-                </span>
-              </div>
-            </div>
-            <div className="mobile field">
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
-              <div className="mobile control has-icons-left has-icons-right">
-                <input
-                  className="mobile input"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                />
-                <span className="mobile icon is-small is-left">
-                  <i className="mobile fas fa-lock" />
-                </span>
-              </div>
-            </div>
-            <div className="mobile field">
-              <p className="mobile control">
-                <button className="mobile button is-success" type="submit">
-                  {displayName}
-                </button>
-              </p>
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-          <a href="/auth/google">{displayName} with Google</a>
-        </div>
-      </div>
+      <SignUp
+        name={name}
+        displayName={displayName}
+        handleSubmit={handleSubmit}
+        error={error}
+      />
     )
   } else {
     return (
-      <div>
-        <h1>BudgetMe</h1>
-        <div id="logo">
-          {/* <img
-            src="https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/95/87/1a/95871a38-02a6-567b-4899-a15c64d6ff52/source/512x512bb.jpg"
-            height="150px"
-            width="150px"
-          /> */}
-          <h1>Log in</h1>
-        </div>
-        <div className="input_container">
-          <form onSubmit={handleSubmit} name={name}>
-            <div>
-              <label htmlFor="email">
-                <small>Email</small>
-              </label>
-              <input name="email" type="text" />
-            </div>
-            <div>
-              <label htmlFor="password">
-                <small>Password</small>
-              </label>
-              <input name="password" type="password" />
-            </div>
-            <div>
-              <button type="submit">{displayName}</button>
-            </div>
-            {error && error.response && <div> {error.response.data} </div>}
-          </form>
-          <a href="/auth/google">{displayName} with Google</a>
-        </div>
-      </div>
+      <LogIn
+        name={name}
+        displayName={displayName}
+        handleSubmit={handleSubmit}
+        error={error}
+      />
     )
   }
 }

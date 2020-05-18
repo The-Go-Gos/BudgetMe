@@ -9,12 +9,6 @@ const defaultState = {
   Total: {}
 }
 
-//Action creator
-// const getBudget = budget => ({
-//   type: GET_BUDGET,
-//   budget
-// })
-
 const getTotal = total => ({
   type: GET_TOTAL,
   total
@@ -29,16 +23,15 @@ export const addBudgetThunk = (userId, budgetElement) => async () => {
   }
 }
 
-// export const getBudgetThunk = (userId) => async dispatch => {
-//   try {
-//     const {data} = await axios.get(`/api/users/${userId}/finance`)
-//     dispatch(getBudget(data))
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+export const updateBudgetThunk = (userId, budgetElement) => async () => {
+  try {
+    await axios.put(`/api/users/${userId}/finance`, budgetElement)
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-export const getTotalThunk = (userId) => async dispatch => {
+export const getTotalThunk = userId => async dispatch => {
   try {
     const {data} = await axios.get(`/api/users/${userId}/total`)
     dispatch(getTotal(data))

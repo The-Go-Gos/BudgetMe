@@ -11,19 +11,18 @@ class App extends React.Component {
   render() {
     const {isLoggedIn} = this.props
 
-    if(isLoggedIn){
-      return(
-      <div>
-        <Navbar />
-        <Routes />
-      </div>
+    if (isLoggedIn) {
+      return (
+        <div>
+          <Navbar />
+          <Routes />
+        </div>
       )
     } else {
-      return(
+      return (
         <div>
-        <StartHome />
-        <Routes />
-      </div>
+          <Routes />
+        </div>
       )
     }
   }
@@ -37,7 +36,6 @@ const mapState = state => {
 
 // export default App
 export default connect(mapState)(App)
-
 
 App.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired
@@ -54,5 +52,4 @@ App.propTypes = {
       <Routes />
     </div> */
 
-
-    // export default App
+// export default App

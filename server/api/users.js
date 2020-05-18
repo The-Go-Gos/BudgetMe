@@ -46,6 +46,25 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
+router.put('/:userId', async (req, res, next) => {
+  const {body, params} = req
+  try {
+    const user = await User.findOne({
+      where: {
+        id: params.userId
+      }
+    })
+    if (user) {
+      const updatedUser = await user.update(body)
+      res.json(updatedUser)
+    } else {
+      res.status(404).json('User not found')
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:userId/categories', async (req, res, next) => {
   try {
     const {userId} = req.params
@@ -60,9 +79,9 @@ router.get('/:userId/total', async (req, res, next) => {
   try {
     const {userId} = req.params
     const total = await Product.findTotal(userId)
-    if(total){
+    if (total) {
       res.json(total)
-    }else{
+    } else {
       res.json('Information not found')
     }
   } catch (error) {
@@ -103,6 +122,25 @@ router.post('/:userId/finance', async (req, res, next) => {
       budget: body.budget
     })
     res.json(createdBudget)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:userId/finance', async (req, res, next) => {
+  const {body, params} = req
+  try {
+    const finance = await Finance.findOne({
+      userId: params.userId,
+      budget: body.budget
+    })
+
+    if (finance) {
+      const updatedFinance = await finance.update(body)
+      res.json(updatedFinance)
+    } else {
+      res.status(404).json('Not found')
+    }
   } catch (error) {
     next(error)
   }

@@ -76,10 +76,15 @@ class Resize {
     const filename = Resize.filename()
     const filepath = this.filepath(filename)
 
-    await sharp(buffer)
-      .resize({width: 900})
-      .toFile(filepath)
+    // await sharp(buffer).resize({width: 900}).toFile(filepath)
 
+    // return filename
+    await sharp(buffer)
+      .rotate()
+      .resize({width: 900})
+      .withMetadata()
+      .toFile(filepath)
+    // .toString('base64')
     return filename
   }
   static filename() {
@@ -97,11 +102,17 @@ router.post('/google', upload.single('image'), async (req, res, next) => {
     if (!req.file) {
       res.status(401).json({error: 'Please provide an image'})
     }
+    console.log('^^^^^^^^^^^^^^^^^')
+    console.log(req.file)
+    console.log('^^^^^^^^^^^^^^^^^')
     const filename = await fileUpload.save(req.file.buffer)
     const [parsed] = await client.documentTextDetection(
       `${imagePath}/${filename}`
     )
-    const result = readReceipt(parsed)
+    let result = readReceipt(parsed)
+    if (result.products.length === 0) {
+      result = {error: 'Unable to read receipt'}
+    }
     res.json(result)
   } catch (err) {
     console.error(err)

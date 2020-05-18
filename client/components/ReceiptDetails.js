@@ -108,14 +108,16 @@ class ReceiptDetail extends React.Component {
         Rear: 'REAR',
         allowEditing: true
       })
-      const imageUrl = image.webPath
+
       return image
     }
     const result = await takePicture()
 
-    const imgSrc = result.webPath
-    const image = new File([''], imgSrc)
+    const imageUrl = result.webPath
+
+    const image = new File([''], imageUrl, {type: 'image/jpeg'})
     console.log('^^^^^', image)
+
     let form = new FormData()
     form.append('image', image)
 

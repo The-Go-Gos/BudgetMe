@@ -110,7 +110,10 @@ router.post('/google', upload.single('image'), async (req, res, next) => {
     const [parsed] = await client.documentTextDetection(
       `${imagePath}/${filename}`
     )
-    const result = readReceipt(parsed)
+    let result = readReceipt(parsed)
+    if (result.products.length === 0) {
+      result = {error: 'Unable to read receipt'}
+    }
     res.json(result)
   } catch (err) {
     console.error(err)

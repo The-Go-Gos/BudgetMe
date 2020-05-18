@@ -135,15 +135,19 @@ class ReceiptDetail extends React.Component {
     return (
       <div>
         <img id="target" src={this.state.image} width="300px" />
+        {this.props.receipt.error ? (
+          <div>
+            <p>{this.props.receipt.error}</p>
+          </div>
+        ) : (
+          <div />
+        )}
+        <br />
         {!this.props.receipt.products ||
         this.props.receipt.products.length === 0 ||
         !this.state.vendor ? (
           <div>
-            <p>It's time to upload a new receipt!</p>
-            <br />
-            <div>
-              <input type="file" onChange={this.handleUpload} />
-            </div>
+            <input type="file" onChange={this.handleUpload} />
           </div>
         ) : (
           <div>

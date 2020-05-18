@@ -22,6 +22,11 @@ const Navbar = ({handleClick, isLoggedIn, openNav, closeNav}) => {
                 <aside className="menu">
                   <ul className="menu-list">
                     <li>
+                      <a href="/home" className="has-background-white">
+                        &#x1F3E0; Home
+                      </a>
+                    </li>
+                    <li>
                       <a href="/receipts" className="has-background-white">
                         &#x1F4C3; Receipts
                       </a>

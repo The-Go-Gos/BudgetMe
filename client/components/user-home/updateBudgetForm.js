@@ -1,9 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {useToasts} from 'react-toast-notifications'
-import {addBudgetThunk} from '../store/budget'
+import {updateBudgetThunk} from '../../store/budget'
 
-const AddBudgetForm = props => {
+const UpdateBudgetForm = props => {
   const {state, handleChange, handleSubmit, userId} = props
   const {addToast} = useToasts()
 
@@ -11,10 +11,10 @@ const AddBudgetForm = props => {
     e.preventDefault()
     const budget = e.target.budget.value * 100
     const budgetElement = {budget}
-    await props.addBudget(userId, budgetElement)
+    await props.updateBudget(userId, budgetElement)
 
     handleSubmit()
-    addToast('Successfully Added Budget!', {appearance: 'success'})
+    addToast('Successfully Updated Budget!', {appearance: 'success'})
   }
 
   return (
@@ -35,7 +35,7 @@ const AddBudgetForm = props => {
       </div>
       <div>
         <button type="submit" disabled={isNaN(state.budget) || !state.budget}>
-          Submit
+          Update Budget
         </button>
       </div>
     </form>
@@ -44,9 +44,9 @@ const AddBudgetForm = props => {
 
 const mapDispatch = dispatch => {
   return {
-    addBudget: (userId, budgetElement) =>
-      dispatch(addBudgetThunk(userId, budgetElement))
+    updateBudget: (userId, budgetElement) =>
+      dispatch(updateBudgetThunk(userId, budgetElement))
   }
 }
 
-export default connect(null, mapDispatch)(AddBudgetForm)
+export default connect(null, mapDispatch)(UpdateBudgetForm)

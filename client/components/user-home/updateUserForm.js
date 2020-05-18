@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {useToasts} from 'react-toast-notifications'
 import {updateUserThunk} from '../../store/user'
-import {Link} from 'react-router-dom'
 
 const UpdateUserForm = props => {
   const {userId, state, handleChange, handleSubmit, updateUser} = props
@@ -25,7 +24,7 @@ const UpdateUserForm = props => {
 
   return (
     <div className="tile is-parent">
-      <article className="logggin tile is-child notification is-success">
+      <article className="loggginUpdate tile is-child notification is-success">
         <div className="input_container">
           <form onSubmit={onSubmit}>
             <div className="field">
@@ -93,28 +92,33 @@ const UpdateUserForm = props => {
               </p>
               <br />
             </div>
-            <button
-              type="submit"
-              disabled={
-                !state.firstName ||
-                !state.lastName ||
-                !state.email ||
-                !state.password
-              }
-            >
-              {' '}
-              Submit{' '}
-            </button>
+            <div className="homeLink field">
+              <p className="control">
+                <button
+                  type="submit"
+                  className="button is-info"
+                  disabled={
+                    !state.firstName ||
+                    !state.lastName ||
+                    !state.email ||
+                    !state.password
+                  }
+                >
+                  {' '}
+                  Submit{' '}
+                </button>
+              </p>
+            </div>
           </form>
         </div>
         <div className="homeLink field">
           <p className="control">
             <button type="submit" className="button is-white">
-              <Link to="/view">
+              <a href="/view" className="update">
                 <span className="icon">
                   <i className="fas fa-arrow-left" />
                 </span>
-              </Link>
+              </a>
             </button>
           </p>
         </div>

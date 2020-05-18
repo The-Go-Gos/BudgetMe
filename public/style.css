@@ -1,5 +1,6 @@
 body {
-  font-family: sans-serif;
+  /* font-family: sans-serif; */
+  font-family: 'Gill Sans', 'Gill Sans MT';
 }
 
 a {
@@ -111,6 +112,11 @@ form div {
   bottom: -50px;
 }
 
+.loggginUpdate {
+  height: 500px;
+  bottom: -10px;
+}
+
 .homeLink {
   top: 1px;
 }
@@ -173,4 +179,11 @@ nav #burger {
 #sticky {
   position: -webkit-sticky;
   position: sticky;
+}
+
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
 }

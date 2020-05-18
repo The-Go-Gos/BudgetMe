@@ -46,7 +46,7 @@ const LogIn = props => {
             </button>
             {error &&
               error.response && (
-                <p className="help has-text-black-bis	is-size-5">
+                <p className="help has-text-black-bis	is-size-6">
                   {' '}
                   {error.response.data}{' '}
                 </p>

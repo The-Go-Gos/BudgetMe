@@ -63,19 +63,16 @@ const SignUp = props => {
                   <i className="fas fa-lock" />
                 </span>
               </p>
-              <br />
             </div>
-
             <button
               className="button is-fullwidth is-rounded is-warning"
               type="submit"
             >
               {displayName}
             </button>
-
             {error &&
               error.response && (
-                <p className="help has-text-black-bis	is-size-5">
+                <p className="help has-text-black-bis	is-size-6">
                   {' '}
                   {error.response.data}{' '}
                 </p>

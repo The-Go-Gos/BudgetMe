@@ -26,14 +26,35 @@ export class ViewUser extends React.Component {
             ) : (
               <div>
                 <h3> You have not set up a budget </h3>
-                <button>
-                  <Link to="/settings">Set Up Budget</Link>
-                </button>
+                <div className="homeLink field">
+                  <br />
+                  <p className="control">
+                    <button className="button is-success">
+                      <a href="/settings">
+                        <span className="icon">
+                          <i className="fas fa-edit" />
+                        </span>
+                        <span>&nbsp;</span>Set Up Budget
+                      </a>
+                    </button>
+                  </p>
+                </div>
               </div>
             )}
-            <button>
-              <Link to="/update">Update Information</Link>
-            </button>
+            <br />
+            <div className="homeLink field">
+              <p className="control">
+                <button className="button is-white">
+                  <a href="/update" className="linked">
+                    <span className="icon">
+                      <i className="fas fa-edit" />
+                    </span>
+                    <span>&nbsp;</span>
+                    Update Information
+                  </a>
+                </button>
+              </p>
+            </div>
           </article>
         </div>
       )

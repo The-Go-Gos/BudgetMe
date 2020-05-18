@@ -16,7 +16,7 @@ export class UserHome extends React.Component {
     if (total.percentageSpent === null || total.percentageNotSpent === null) {
       return (
         <div>
-          <h4>Welcome, {email}</h4>
+          <h4 className="has-text-centered	">Welcome, {email}</h4>
           <h5>You have not recorded any budget at the moment </h5>
         </div>
       )

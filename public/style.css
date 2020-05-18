@@ -194,3 +194,10 @@ a:active {
   grid-template-rows: auto;
   grid-gap: 20px;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 10px;
+}

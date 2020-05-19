@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllCategories} from '../store'
+import SingleCategory from './categories/singleCategory'
 
 export class SpenDash extends React.Component {
   componentDidMount() {
@@ -9,32 +10,30 @@ export class SpenDash extends React.Component {
   }
   render() {
     const {categories} = this.props.categories
-    console.log('CATEGORIES ====>>>> ', categories)
-    if (categories.length === 0) {
-      return <h1>You have nothing to show</h1>
-    } else {
-      return (
-        <div className="is-mobile">
-          <h1 className="has-text-centered has-background-grey-light is-size-5">
-            {' '}
-            Spend Dash
-          </h1>
-          <br />
+    console.table('CATEGORIES ==>>> ', categories)
+    return (
+      <div className="is-mobile">
+        <h1 className="has-text-centered has-background-grey-light is-size-5">
+          {' '}
+          Spend Dash
+        </h1>
+        <br />
+        {categories.length === 0 ? (
+          <h1>You have nothing to show</h1>
+        ) : (
           <div className="grid-container">
             {categories &&
               categories.map((category, index) => (
-                <div
-                  key={index}
-                  className="grid-child boxed box has-background-warning has-text-centered"
-                >
-                  <h1 className="has-text-weight-bold">{category.key}</h1>
-                  <h2>${category.value.totalSpent.toFixed(2)}</h2>
-                </div>
+                <SingleCategory
+                  category={category}
+                  index={index}
+                  key={category.key}
+                />
               ))}
           </div>
-        </div>
-      )
-    }
+        )}
+      </div>
+    )
   }
 }
 

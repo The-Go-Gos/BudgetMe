@@ -7,7 +7,7 @@ const Message = props => {
     <div>
       <div className="fancy">This month you have spent ${total}</div>
       <br />
-      <div className="fancy">Most of your budget spent on {categorySpend}.</div>
+      <div className="fancy">Most of your budget spent on {categorySpend}</div>
     </div>
   )
 }

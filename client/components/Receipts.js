@@ -2,6 +2,8 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {getReceiptsThunk} from '../store/allReceipts'
+import SingleReceipt from './SingleReceipt'
+import Popup from 'reactjs-popup'
 
 class Receipts extends React.Component {
   constructor() {
@@ -54,13 +56,12 @@ class Receipts extends React.Component {
                     <td>${receipt.totalPrice / 100}</td>
                     <td>{receipt.date.slice(0, 10)}</td>
                     <td>
-                      <Link to={`/receipts/${receipt.id}`}>
-                        <img
-                          src="/receipt icon.jpg"
-                          height="20px"
-                          width="20px"
-                        />
-                      </Link>
+                      <Popup
+                        trigger={<button>Show Details</button>}
+                        position="bottom center"
+                      >
+                        <SingleReceipt id={receipt.id} />
+                      </Popup>
                     </td>
                   </tr>
                 )

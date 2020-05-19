@@ -194,3 +194,13 @@ a:active {
   grid-template-rows: auto;
   grid-gap: 20px;
 }
+
+.item-map {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 10pt;
+}
+
+.block {
+  margin: 20px;
+}

@@ -181,43 +181,47 @@ class ReceiptDetail extends React.Component {
               <div>
                 {this.state.products.map((list, index) => {
                   return (
-                    <div key={index}>
-                      <label htmlFor="name">
-                        <small>Name</small>
-                      </label>
-                      <input
-                        onChange={e => this.handleNameChange(e)}
-                        name="name"
-                        type="text"
-                        id={index}
-                        value={list.name}
-                      />
+                    <div>
+                      <form className="pure-form pure-form-stacked">
+                        <fieldset>
+                          <legend>Item {index + 1}</legend>
+                          <label htmlFor="name">Name</label>
+                          <input
+                            onChange={e => this.handleNameChange(e)}
+                            name="name"
+                            type="text"
+                            id={index}
+                            value={list.name}
+                          />
 
-                      <label htmlFor="price">
-                        <small>Price</small>
-                      </label>
-                      <input
-                        onChange={e => this.handlePriceChange(e)}
-                        name="price"
-                        type="number"
-                        step="any"
-                        id={index}
-                        value={list.price}
-                      />
-                      <br />
-                      <select
-                        id={index}
-                        onChange={e => this.handleCategoryChange(e)}
-                        value={list.categoryId}
-                      >
-                        {categories.map((c, optionIndex) => {
-                          return (
-                            <option key={optionIndex} value={optionIndex + 1}>
-                              {c}
-                            </option>
-                          )
-                        })}
-                      </select>
+                          <label htmlFor="price">Price</label>
+                          <input
+                            onChange={e => this.handlePriceChange(e)}
+                            name="price"
+                            type="number"
+                            step="any"
+                            id={index}
+                            value={list.price}
+                          />
+                          <label htmlFor="category">Category</label>
+                          <select
+                            id={index}
+                            onChange={e => this.handleCategoryChange(e)}
+                            value={list.categoryId}
+                          >
+                            {categories.map((c, optionIndex) => {
+                              return (
+                                <option
+                                  key={optionIndex}
+                                  value={optionIndex + 1}
+                                >
+                                  {c}
+                                </option>
+                              )
+                            })}
+                          </select>
+                        </fieldset>
+                      </form>
                       <br />
                       <button onClick={e => this.handleRemove(e, index)}>
                         Remove
@@ -240,7 +244,9 @@ class ReceiptDetail extends React.Component {
               </div>
               <br />
               <div>
-                <button type="submit">Submit</button>
+                <button type="submit" className="pure-button pure-button-primary">
+                  Confirm
+                </button>
               </div>
             </form>
           </div>

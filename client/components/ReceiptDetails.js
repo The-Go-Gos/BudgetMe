@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {analyzeReceiptThunk} from '../store/receipt'
 import {addReceiptThunk} from '../store/allReceipts'
 import {Redirect} from 'react-router'
+// import {useToasts} from 'react-toast-notifications'
 
 const categories = [
   'Choose a Category',
@@ -104,12 +105,15 @@ class ReceiptDetail extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    // const {addToast} = useToasts()
     let newReceipt = {
       vendor: this.state.vendor,
       products: this.state.products,
       totalPrice: this.state.totalPrice
     }
     this.props.addReceipt(newReceipt)
+
+    // addToast('Successfully Added Budget!', {appearance: 'success'})
     this.setState({...defaultState, redirect: true})
   }
 

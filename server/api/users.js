@@ -82,6 +82,16 @@ router.get('/categories/:userId', async (req, res, next) => {
   }
 })
 
+router.get('/chart/:userId', async (req, res, next) => {
+  try {
+    const {userId} = req.params
+    const dataChart = await Product.findChartData(userId)
+    res.json(dataChart)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get('/total/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params

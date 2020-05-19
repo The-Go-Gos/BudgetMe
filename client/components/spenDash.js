@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchAllCategories} from '../store'
-import SingleCategory from './categories/singleCategory'
+import {SingleCategory, Chart} from './categories'
 
 export class SpenDash extends React.Component {
   componentDidMount() {
@@ -17,6 +17,7 @@ export class SpenDash extends React.Component {
           {' '}
           Spend Dash
         </h1>
+        <Chart categories={categories} />
         <br />
         {categories.length === 0 ? (
           <h1>You have nothing to show</h1>

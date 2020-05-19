@@ -131,6 +131,37 @@ Product.findTotal = async function(userId) {
   return calculations
 }
 
+Product.findChartData = async function(userId) {
+  const categories = await this.findAll({
+    include: [
+      {
+        model: Receipt,
+        where: {
+          userId: userId
+        }
+      },
+      {
+        model: Category,
+        attributes: ['id', 'title']
+      }
+    ]
+  })
+
+  const Count = d3
+    .nest()
+    .key(function(d) {
+      return d.category.title
+    })
+    .rollup(function(v) {
+      return d3.sum(v, function(d) {
+        return d.price / 100
+      })
+    })
+    .entries(categories)
+
+  return Count
+}
+
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook
 //Create Tag model with many to many relationship with product, belongsToMany with through table
 //normalization: data redundancy - in RD, want to avoid data redundancy - saving things in array - strawberry and apple both red fruits - would repeat data - best to abstract to another table

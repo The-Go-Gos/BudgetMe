@@ -73,7 +73,6 @@ const UpdateUserForm = props => {
                 </span>
               </p>
             </div>
-
             <div className=" field">
               <p className=" control has-icons-left">
                 <input

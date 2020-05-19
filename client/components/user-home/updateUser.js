@@ -2,19 +2,27 @@ import React from 'react'
 import {connect} from 'react-redux'
 import UpdateUserForm from './updateUserForm'
 
-const initState = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  password: ''
-}
-
 class UpdateUser extends React.Component {
   constructor() {
     super()
-    this.state = initState
+    this.state = {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount() {
+    const {user} = this.props
+    this.setState({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: ''
+    })
   }
 
   handleChange(e) {
@@ -41,7 +49,7 @@ class UpdateUser extends React.Component {
 }
 
 const mapState = state => {
-  return {id: state.user.id}
+  return {id: state.user.id, user: state.user}
 }
 
 export default connect(mapState)(UpdateUser)

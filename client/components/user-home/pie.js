@@ -19,8 +19,20 @@ export class Pie extends React.Component {
               ]}
               innerRadius={75}
               labelRadius={90}
-              labelComponent={<VictoryTooltip />}
-              style={{labels: {fontSize: 12, fill: 'black'}}}
+              labelComponent={
+                <VictoryTooltip
+                  cornerRadius={20}
+                  pointerLength={0}
+                  dx={({datum}) => (datum.label === 'Not Spent' ? 80 : -80)}
+                  dy={({datum}) => (datum.label === 'Not Spent' ? -20 : 40)}
+                  flyoutStyle={{
+                    stroke: ({datum}) =>
+                      datum.label === 'Not Spent' ? '#9ACD32' : '#FF7F50',
+                    strokeWidth: 2
+                  }}
+                />
+              }
+              style={{labels: {fontSize: 15, fill: 'black'}}}
               colorScale={['#9ACD32', '#FF7F50']}
             />
             <circle

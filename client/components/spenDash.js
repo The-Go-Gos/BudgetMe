@@ -9,7 +9,7 @@ export class SpenDash extends React.Component {
   }
   render() {
     const {categories} = this.props.categories
-
+    console.log('CATEGORIES ====>>>> ', categories)
     if (categories.length === 0) {
       return <h1>You have nothing to show</h1>
     } else {

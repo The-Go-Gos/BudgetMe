@@ -3,7 +3,14 @@ import {connect} from 'react-redux'
 import {analyzeReceiptThunk} from '../store/receipt'
 import {addReceiptThunk} from '../store/allReceipts'
 import {Redirect} from 'react-router'
-// import {useToasts} from 'react-toast-notifications'
+import {useToasts} from 'react-toast-notifications'
+
+function withToast(Component) {
+  return function WrappedComponent(props) {
+    const toastFuncs = useToasts()
+    return <Component {...props} {...toastFuncs} />
+  }
+}
 
 const categories = [
   'Choose a Category',
@@ -105,7 +112,6 @@ class ReceiptDetail extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    // const {addToast} = useToasts()
     let newReceipt = {
       vendor: this.state.vendor,
       products: this.state.products,
@@ -113,7 +119,7 @@ class ReceiptDetail extends React.Component {
     }
     this.props.addReceipt(newReceipt)
 
-    // addToast('Successfully Added Budget!', {appearance: 'success'})
+    this.props.addToast('Successfully Added Receipt!', {appearance: 'success'})
     this.setState({...defaultState, redirect: true})
   }
 
@@ -265,4 +271,5 @@ const mapDispatch = dispatch => ({
   analyzeReceipt: receipt => dispatch(analyzeReceiptThunk(receipt))
 })
 
-export default connect(mapState, mapDispatch)(ReceiptDetail)
+// export default connect(mapState, mapDispatch)(ReceiptDetail)
+export default connect(mapState, mapDispatch)(withToast(ReceiptDetail))

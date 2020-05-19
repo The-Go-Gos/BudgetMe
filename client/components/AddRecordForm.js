@@ -3,6 +3,14 @@ import ProductInputs from './ProductInput'
 import {connect} from 'react-redux'
 import {addReceiptThunk} from '../store/allReceipts'
 import {Redirect} from 'react-router'
+import {useToasts} from 'react-toast-notifications'
+
+function withToast(Component) {
+  return function WrappedComponent(props) {
+    const toastFuncs = useToasts()
+    return <Component {...props} {...toastFuncs} />
+  }
+}
 
 const defaultState = {
   vendor: '',
@@ -37,6 +45,7 @@ class AddRecordForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault()
     this.props.addReceipt(this.state)
+    this.props.addToast('Successfully Added Receipt!', {appearance: 'success'})
     this.setState({...defaultState, redirect: true})
   }
 
@@ -92,4 +101,4 @@ const mapDispatch = dispatch => ({
   addReceipt: receipt => dispatch(addReceiptThunk(receipt))
 })
 
-export default connect(null, mapDispatch)(AddRecordForm)
+export default connect(null, mapDispatch)(withToast(AddRecordForm))

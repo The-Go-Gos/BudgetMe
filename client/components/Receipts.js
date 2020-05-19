@@ -64,9 +64,8 @@ class Receipts extends React.Component {
                             width="20px"
                           />
                         }
-                        position="bottom right"
                         closeOnDocumentClick
-                        // arrow={false}
+                        modal
                       >
                         <SingleReceipt id={receipt.id} />
                       </Popup>

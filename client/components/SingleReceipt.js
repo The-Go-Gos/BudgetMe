@@ -8,34 +8,31 @@ class SingleReceipt extends React.Component {
   }
 
   componentDidMount() {
-    // const receiptId = this.props.match.params.receiptId
     const receiptId = this.props.id
     this.props.getSingleReceipt(receiptId)
   }
 
   render() {
     return (
-      <div>
-        <table className="table is-narrow">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.props.receipt.products &&
-              this.props.receipt.products.map(product => {
-                return (
-                  <tr key={product.id}>
-                    <td>{product.name}</td>
-                    <td>${product.price / 100}</td>
-                  </tr>
-                )
-              })}
-          </tbody>
-        </table>
-      </div>
+      <table className="table is-narrow">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {this.props.receipt.products &&
+            this.props.receipt.products.map(product => {
+              return (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>${product.price / 100}</td>
+                </tr>
+              )
+            })}
+        </tbody>
+      </table>
     )
   }
 }

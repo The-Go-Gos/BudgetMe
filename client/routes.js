@@ -50,6 +50,11 @@ class Routes extends Component {
             <Route exact path="/view" component={ViewUser} />
             <Route exact path="/update" component={EditUser} />
             <Route exact path="/receipts" component={Receipts} />
+            {/* <Route
+              exact
+              path="/receipts/:receiptId"
+              component={SingleReceipt}
+            /> */}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

@@ -45,25 +45,28 @@ class Receipts extends React.Component {
                 <th>Vendor</th>
                 <th>Subtotal</th>
                 <th>Date</th>
-                <th>Details</th>
+                {/* <th>Details</th> */}
               </tr>
             </thead>
             <tbody>
               {this.props.receipts.map(receipt => {
                 return (
-                  <tr key={receipt.id}>
-                    <td>{receipt.vendor}</td>
-                    <td>${receipt.totalPrice / 100}</td>
-                    <td>{receipt.date.slice(0, 10)}</td>
-                    <td>
-                      <Popup
-                        trigger={<button>Show Details</button>}
-                        position="bottom center"
-                      >
-                        <SingleReceipt id={receipt.id} />
-                      </Popup>
-                    </td>
-                  </tr>
+                  <Popup
+                    key={receipt.id}
+                    trigger={
+                      <tr key={receipt.id}>
+                        <td>{receipt.vendor}</td>
+                        <td>${receipt.totalPrice / 100}</td>
+                        <td>{receipt.date.slice(0, 10)}</td>
+                      </tr>
+                    }
+                    position="bottom right"
+                    on="hover"
+                    closeOnDocumentClick
+                    arrow={false}
+                  >
+                    <SingleReceipt id={receipt.id} />
+                  </Popup>
                 )
               })}
             </tbody>

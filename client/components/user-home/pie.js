@@ -3,11 +3,9 @@ import {VictoryPie, VictoryLabel, VictoryTooltip} from 'victory'
 
 export class Pie extends React.Component {
   render() {
-    const {percentageNotSpent, percentageSpent, email} = this.props
+    const {percentageNotSpent, percentageSpent} = this.props
     return (
       <div>
-        <br />
-        <h4 className="has-text-centered  is-size-5"> Welcome, {email} </h4>
         <div className="level-item">
           <svg width={300} height={240} viewBox="0 50 300 230">
             <VictoryPie

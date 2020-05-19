@@ -194,3 +194,12 @@ a:active {
   grid-template-rows: auto;
   grid-gap: 20px;
 }
+
+.bgtSetup {
+  margin-left: 15px;
+}
+.rctAdd {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}

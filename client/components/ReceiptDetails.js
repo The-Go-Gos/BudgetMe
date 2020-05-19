@@ -195,7 +195,7 @@ class ReceiptDetail extends React.Component {
               <div className="item-map">
                 {this.state.products.map((list, index) => {
                   return (
-                    <div className="block">
+                    <div className="block" key={index}>
                       <span className="tag is-success">
                         Item {index + 1}
                         <button

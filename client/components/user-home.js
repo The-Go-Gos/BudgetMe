@@ -32,7 +32,7 @@ export class UserHome extends React.Component {
       return (
         <div>
           <h1 className="has-text-centered has-background-grey-light is-size-5">
-            In any little way, Save everyday
+            In any little way, save everyday
           </h1>
           <h4 className="has-text-centered  is-size-5">Welcome, {email}</h4>
           <h5>You have not recorded any budget at the moment </h5>

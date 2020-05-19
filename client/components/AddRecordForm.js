@@ -56,7 +56,15 @@ class AddRecordForm extends React.Component {
     }
     return (
       <div>
-        <button onClick={this.addProduct}>Add another item</button>
+        <button
+          className="button is-warning is-light is-small"
+          onClick={this.addProduct}
+        >
+          <span className="icon is-small">
+            <i className="fas fa-plus" />
+          </span>
+          <span>Add New Item</span>
+        </button>
         <br />
         <form onSubmit={this.handleSubmit}>
           <div>

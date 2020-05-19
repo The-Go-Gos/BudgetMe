@@ -207,3 +207,13 @@ a:active {
   /* box-shadow: none !important; */
   width: fit-content !important;
 }
+
+.item-map {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  line-height: 10pt;
+}
+
+.block {
+  margin: 20px;
+}

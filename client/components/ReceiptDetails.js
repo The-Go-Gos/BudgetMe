@@ -162,95 +162,131 @@ class ReceiptDetail extends React.Component {
         ) : (
           <div>
             <form onSubmit={e => this.handleSubmit(e)}>
-              <div>
-                <label htmlFor="vendor">
-                  <small>Vendor</small>
-                </label>
-                <input
-                  onChange={e => this.handleChange(e)}
-                  name="vendor"
-                  type="text"
-                  value={this.state.vendor}
-                />
+              <div className="field">
+                <div className="control">
+                  <label className="label is-info">Vendor</label>
+                  <input
+                    className="input is-info "
+                    onChange={e => this.handleChange(e)}
+                    name="vendor"
+                    type="text"
+                    value={this.state.vendor}
+                  />
+                </div>
               </div>
               <br />
-              <div>
-                <small>Choose a category for all items:</small>
-                <br />
-                <select onChange={e => this.handleAllCategoryChange(e)}>
-                  {categories.map((c, optionIndex) => {
-                    return (
-                      <option key={optionIndex} value={optionIndex + 1}>
-                        {c}
-                      </option>
-                    )
-                  })}
-                </select>
+              <div className="control">
+                <div className="select is-info ">
+                  <select onChange={e => this.handleAllCategoryChange(e)}>
+                    {categories.map((c, optionIndex) => {
+                      return (
+                        <option key={optionIndex} value={optionIndex + 1}>
+                          {c}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <p className="help">
+                    You can select a category for all items
+                  </p>
+                </div>
               </div>
 
-              <div>
+              <div className="item-map">
                 {this.state.products.map((list, index) => {
                   return (
-                    <div key={index}>
-                      <label htmlFor="name">
-                        <small>Name</small>
-                      </label>
-                      <input
-                        onChange={e => this.handleNameChange(e)}
-                        name="name"
-                        type="text"
-                        id={index}
-                        value={list.name}
-                      />
+                    <div className="block">
+                      <span className="tag is-success">
+                        Item {index + 1}
+                        <button
+                          className="delete is-small"
+                          onClick={e => this.handleRemove(e, index)}
+                        />
+                      </span>
 
-                      <label htmlFor="price">
-                        <small>Price</small>
-                      </label>
-                      <input
-                        onChange={e => this.handlePriceChange(e)}
-                        name="price"
-                        type="number"
-                        step="any"
-                        id={index}
-                        value={list.price}
-                      />
-                      <br />
-                      <select
-                        id={index}
-                        onChange={e => this.handleCategoryChange(e)}
-                        value={list.categoryId}
-                      >
-                        {categories.map((c, optionIndex) => {
-                          return (
-                            <option key={optionIndex} value={optionIndex + 1}>
-                              {c}
-                            </option>
-                          )
-                        })}
-                      </select>
-                      <br />
-                      <button onClick={e => this.handleRemove(e, index)}>
-                        Remove
-                      </button>
+                      <div className="columns is-gapless is-mobile">
+                        <div className="column is-two-fifths">
+                          <div className="control">
+                            <label className="label is-small">Name</label>
+                            <input
+                              onChange={e => this.handleNameChange(e)}
+                              name="name"
+                              type="text"
+                              id={index}
+                              value={list.name}
+                              className="input is-success is-small is-rounded"
+                              placeholder="e.g Organic Bananas"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="column">
+                          <div className="control">
+                            <label className="label is-small">Price</label>
+                            <input
+                              onChange={e => this.handlePriceChange(e)}
+                              name="price"
+                              type="number"
+                              step="any"
+                              id={index}
+                              value={list.price}
+                              className="input is-success is-small is-rounded"
+                              placeholder="e.g. 3.96"
+                            />
+                          </div>
+                        </div>
+
+                        <div className="column is-two-fifths">
+                          <div className="control">
+                            <label className="label is-small">Categoty</label>
+                            <select
+                              id={index}
+                              onChange={e => this.handleCategoryChange(e)}
+                              value={list.categoryId}
+                              className="input is-warning is-small is-focused is-rounded"
+                            >
+                              {categories.map((c, optionIndex) => {
+                                return (
+                                  <option
+                                    key={optionIndex}
+                                    value={optionIndex + 1}
+                                  >
+                                    {c}
+                                  </option>
+                                )
+                              })}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   )
                 })}
               </div>
               <div>
-                <label htmlFor="totalPrice">
-                  <small>Total Price</small>
-                </label>
-                <input
-                  onChange={e => this.handleChange(e)}
-                  name="totalPrice"
-                  type="number"
-                  step="any"
-                  value={this.state.totalPrice}
-                />
+                <div className="field">
+                  <label className="label is-small">Total Price</label>
+                  <div className="control">
+                    <input
+                      onChange={e => this.handleChange(e)}
+                      name="totalPrice"
+                      type="number"
+                      step="any"
+                      value={this.state.totalPrice}
+                      className="input is-primary is-small"
+                      placeholder="e.g 52.30"
+                    />
+                  </div>
+                </div>
               </div>
               <br />
               <div>
-                <button type="submit">Submit</button>
+                <button className="button is-success is-right">
+                  <span className="icon is-small">
+                    <i className="fas fa-check" />
+                  </span>
+                  <span>Confirm</span>
+                </button>
               </div>
             </form>
           </div>

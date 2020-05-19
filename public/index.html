@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" href="/style.css" />
+
     <script defer src="/bundle.js"></script>
   </head>
   <body>
@@ -17,9 +18,8 @@
     if ('serviceWorker' in navigator) {
       // Use the window load event to keep the page load performant
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js');
-      });
+        navigator.serviceWorker.register('/service-worker.js')
+      })
     }
-    </script>
+  </script>
 </html>
-

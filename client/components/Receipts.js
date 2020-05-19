@@ -45,7 +45,6 @@ class Receipts extends React.Component {
                 <th>Vendor</th>
                 <th>Subtotal</th>
                 <th>Date</th>
-                {/* <th>Details</th> */}
               </tr>
             </thead>
             <tbody>
@@ -60,7 +59,7 @@ class Receipts extends React.Component {
                         <td>{receipt.date.slice(0, 10)}</td>
                       </tr>
                     }
-                    position="bottom right"
+                    position="bottom center"
                     on="hover"
                     closeOnDocumentClick
                     arrow={false}

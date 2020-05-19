@@ -14,7 +14,7 @@ class SingleReceipt extends React.Component {
 
   render() {
     return (
-      <table className="table is-narrow">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>

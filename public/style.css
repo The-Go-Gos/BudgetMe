@@ -201,3 +201,8 @@ a:active {
   width: 100%;
   padding: 10px;
 }
+
+.popup-content {
+  border: 0px solid !important;
+  box-shadow: none !important;
+}

@@ -6,11 +6,16 @@
       "src": "favicon.ico",
       "type": "image/ico",
       "sizes": "600x600"
+    },
+    {
+      "src": "logo.png",
+      "type": "image/png",
+      "sizes": "450x450"
     }
   ],
   "start_url": "/",
-  "background_color": "#000",
+  "background_color": "#3498db",
   "display": "standalone",
   "scope": "/",
-  "theme_color": "#536878"
+  "theme_color": "#3498db"
 }

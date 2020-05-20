@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+div.popup-content {
+  width: 90%;
+}
+
 .fancy {
   position: relative;
   background-color: #ffc;
@@ -203,9 +207,6 @@ a:active {
   width: 50%;
   padding: 10px;
 }
-.modal-h-w {
-  width: 80%;
-}
 
 .barChart {
   margin: 0;
@@ -215,3 +216,7 @@ a:active {
 rect.recharts-brush-slide {
   top: 0;
 }
+
+/* @media (min-width: 1024px) {
+  
+} */

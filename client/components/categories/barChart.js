@@ -47,7 +47,7 @@ class Chart extends PureComponent {
     )
   }
 }
-// <Brush dataKey="key" height={30} stroke="#56BCD2" />
+
 const mapState = state => {
   return {data: state.categoryReducer.graphData}
 }
@@ -57,4 +57,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(Chart)
-// export default Chart

@@ -17,20 +17,27 @@ const SingleCategory = props => {
       }
       modal
       closeOnDocumentClick
+      contentStyle={{width: '300px'}}
     >
       <span className="modal-h-w">
         <div className="tile is-parent">
-          <article className="tile is-child notification is-info">
+          <article className="tile is-child notification is-warning">
             <h2>
-              Total Spent in {category.key}:{' '}
-              {category.value.totalSpent.toFixed(2)}
+              <span className="has-text-weight-bold	">
+                Total Spent in {category.key}:
+              </span>{' '}
+              ${category.value.totalSpent.toFixed(2)}
             </h2>
             <h2>
-              Average Spent in {category.key}:{' '}
-              {category.value.averageSpent.toFixed(2)}
+              <span className="has-text-weight-bold	">
+                Average Spent in {category.key}:
+              </span>{' '}
+              ${category.value.averageSpent.toFixed(2)}
             </h2>
             <h2>
-              Total Number of items bought in {category.key}:{' '}
+              <span className="has-text-weight-bold	">
+                Total Number of items bought in {category.key}:
+              </span>{' '}
               {category.value.quantity}
             </h2>
           </article>

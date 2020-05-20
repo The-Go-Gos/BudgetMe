@@ -215,7 +215,11 @@ a:active {
 }
 
 .block {
-  margin: 20px;
+  margin: 10px;
+}
+
+.block:not(:last-child) {
+  margin: 10px;
 }
 
 #target {
@@ -229,4 +233,26 @@ a:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#receipt-column {
+  margin: 10px;
+  display: inline-block;
+}
+
+#iterateForm {
+  margin: 10px;
+  display: block;
+}
+
+.control {
+  margin: 5px !important ;
+}
+
+.field {
+  margin: 8px;
+}
+
+.totalPrice {
+  margin: 10px;
 }

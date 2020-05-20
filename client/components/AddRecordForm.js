@@ -88,7 +88,6 @@ class AddRecordForm extends React.Component {
               <p className="help is-success">This is a required field</p>
             </div>
           </div>
-
           <div>
             <ProductInputs
               products={products}

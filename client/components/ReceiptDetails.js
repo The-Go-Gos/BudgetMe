@@ -169,8 +169,8 @@ class ReceiptDetail extends React.Component {
           </div>
         ) : (
           <div>
-            <form onSubmit={e => this.handleSubmit(e)}>
-              <div className="field">
+            <form id="receipt-column" onSubmit={e => this.handleSubmit(e)}>
+              <div className="control">
                 <div className="control">
                   <label className="label is-info">Vendor</label>
                   <input
@@ -182,25 +182,8 @@ class ReceiptDetail extends React.Component {
                   />
                 </div>
               </div>
-              <br />
-              <div className="control">
-                <div className="select is-info ">
-                  <select onChange={e => this.handleAllCategoryChange(e)}>
-                    {categories.map((c, optionIndex) => {
-                      return (
-                        <option key={optionIndex} value={optionIndex + 1}>
-                          {c}
-                        </option>
-                      )
-                    })}
-                  </select>
-                  <p className="help">
-                    You can select a category for all items
-                  </p>
-                </div>
-              </div>
 
-              <div className="item-map">
+              <div id="iterateForm" className="item-map">
                 {this.state.products.map((list, index) => {
                   return (
                     <div className="block" key={index}>
@@ -212,7 +195,7 @@ class ReceiptDetail extends React.Component {
                         />
                       </span>
 
-                      <div className="columns is-gapless is-mobile">
+                      <div className="columns is-mobile is-gapless">
                         <div className="column is-two-fifths">
                           <div className="control">
                             <label className="label is-small">Name</label>
@@ -228,7 +211,7 @@ class ReceiptDetail extends React.Component {
                           </div>
                         </div>
 
-                        <div className="column">
+                        <div className="column is-one-fifth">
                           <div className="control">
                             <label className="label is-small">Price</label>
                             <input
@@ -243,15 +226,14 @@ class ReceiptDetail extends React.Component {
                             />
                           </div>
                         </div>
-
-                        <div className="column is-two-fifths">
+                        <div className="column">
                           <div className="control">
                             <label className="label is-small">Categoty</label>
                             <select
                               id={index}
                               onChange={e => this.handleCategoryChange(e)}
                               value={list.categoryId}
-                              className="input is-warning is-small is-focused"
+                              className="input is-warning is-small is-focused "
                             >
                               {categories.map((c, optionIndex) => {
                                 return (
@@ -267,11 +249,48 @@ class ReceiptDetail extends React.Component {
                           </div>
                         </div>
                       </div>
+
+                      {/* <div className="column "> */}
+
+                      {/* <div className="control">
+                        <label className="label is-small">Categoty</label>
+                        <select
+                          id={index}
+                          onChange={(e) => this.handleCategoryChange(e)}
+                          value={list.categoryId}
+                          className="input is-warning is-small is-focused is-rounded"
+                        >
+                          {categories.map((c, optionIndex) => {
+                            return (
+                              <option key={optionIndex} value={optionIndex + 1}>
+                                {c}
+                              </option>
+                            )
+                          })}
+                        </select>
+                      </div> */}
+                      {/* </div> */}
                     </div>
                   )
                 })}
               </div>
-              <div>
+              <div className="control">
+                <div className="select is-info is-rounded is-small">
+                  <select onChange={e => this.handleAllCategoryChange(e)}>
+                    {categories.map((c, optionIndex) => {
+                      return (
+                        <option key={optionIndex} value={optionIndex + 1}>
+                          {c}
+                        </option>
+                      )
+                    })}
+                  </select>
+                  <p className="help">
+                    You can select a category for all items
+                  </p>
+                </div>
+              </div>
+              <div className="totalPrice">
                 <div className="field">
                   <label className="label is-small">Total Price</label>
                   <div className="control">
@@ -289,7 +308,7 @@ class ReceiptDetail extends React.Component {
               </div>
               <br />
               <div>
-                <button className="button is-success is-right">
+                <button className="button is-link is-right">
                   <span className="icon is-small">
                     <i className="fas fa-check" />
                   </span>

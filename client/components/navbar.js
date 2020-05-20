@@ -90,7 +90,19 @@ const mapDispatch = dispatch => {
       dispatch(logout())
     },
     openNav() {
-      document.getElementById('mySidenav').style.width = '50%'
+      if (window.matchMedia('(max-width: 765px)')) {
+        document.getElementById('mySidenav').style.width = '50%'
+      } else {
+        document.getElementById('mySidenav').style.width = '20%'
+      }
+      // if(window.matchMedia("(min-width: 800px)")){
+      //   document.getElementById('mySidenav').style.width = '20%'
+      // }else if(window.matchMedia("(min-width: 766px)")){
+      //   document.getElementById('mySidenav').style.width = '30%'
+      // }
+      // else{
+      // document.getElementById('mySidenav').style.width = '50%'
+      // }
     },
     closeNav() {
       document.getElementById('mySidenav').style.width = '0'

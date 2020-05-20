@@ -53,6 +53,9 @@ registerRoute(
 precacheAndRoute([
   {url: '/index.html', revision: null},
   {url: '/style.css', revision: null},
-  {url: '/bundle.js', revision: null}
+  {url: '/bundle.js', revision: null},
+  {url: '/favicon.ico', revision: null},
+  {url: '/logo192.png', revision: null},
+  {url: '/logo512.png', revision: null}
   // ... other entries ...
 ])

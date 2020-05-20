@@ -28,7 +28,7 @@ export class UserHome extends React.Component {
     const {percentageNotSpent, percentageSpent, totalSpend} = this.props.total
     const {categories} = this.props.categories
 
-    if (total.percentageSpent === null || total.percentageNotSpent === null) {
+    if (percentageSpent === null || percentageNotSpent === null) {
       return (
         <div>
           <section className="hero is-light">
@@ -84,10 +84,10 @@ export class UserHome extends React.Component {
           </h1>
           <Pie
             email={email}
-            percentageNotSpent={total.percentageNotSpent}
-            percentageSpent={total.percentageSpent}
+            percentageNotSpent={percentageNotSpent}
+            percentageSpent={percentageSpent}
           />
-          <Message totalSpend={total.totalSpend} categories={categories} />
+          <Message totalSpend={totalSpend} categories={categories} />
         </div>
       )
     }

@@ -11,7 +11,7 @@ const SingleCategory = props => {
           key={index}
           className="grid-child boxed box has-background-warning has-text-centered"
         >
-          <h1 className="has-text-weight-bold">{category.key}</h1>
+          <h2 className="has-text-weight-bold">{category.key}</h2>
           <h2>${category.value.totalSpent.toFixed(2)}</h2>
         </div>
       }

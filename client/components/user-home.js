@@ -7,16 +7,6 @@ import Message from './user-home/message'
 import {Link} from 'react-router-dom'
 
 export class UserHome extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      vendor: '',
-      products: [],
-      totalPrice: 0
-    }
-    // this.handleClick = this.handleClick.bind(this)
-  }
-
   componentDidMount() {
     const {id} = this.props
     this.props.getTotal(id)
@@ -28,69 +18,81 @@ export class UserHome extends React.Component {
     const {percentageNotSpent, percentageSpent, totalSpend} = this.props.total
     const {categories} = this.props.categories
 
-    if (percentageSpent === null || percentageNotSpent === null) {
-      return (
-        <div>
-          <section className="hero is-light">
-            <div className="hero-body">
-              <div className="container">
-                <h1 className="title">Welcome, {email}!</h1>
-                <br />
-                <h2 className="subtitle">
-                  Get Start! You have not recorded any budget at the moment!
-                </h2>
-              </div>
-            </div>
-          </section>
-          <br />
+    const largest = Math.max(...categories.map(e => e.value.totalSpent))
+    const thisObjs = categories.map(category => {
+      if (category.value.totalSpent === largest) {
+        return category.key
+      }
+    })
 
+    return (
+      <div>
+        <h1 className="has-text-centered has-background-grey-light is-size-5">
+          Home
+        </h1>
+        <h4 className="has-text-centered  is-size-5">Welcome, {email}</h4>
+        {percentageSpent === null || percentageNotSpent === null ? (
           <div>
-            <article className="tile is-child box">
-              <div className="buttons level-item">
-                <img
-                  src="addReceipt.jpeg"
-                  width="64"
-                  height="64"
-                  align="center"
-                />
-                <button className="button is-rounded is-success">
-                  <Link to="/receipts">
-                    <strong className="has-text-warning">
-                      Start Uploading Your First Receipt
-                    </strong>
-                  </Link>
+            <br />
+            <h5 className="has-text-centered">
+              You have not recorded any budget at the moment <br />
+              You have to set up a budget and then start adding recipts to see
+              results
+            </h5>
+            <br />
+            <div className="grid-container">
+              <p className="grid-child bgtSetup control">
+                <button className="button is-success">
+                  <a href="/settings">
+                    <span className="icon">
+                      <i className="fas fa-edit" />
+                    </span>
+                    <span>&nbsp;</span>Set Up Budget
+                  </a>
                 </button>
-              </div>
-              <br />
-              <div className="buttons level-item">
-                <img src="setting.jpg" width="64" height="64" align="center" />
-                <button className="button is-rounded is-success">
-                  <Link to="/settings">
-                    <strong className="has-text-warning">
-                      Start Setting Your Monthly Budget
-                    </strong>
-                  </Link>
+              </p>
+              <p className="grid-child control">
+                <button className="button is-warning">
+                  <a href="/receipts">
+                    <span className="icon">
+                      <i className="fas fa-folder-plus" />
+                    </span>
+                    <span>&nbsp;</span>Add Receipts
+                  </a>
                 </button>
-              </div>
-            </article>
+              </p>
+            </div>
           </div>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <h1 className="has-text-centered has-background-grey-light is-size-5">
-            Home
-          </h1>
-          <Pie
-            email={email}
-            percentageNotSpent={percentageNotSpent}
-            percentageSpent={percentageSpent}
-          />
-          <Message totalSpend={totalSpend} categories={categories} />
-        </div>
-      )
-    }
+        ) : (
+          <div>
+            <Pie
+              percentageNotSpent={percentageNotSpent}
+              percentageSpent={percentageSpent}
+            />
+            {categories.length === 0 ? (
+              <div>
+                <h5 className="has-text-centered">
+                  You have not set up any spending records, <br /> click the
+                  botton below to start recording
+                </h5>
+                <p className="rctAdd control">
+                  <button className="button is-warning">
+                    <a href="/receipts">
+                      <span className="icon">
+                        <i className="fas fa-folder-plus" />
+                      </span>
+                      <span>&nbsp;</span>Add Receipts
+                    </a>
+                  </button>
+                </p>
+              </div>
+            ) : (
+              <Message totalSpend={totalSpend} categorySpend={thisObjs} />
+            )}
+          </div>
+        )}
+      </div>
+    )
   }
 }
 

@@ -26,6 +26,7 @@ class AddRecordForm extends React.Component {
       products: [{name: '', price: 0, categoryId: 1}],
       totalPrice: 0
     }
+    this.addProduct = this.addProduct.bind(this)
   }
 
   handleChange = e => {
@@ -56,29 +57,38 @@ class AddRecordForm extends React.Component {
     }
     return (
       <div>
-        <button
-          className="button is-warning is-light is-small"
-          onClick={this.addProduct}
-        >
-          <span className="icon is-small">
-            <i className="fas fa-plus" />
-          </span>
-          <span>Add New Item</span>
-        </button>
-        <br />
         <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="vendor">
-              <small>Vendor</small>
-            </label>
-            <input
-              type="text"
-              name="vendor"
-              value={vendor}
-              onChange={this.handleChange}
-            />
+          <div className="field">
+            <div className="control ">
+              <label className="label">Vendor</label>
+              <input
+                className="input is-success is-small is-rounded"
+                type="text"
+                name="vendor"
+                value={vendor}
+                onChange={this.handleChange}
+                id="aligned-name"
+                placeholder="Name"
+              />
+              <p className="help is-success">This is a required field</p>
+            </div>
+
+            <div className="control">
+              <label className="label">Total Price</label>
+              <input
+                className="input is-success is-small is-rounded"
+                type="number"
+                step="any"
+                name="totalPrice"
+                value={totalPrice}
+                onChange={this.handleChange}
+                id="aligned-name"
+                placeholder="0"
+              />
+              <p className="help is-success">This is a required field</p>
+            </div>
           </div>
-          <br />
+
           <div>
             <ProductInputs
               products={products}
@@ -86,21 +96,25 @@ class AddRecordForm extends React.Component {
             />
           </div>
           <br />
-          <div>
-            <label htmlFor="totalPrice">
-              <small>Total Price</small>
-            </label>
-            <input
-              type="number"
-              step="any"
-              name="totalPrice"
-              value={totalPrice}
-              onChange={this.handleChange}
-            />
-          </div>
-          <br />
-          <button type="submit">Submit</button>
+          <button className="button is-success">
+            <span className="icon is-small">
+              <i className="fas fa-check" />
+            </span>
+            <span>Save</span>
+          </button>
         </form>
+        <br />
+        <div>
+          <button
+            className="button is-warning is-light"
+            onClick={this.addProduct}
+          >
+            <span className="icon is-small">
+              <i className="fas fa-plus" />
+            </span>
+            <span>Add New Item</span>
+          </button>
+        </div>
       </div>
     )
   }

@@ -8,37 +8,61 @@ const AddBudgetForm = props => {
   const {addToast} = useToasts()
 
   const onSubmit = async e => {
-    e.preventDefault()
+    // e.preventDefault()
     const budget = e.target.budget.value * 100
     const budgetElement = {budget}
     await props.addBudget(userId, budgetElement)
 
     handleSubmit()
-    addToast('Successfully Added Budget!', {appearance: 'success'})
+    addToast(`Successfully added $${state.budget} to your budget!`, {
+      appearance: 'success'
+    })
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label htmlFor="budget">
-          <small>Budget</small>
-        </label>
-        <input
-          onChange={handleChange}
-          name="budget"
-          type="number"
-          pattern="[0-9]*[.]?[0-9]+"
-          step="0.01"
-          title="i.e. 100.56 = $100.56"
-          value={state.budget}
-        />
+    <div>
+      <div className="tile is-parent">
+        <article className="tile is-child notification is-info">
+          <form onSubmit={onSubmit}>
+            <div className="field">
+              <label htmlFor="budget" className="label">
+                Add Budget
+              </label>
+              <p className="control has-icons-left">
+                <input
+                  onChange={handleChange}
+                  className="input"
+                  name="budget"
+                  type="number"
+                  pattern="[0-9]*[.]?[0-9]+"
+                  step="0.01"
+                  title="i.e. 100.56 = $100.56"
+                  value={state.budget}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-dollar-sign" />
+                </span>
+              </p>
+            </div>
+            <div className="homeLink field">
+              <p className="control">
+                <button
+                  type="submit"
+                  disabled={isNaN(state.budget) || !state.budget}
+                  className="button is-white"
+                >
+                  <span className="icon">
+                    <i className="fa fa-arrow-circle-right" />
+                  </span>
+                  <span>&nbsp;</span>
+                  Submit
+                </button>
+              </p>
+            </div>
+          </form>
+        </article>
       </div>
-      <div>
-        <button type="submit" disabled={isNaN(state.budget) || !state.budget}>
-          Submit
-        </button>
-      </div>
-    </form>
+    </div>
   )
 }
 

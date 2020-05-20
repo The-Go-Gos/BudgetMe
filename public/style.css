@@ -21,6 +21,10 @@ form div {
   display: inline-block;
 }
 
+div.popup-content {
+  width: 90%;
+}
+
 .fancy {
   position: relative;
   background-color: #ffc;
@@ -176,8 +180,7 @@ nav #burger {
   padding-top: 10px;
 }
 
-#sticky {
-  position: -webkit-sticky;
+nav.navbar {
   position: sticky;
 }
 
@@ -229,4 +232,44 @@ a:active {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+.bgtSetup {
+  margin-left: 15px;
+}
+.rctAdd {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+.barChart {
+  margin: 0;
+  padding: 0;
+}
+
+rect.recharts-brush-slide {
+  top: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  nav #user {
+    position: absolute;
+    left: 98%;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .fancy {
+    left: 42%;
+  }
+}
+
+@media screen and (min-width: 766px) {
+  article.tile {
+    height: 200px;
+  }
+
+  article.tile {
+    width: 300px;
+  }
 }

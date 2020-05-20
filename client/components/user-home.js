@@ -25,7 +25,7 @@ export class UserHome extends React.Component {
 
   render() {
     const {email} = this.props
-    const {total} = this.props
+    const {percentageNotSpent, percentageSpent, totalSpend} = this.props.total
     const {categories} = this.props.categories
 
     if (total.percentageSpent === null || total.percentageNotSpent === null) {

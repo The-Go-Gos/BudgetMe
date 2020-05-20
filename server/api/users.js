@@ -1,5 +1,12 @@
 const router = require('express').Router()
 const {User, Product, Finance} = require('../db/models')
+
+// const twilio = require("twilio");
+// const twilioClient = new twilio(
+//   process.env.TWILIO_ACCOUNT_SID,
+//   process.env.TWILIO_AUTH_TOKEN
+// );
+
 module.exports = router
 
 /*  const isAdmin = (req, res, next) => {
@@ -65,7 +72,7 @@ router.put('/:userId', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/categories', async (req, res, next) => {
+router.get('/categories/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params
     const categories = await Product.findAllCategory(userId)
@@ -75,7 +82,17 @@ router.get('/:userId/categories', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/total', async (req, res, next) => {
+router.get('/chart/:userId', async (req, res, next) => {
+  try {
+    const {userId} = req.params
+    const dataChart = await Product.findChartData(userId)
+    res.json(dataChart)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.get('/total/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params
     const total = await Product.findTotal(userId)
@@ -89,7 +106,7 @@ router.get('/:userId/total', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/categories/:categoryId', async (req, res, next) => {
+router.get('/categories/:categoryId/:userId', async (req, res, next) => {
   try {
     const {userId, categoryId} = req.params
     const categoryTotal = await Product.categoryTotal(userId, categoryId)
@@ -99,7 +116,7 @@ router.get('/:userId/categories/:categoryId', async (req, res, next) => {
   }
 })
 
-router.get('/:userId/finance', async (req, res, next) => {
+router.get('/finance/:userId', async (req, res, next) => {
   try {
     const {userId} = req.params
     const finances = await Finance.findAllFinance(userId)
@@ -113,7 +130,7 @@ router.get('/:userId/finance', async (req, res, next) => {
   }
 })
 
-router.post('/:userId/finance', async (req, res, next) => {
+router.post('/finance/:userId', async (req, res, next) => {
   const {userId} = req.params
   const {body} = req
   try {
@@ -127,16 +144,17 @@ router.post('/:userId/finance', async (req, res, next) => {
   }
 })
 
-router.put('/:userId/finance', async (req, res, next) => {
-  const {body, params} = req
+router.put('/finance/:userId', async (req, res, next) => {
+  const {body} = req
+  const {userId} = req.params
   try {
-    const finance = await Finance.findOne({
-      userId: params.userId,
-      budget: body.budget
+    const financeFound = await Finance.findOne({
+      where: {
+        userId: userId
+      }
     })
-
-    if (finance) {
-      const updatedFinance = await finance.update(body)
+    if (financeFound) {
+      const updatedFinance = await financeFound.update(body)
       res.json(updatedFinance)
     } else {
       res.status(404).json('Not found')
@@ -145,3 +163,23 @@ router.put('/:userId/finance', async (req, res, next) => {
     next(error)
   }
 })
+
+// ================ Send
+
+// router.post('/send/:userId', async (req, res, next) => {
+//   const {userId} = req.params
+//   try {
+//   const foundUser = User.findOne({
+//    where:{
+//     id: userId
+//   }
+//   })
+//   if(foundUser){
+
+//   }else {
+//     res.status(404).json('Not found')
+//   }
+//   } catch (error) {
+//     next(error)
+//   }
+// })

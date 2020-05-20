@@ -8,9 +8,9 @@
       "sizes": "600x600"
     },
     {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "450x450"
+      "src": "logo.webp",
+      "type": "image/webp",
+      "sizes": "600x600"
     }
   ],
   "start_url": "/",

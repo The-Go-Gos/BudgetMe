@@ -4,18 +4,18 @@ import {useToasts} from 'react-toast-notifications'
 import {updateBudgetThunk} from '../../store/budget'
 
 const UpdateBudgetForm = props => {
-  const {state, handleChange, handleSubmit, userId, totalBudget} = props
+  const {state, handleChange, userId} = props
   const {addToast} = useToasts()
 
   const onSubmit = async e => {
-    // e.preventDefault()
+    e.preventDefault()
     const budget = e.target.budget.value * 100
     const budgetElement = {budget}
     await props.updateBudget(userId, budgetElement)
 
-    handleSubmit()
     addToast('Successfully Updated Budget!', {appearance: 'success'})
   }
+  const {totalBudget} = props.total
 
   return (
     <div>
@@ -61,14 +61,25 @@ const UpdateBudgetForm = props => {
         </article>
       </div>
       <div className="notification is-success is-light has-text-centered">
-        <h1 className="is-size-3">
-          Current Budget:<br /> ${totalBudget}{' '}
-        </h1>
+        {state.budget === 0 ? (
+          <h1 className="is-size-3">
+            Current Budget:
+            <br /> ${totalBudget}{' '}
+          </h1>
+        ) : (
+          <h1 className="is-size-3">
+            Current Updated Budget:
+            <br /> ${state.budget}{' '}
+          </h1>
+        )}
       </div>
     </div>
   )
 }
 
+const mapState = state => {
+  return {total: state.budgetReducer.Total}
+}
 const mapDispatch = dispatch => {
   return {
     updateBudget: (userId, budgetElement) =>
@@ -76,4 +87,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(null, mapDispatch)(UpdateBudgetForm)
+export default connect(mapState, mapDispatch)(UpdateBudgetForm)

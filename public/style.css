@@ -228,3 +228,13 @@ rect.recharts-brush-slide {
     left: 42%;
   }
 }
+
+@media screen and (min-width: 766px) {
+  article.tile {
+    height: 200px;
+  }
+
+  article.tile {
+    width: 300px;
+  }
+}

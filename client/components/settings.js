@@ -36,12 +36,13 @@ export class Setting extends React.Component {
   render() {
     const {id} = this.props
     const {total} = this.props
+    console.log('BUDGET ==>> ', total.totalBudget)
     return (
       <div>
         <h1 className="has-text-centered has-background-grey-light is-size-5">
           Budget
         </h1>
-        {!total.totalBudget ? (
+        {total.totalBudget === undefined ? (
           <AddBudgetForm
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
@@ -51,8 +52,6 @@ export class Setting extends React.Component {
         ) : (
           <UpdateBudgetForm
             handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-            totalBudget={total.totalBudget}
             state={this.state}
             userId={id}
           />

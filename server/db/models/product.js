@@ -118,7 +118,7 @@ Product.findTotal = async function(userId) {
     })
     .entries(categories)
   const totalBudget = budget.budget
-  const total = expense.total.toFixed(2)
+  const total = expense.total
   const percentageSpent = total * 100 / totalBudget
   const percentageNotSpent = 100 - percentageSpent
 
@@ -129,6 +129,38 @@ Product.findTotal = async function(userId) {
   calculations.percentageNotSpent = Math.round(percentageNotSpent)
 
   return calculations
+}
+
+Product.findChartData = async function(userId) {
+  const categories = await this.findAll({
+    include: [
+      {
+        model: Receipt,
+        where: {
+          userId: userId
+        }
+      },
+      {
+        model: Category,
+        attributes: ['id', 'title']
+      }
+    ]
+  })
+
+  const Count = d3
+    .nest()
+    .key(function(d) {
+      return d.category.title
+    })
+    .rollup(function(v) {
+      return d3.sum(v, function(d) {
+        const price = d.price / 100
+        return price
+      })
+    })
+    .entries(categories)
+
+  return Count
 }
 
 //read from receipt, convert to integer (getter/setter), and have function that converts from pennies when we get it back - beforeSave hook

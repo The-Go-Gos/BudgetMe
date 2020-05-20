@@ -15,10 +15,12 @@ export class Setting extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+
   componentDidMount() {
     const {id} = this.props
     this.props.getTotal(id)
   }
+
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value})
   }
@@ -34,36 +36,28 @@ export class Setting extends React.Component {
   render() {
     const {id} = this.props
     const {total} = this.props
-
-    if (!total.totalBudget) {
-      return (
-        <div>
-          <h1 className="has-text-centered has-background-grey-light is-size-5">
-            Budget
-          </h1>
+    console.log('BUDGET ==>> ', total.totalBudget)
+    return (
+      <div>
+        <h1 className="has-text-centered has-background-grey-light is-size-5">
+          Budget
+        </h1>
+        {total.totalBudget === undefined ? (
           <AddBudgetForm
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             state={this.state}
             userId={id}
           />
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <h1 className="has-text-centered has-background-grey-light is-size-5">
-            Budget
-          </h1>
+        ) : (
           <UpdateBudgetForm
             handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
             state={this.state}
             userId={id}
           />
-        </div>
-      )
-    }
+        )}
+      </div>
+    )
   }
 }
 

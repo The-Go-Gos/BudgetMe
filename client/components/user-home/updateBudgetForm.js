@@ -4,21 +4,17 @@ import {useToasts} from 'react-toast-notifications'
 import {updateBudgetThunk} from '../../store/budget'
 
 const UpdateBudgetForm = props => {
-  const {state, handleChange, handleSubmit, userId} = props
+  const {state, handleChange, handleSubmit, userId, totalBudget} = props
   const {addToast} = useToasts()
 
   const onSubmit = async e => {
-    e.preventDefault()
+    // e.preventDefault()
     const budget = e.target.budget.value * 100
     const budgetElement = {budget}
     await props.updateBudget(userId, budgetElement)
 
     handleSubmit()
     addToast('Successfully Updated Budget!', {appearance: 'success'})
-  }
-
-  const onClick = () => {
-    alert('clicked')
   }
 
   return (
@@ -52,7 +48,6 @@ const UpdateBudgetForm = props => {
                   type="submit"
                   disabled={isNaN(state.budget) || !state.budget}
                   className="button is-white"
-                  onClick={onClick}
                 >
                   <span className="icon">
                     <i className="fas fa-edit" />
@@ -65,7 +60,11 @@ const UpdateBudgetForm = props => {
           </form>
         </article>
       </div>
-      <div>{state.budget}</div>
+      <div className="notification is-success is-light has-text-centered">
+        <h1 className="is-size-3">
+          Current Budget:<br /> ${totalBudget}{' '}
+        </h1>
+      </div>
     </div>
   )
 }

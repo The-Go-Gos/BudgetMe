@@ -180,8 +180,7 @@ nav #burger {
   padding-top: 10px;
 }
 
-#sticky {
-  position: -webkit-sticky;
+nav.navbar {
   position: sticky;
 }
 
@@ -217,6 +216,15 @@ rect.recharts-brush-slide {
   top: 0;
 }
 
-/* @media (min-width: 1024px) {
-  
-} */
+@media screen and (min-width: 1024px) {
+  nav #user {
+    position: absolute;
+    left: 98%;
+  }
+}
+
+@media screen and (min-width: 400px) {
+  .fancy {
+    left: 42%;
+  }
+}

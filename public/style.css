@@ -217,3 +217,7 @@ a:active {
 .block {
   margin: 20px;
 }
+
+.hidden {
+  display: none !important;
+}

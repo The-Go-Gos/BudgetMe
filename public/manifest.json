@@ -1,0 +1,16 @@
+{
+  "short_name": "BudgetMe",
+  "name": "BudgetMe",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/ico",
+      "sizes": "600x600"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#536878"
+}

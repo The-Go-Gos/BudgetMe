@@ -218,6 +218,12 @@ a:active {
   margin: 20px;
 }
 
-.hidden {
+/* .hidden {
   display: none !important;
+} */
+
+.add-button {
+  position: absolute;
+  top: 1px;
+  left: 1px;
 }

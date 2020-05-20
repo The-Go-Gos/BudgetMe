@@ -92,7 +92,7 @@ const mapDispatch = dispatch => {
     openNav() {
       if (window.matchMedia('(max-width: 765px)')) {
         document.getElementById('mySidenav').style.width = '50%'
-      } else {
+      } else if (window.matchMedia('(min-width: 800px)')) {
         document.getElementById('mySidenav').style.width = '20%'
       }
       // if(window.matchMedia("(min-width: 800px)")){

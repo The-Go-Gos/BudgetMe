@@ -154,7 +154,8 @@ Product.findChartData = async function(userId) {
     })
     .rollup(function(v) {
       return d3.sum(v, function(d) {
-        return d.price / 100
+        const price = d.price / 100
+        return price
       })
     })
     .entries(categories)

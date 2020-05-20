@@ -10,15 +10,14 @@ export class SpenDash extends React.Component {
   }
   render() {
     const {categories} = this.props.categories
-    console.table('CATEGORIES ==>>> ', categories)
+    const {id} = this.props
     return (
       <div className="is-mobile">
         <h1 className="has-text-centered has-background-grey-light is-size-5">
           {' '}
           Spend Dash
         </h1>
-        <Chart categories={categories} />
-        <br />
+        <Chart id={id} />
         {categories.length === 0 ? (
           <h1>You have nothing to show</h1>
         ) : (

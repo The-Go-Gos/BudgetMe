@@ -1,47 +1,60 @@
-import React from 'react'
-import {VictoryPie, VictoryLabel, VictoryTooltip} from 'victory'
+import React, {PureComponent} from 'react'
+import {connect} from 'react-redux'
+import {fetchData} from '../../store'
+import {BarChart, Bar, Brush, XAxis, YAxis, Tooltip} from 'recharts'
 
-export default class Chart extends React.Component {
-  render() {
-    const {categories} = this.props
-    console.log('PROPS ==>>>  ', this.props.categories)
+const CustomTooltip = ({active, payload, label}) => {
+  if (active) {
     return (
-      <div>
-        <div className="level-item">
-          <svg width={300} height={240} viewBox="0 50 300 230">
-            <VictoryPie
-              standalone={false}
-              width={300}
-              height={300}
-              padding={100}
-              data={[{label: 'Not Spent', y: categories}]}
-              innerRadius={75}
-              labelRadius={90}
-              labelComponent={
-                <VictoryTooltip cornerRadius={20} pointerLength={0} />
-              }
-              style={{labels: {fontSize: 15, fill: 'black'}}}
-              //   colorScale={['#9ACD32', '#FF7F50']}
-            />
-            <circle
-              cx="150"
-              cy="150"
-              r="50"
-              fill="none"
-              stroke="black"
-              strokeWidth={1}
-            />
-            <circle
-              cx="150"
-              cy="150"
-              r="75"
-              fill="none"
-              stroke="black"
-              strokeWidth={1}
-            />
-          </svg>
-        </div>
+      <div className="custom-tooltip box has-background-white-ter">
+        <p className="has-text-weight-normal is-size-6">{`${label}:`}</p>
+        <p className="has-text-weight-normal is-size-6">{`$ ${
+          payload[0].value
+        }`}</p>
+      </div>
+    )
+  }
+  return null
+}
+
+class Chart extends PureComponent {
+  componentDidMount() {
+    const {id} = this.props
+    this.props.getData(id)
+  }
+  render() {
+    const {data} = this.props
+    return (
+      <div className="barChart">
+        <BarChart
+          width={360}
+          height={300}
+          data={data}
+          margin={{
+            top: 37,
+            right: 45,
+            left: 20,
+            bottom: 45
+          }}
+        >
+          <Brush dataKey="key" height={30} stroke="#23D160" y={0} />
+          <XAxis dataKey="key" interval={0} angle={-30} textAnchor="end" />
+          <YAxis />
+          <Tooltip content={<CustomTooltip />} />
+          <Bar dataKey="value" name="Spent" fill="#209CEE" />
+        </BarChart>
       </div>
     )
   }
 }
+// <Brush dataKey="key" height={30} stroke="#56BCD2" />
+const mapState = state => {
+  return {data: state.categoryReducer.graphData}
+}
+
+const mapDispatch = dispatch => ({
+  getData: id => dispatch(fetchData(id))
+})
+
+export default connect(mapState, mapDispatch)(Chart)
+// export default Chart

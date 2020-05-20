@@ -11,6 +11,11 @@
     <script defer src="/bundle.js"></script>
   </head>
   <body>
+    <div id="installContainer" class="hidden">
+      <button id="butInstall" type="button">
+        Install
+      </button>
+    </div>
     <div id="app"></div>
   </body>
   <script>
@@ -22,20 +27,16 @@
       })
     }
 
-    //install app
-    // let _beforeInstallPrompt;
-    // if ( "onbeforeinstallprompt" in window ) {
-    //   window.addEventListener( "beforeinstallprompt", beforeInstallPrompt )
-    // }
+    const divInstall = document.getElementById('installContainer');
+    const butInstall = document.getElementById('butInstall');
 
-    // function beforeInstallPrompt( evt ) {
-    //   evt.preventDefault();
-    //   _beforeInstallPrompt = evt;
-    // }
-
-    // window.addEventListener('appinstalled', evt => {
-    //   console.log('app was installed', evt)
-    // })
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('👍', 'beforeinstallprompt', event);
+      // Stash the event so it can be triggered later.
+      window.deferredPrompt = event;
+      // Remove the 'hidden' class from the install button container
+      divInstall.classList.toggle('hidden', false);
+    });
 
   </script>
 </html>

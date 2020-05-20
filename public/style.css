@@ -258,6 +258,12 @@ rect.recharts-brush-slide {
   }
 }
 
+@media screen and (min-width: 500px) {
+  svg {
+    height: 340px;
+    width: 450px;
+  }
+}
 @media screen and (min-width: 400px) {
   .fancy {
     left: 42%;
@@ -268,7 +274,6 @@ rect.recharts-brush-slide {
   article.tile {
     height: 200px;
   }
-
   article.tile {
     width: 300px;
   }

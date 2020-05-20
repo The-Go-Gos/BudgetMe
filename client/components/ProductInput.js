@@ -56,7 +56,7 @@ const ProductInputs = props => {
       //     })}
       //   </select>
       // </div>
-      <form className="pure-form pure-form-aligned">
+      <div className="pure-form pure-form-aligned" key={idx}>
         <fieldset>
           <legend>New Item</legend>
           <div className="pure-control-group">
@@ -100,7 +100,7 @@ const ProductInputs = props => {
             </select>
           </div>
         </fieldset>
-      </form>
+      </div>
     )
   })
 }

@@ -144,7 +144,8 @@ class ReceiptDetail extends React.Component {
     }
     return (
       <div>
-        <img id="target" src={this.state.image} width="300px" />
+        <img id="target" src={this.state.image} />
+
         {this.props.receipt.error ? (
           <div>
             <p>{this.props.receipt.error}</p>
@@ -157,7 +158,14 @@ class ReceiptDetail extends React.Component {
         this.props.receipt.products.length === 0 ||
         !this.state.vendor ? (
           <div>
-            <input type="file" onChange={this.handleUpload} />
+            <br />
+            <br />
+            <input
+              id="chooseFile"
+              className="button is-success is-rounded has-text-warning"
+              type="file"
+              onChange={this.handleUpload}
+            />
           </div>
         ) : (
           <div>
@@ -214,7 +222,7 @@ class ReceiptDetail extends React.Component {
                               type="text"
                               id={index}
                               value={list.name}
-                              className="input is-success is-small is-rounded"
+                              className="input is-success is-small"
                               placeholder="e.g Organic Bananas"
                             />
                           </div>
@@ -230,7 +238,7 @@ class ReceiptDetail extends React.Component {
                               step="any"
                               id={index}
                               value={list.price}
-                              className="input is-success is-small is-rounded"
+                              className="input is-success is-small"
                               placeholder="e.g. 3.96"
                             />
                           </div>
@@ -243,7 +251,7 @@ class ReceiptDetail extends React.Component {
                               id={index}
                               onChange={e => this.handleCategoryChange(e)}
                               value={list.categoryId}
-                              className="input is-warning is-small is-focused is-rounded"
+                              className="input is-warning is-small is-focused"
                             >
                               {categories.map((c, optionIndex) => {
                                 return (

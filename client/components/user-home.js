@@ -31,18 +31,26 @@ export class UserHome extends React.Component {
     if (total.percentageSpent === null || total.percentageNotSpent === null) {
       return (
         <div>
-          <h1 className="has-text-centered has-background-grey-light is-size-5">
-            In any little way, save everyday
-          </h1>
-          <h4 className="has-text-centered  is-size-5">Welcome, {email}</h4>
-          <h5>You have not recorded any budget at the moment </h5>
+          <section className="hero is-light">
+            <div className="hero-body">
+              <div className="container">
+                <h1 className="title">Welcome, {email}!</h1>
+                <br />
+                <h2 className="subtitle">
+                  Get Start! You have not recorded any budget at the moment!
+                </h2>
+              </div>
+            </div>
+          </section>
+          <br />
+
           <div>
             <article className="tile is-child box">
               <div className="buttons level-item">
                 <img
                   src="addReceipt.jpeg"
-                  width="96"
-                  height="96"
+                  width="64"
+                  height="64"
                   align="center"
                 />
                 <button className="button is-rounded is-success">
@@ -53,9 +61,10 @@ export class UserHome extends React.Component {
                   </Link>
                 </button>
               </div>
+              <br />
               <div className="buttons level-item">
-                <img src="setting.jpg" width="96" height="96" align="center" />
-                <button className="button is-rounded is-info">
+                <img src="setting.jpg" width="64" height="64" align="center" />
+                <button className="button is-rounded is-success">
                   <Link to="/settings">
                     <strong className="has-text-warning">
                       Start Setting Your Monthly Budget

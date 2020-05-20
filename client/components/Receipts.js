@@ -19,7 +19,6 @@ class Receipts extends React.Component {
     return (
       <div>
         <h1 className="has-text-centered has-background-grey-light is-size-5">
-          {' '}
           Receipts
         </h1>
 

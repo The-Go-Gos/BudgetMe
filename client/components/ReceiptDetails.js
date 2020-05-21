@@ -249,33 +249,12 @@ class ReceiptDetail extends React.Component {
                           </div>
                         </div>
                       </div>
-
-                      {/* <div className="column "> */}
-
-                      {/* <div className="control">
-                        <label className="label is-small">Categoty</label>
-                        <select
-                          id={index}
-                          onChange={(e) => this.handleCategoryChange(e)}
-                          value={list.categoryId}
-                          className="input is-warning is-small is-focused is-rounded"
-                        >
-                          {categories.map((c, optionIndex) => {
-                            return (
-                              <option key={optionIndex} value={optionIndex + 1}>
-                                {c}
-                              </option>
-                            )
-                          })}
-                        </select>
-                      </div> */}
-                      {/* </div> */}
                     </div>
                   )
                 })}
               </div>
               <div className="control">
-                <div className="select is-info is-rounded is-small">
+                <div className="select is-info is-rounded">
                   <select onChange={e => this.handleAllCategoryChange(e)}>
                     {categories.map((c, optionIndex) => {
                       return (

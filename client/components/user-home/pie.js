@@ -14,7 +14,7 @@ export class Pie extends React.Component {
               height={300}
               padding={100}
               data={[
-                {label: 'Not Spent', y: percentageNotSpent},
+                {label: 'Not\nSpent', y: percentageNotSpent},
                 {label: 'Spent', y: percentageSpent}
               ]}
               innerRadius={75}
@@ -23,16 +23,16 @@ export class Pie extends React.Component {
                 <VictoryTooltip
                   cornerRadius={20}
                   pointerLength={0}
-                  dx={({datum}) => (datum.label === 'Not Spent' ? 65 : -77)}
-                  dy={({datum}) => (datum.label === 'Not Spent' ? -20 : 40)}
+                  dx={({datum}) => (datum.label === 'Not\nSpent' ? -17 : 17)}
+                  dy={({datum}) => (datum.label === 'Not\nSpent' ? -35 : 40)}
                   flyoutStyle={{
                     stroke: ({datum}) =>
-                      datum.label === 'Not Spent' ? '#9ACD32' : '#FF7F50',
+                      datum.label === 'Not\nSpent' ? '#9ACD32' : '#FF7F50',
                     strokeWidth: 2
                   }}
                 />
               }
-              style={{labels: {fontSize: 15, fill: 'black'}}}
+              style={{labels: {fontSize: 13, fill: 'black'}}}
               colorScale={['#9ACD32', '#FF7F50']}
             />
             <circle

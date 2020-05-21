@@ -316,8 +316,30 @@ rect.recharts-brush-slide {
     width: 100%;
     padding: 10px;
   }
-  article.tile.is-child.box {
-    height: 100px;
+  figure.logo {
+    left: 50%;
+    top: -60%;
+    width: 100%;
+    height: auto;
+  }
+  /* img.is-rounded{
+     left: 50%;
+    top: -60%;
+    width: 100%;
+    height: auto; 
+    height: 200px;
+    width: 300px;
+  } */
+  article.logginBox.tile.is-child.box {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 200px;
+  }
+  .input-responsive {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
   }
   .grid-container {
     display: grid;
@@ -330,6 +352,15 @@ rect.recharts-brush-slide {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .logggin {
+    height: 400px;
+  }
+  button.button.is-fullwidth {
+    width: 500px;
+    left: 30%;
+    top: -60%;
+    height: auto;
   }
 }
 
@@ -351,12 +382,6 @@ rect.recharts-brush-slide {
 }
 
 @media screen and (min-width: 766px) {
-  article.tile {
-    height: 200px;
-  }
-  article.tile {
-    width: 300px;
-  }
   .barChart {
     display: flex;
     align-items: center;

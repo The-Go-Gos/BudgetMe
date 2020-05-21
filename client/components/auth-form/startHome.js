@@ -18,7 +18,7 @@ class StartHome extends React.Component {
               width="150px"
             />
           </figure>
-          <article className="tile is-child box">
+          <article className="logginBox tile is-child box">
             <div className="buttons level-item">
               <button className="button is-rounded is-info">
                 <Link to="/signup">

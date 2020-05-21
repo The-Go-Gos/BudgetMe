@@ -21,21 +21,22 @@ class Receipts extends React.Component {
         <h1 className="has-text-centered has-background-grey-light is-size-5">
           Receipts
         </h1>
-
-        <article className="tile is-child box">
-          <div className="buttons level-item">
-            <button className="button is-rounded is-info">
-              <Link to="/receiptdetail">
-                <strong className="has-text-warning">Upload</strong>
-              </Link>
-            </button>
-            <button className="button is-rounded is-info">
-              <Link to="/manualreceipt">
-                <strong className="has-text-warning">Manual</strong>
-              </Link>
-            </button>
-          </div>
-        </article>
+        <div className="article-upload">
+          <article className="tile is-child box">
+            <div className="buttons level-item">
+              <button className="button is-rounded is-info">
+                <Link to="/receiptdetail">
+                  <strong className="has-text-warning">Upload</strong>
+                </Link>
+              </button>
+              <button className="button is-rounded is-info">
+                <Link to="/manualreceipt">
+                  <strong className="has-text-warning">Manual</strong>
+                </Link>
+              </button>
+            </div>
+          </article>
+        </div>
         <br />
         <div className="center">
           <table className="table is-hoverable">

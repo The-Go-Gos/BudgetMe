@@ -8,35 +8,37 @@ const LogIn = props => {
       <article className="logggin tile is-child notification is-info">
         <div className="input_container">
           <form onSubmit={handleSubmit} name={name}>
-            <div className="field">
-              <p className="control has-icons-left has-icons-right">
-                <input
-                  className="input is-hovered"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-check" />
-                </span>
-              </p>
-            </div>
-            <div className="field">
-              <p className="control has-icons-left">
-                <input
-                  className="input is-hovered"
-                  name="password"
-                  type="password"
-                  placeholder="Password"
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-lock" />
-                </span>
-              </p>
-              <br />
+            <div className="input-responsive">
+              <div className=" field">
+                <p className="control has-icons-left has-icons-right">
+                  <input
+                    className="input is-hovered"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope" />
+                  </span>
+                  <span className="icon is-small is-right">
+                    <i className="fas fa-check" />
+                  </span>
+                </p>
+              </div>
+              <div className="input-responsive field">
+                <p className="control has-icons-left">
+                  <input
+                    className="input is-hovered"
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock" />
+                  </span>
+                </p>
+                <br />
+              </div>
             </div>
             <button
               type="submit"

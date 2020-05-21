@@ -23,7 +23,7 @@ export class Pie extends React.Component {
                 <VictoryTooltip
                   cornerRadius={20}
                   pointerLength={0}
-                  dx={({datum}) => (datum.label === 'Not\nSpent' ? -17 : 17)}
+                  dx={({datum}) => (datum.label === 'Not\nSpent' ? -10 : 10)}
                   dy={({datum}) => (datum.label === 'Not\nSpent' ? -35 : 40)}
                   flyoutStyle={{
                     stroke: ({datum}) =>

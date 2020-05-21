@@ -286,6 +286,24 @@ rect.recharts-brush-slide {
   top: 0;
 }
 
+@media screen and (max-width: 400px) {
+  div.grid-child.boxed.box.has-background-warning.has-text-centered {
+    width: 130px;
+    padding-top: 5px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    align-content: center;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 @media screen and (min-width: 1024px) {
   nav #user {
     position: absolute;
@@ -296,8 +314,14 @@ rect.recharts-brush-slide {
     align-items: center;
     justify-content: center;
   }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   div.grid-container {
     width: 500px;
+    align-content: center;
   }
   div.grid-child {
     height: 100px;
@@ -406,37 +430,6 @@ rect.recharts-brush-slide {
   svg.react-toast-notifications__toast__icon.css-80a6v4-Icon {
     width: 14px;
     height: 16px;
-  }
-}
-
-@media screen and (min-width: 400px) {
-  .fancy {
-    left: 42%;
-  }
-  .barChart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  div.grid-container {
-    width: 500px;
-  }
-  div.grid-child {
-    height: 100px;
-  }
-}
-
-@media screen and (min-width: 766px) {
-  .barChart {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  div.grid-container {
-    width: 500px;
-  }
-  div.grid-child {
-    height: 100px;
   }
 }
 

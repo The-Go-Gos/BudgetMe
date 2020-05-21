@@ -362,6 +362,23 @@ rect.recharts-brush-slide {
     top: -60%;
     height: auto;
   }
+  div.react-toast-notifications__toast__content.css-18gu508-Content,
+  div.react-toast-notifications__toast.react-toast-notifications__toast--success.css-wo4ljk-ToastElement {
+    width: 300px;
+    height: 40px;
+  }
+  div.react-toast-notifications__container.css-1jgv6z-ToastContainer {
+    width: 350px;
+    height: 80px;
+  }
+  svg.react-toast-notifications__toast__dismiss-icon {
+    width: 14px;
+    height: 16px;
+  }
+  svg.react-toast-notifications__toast__icon.css-80a6v4-Icon {
+    width: 14px;
+    height: 16px;
+  }
 }
 
 @media screen and (min-width: 400px) {

@@ -42,7 +42,7 @@ class Receipts extends React.Component {
             <thead>
               <tr>
                 <th>Vendor</th>
-                <th>Subtotal</th>
+                <th>Total</th>
                 <th>Date</th>
                 <th>Details</th>
               </tr>

@@ -18,18 +18,21 @@ export class SpenDash extends React.Component {
           Spend Dash
         </h1>
         <Chart id={id} />
+        <br className="bar-break" />
         {categories.length === 0 ? (
           <h1>You have nothing to show</h1>
         ) : (
-          <div className="grid-container">
-            {categories &&
-              categories.map((category, index) => (
-                <SingleCategory
-                  category={category}
-                  index={index}
-                  key={category.key}
-                />
-              ))}
+          <div className="container">
+            <div className="grid-container">
+              {categories &&
+                categories.map((category, index) => (
+                  <SingleCategory
+                    category={category}
+                    index={index}
+                    key={category.key}
+                  />
+                ))}
+            </div>
           </div>
         )}
       </div>

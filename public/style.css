@@ -197,12 +197,19 @@ a:active {
   grid-template-rows: auto;
   grid-gap: 20px;
 }
+div.grid-child {
+  height: 88px;
+}
 
 .center {
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 10px;
+}
+
+.bar-break {
+  display: none;
 }
 
 .popup-content {
@@ -256,6 +263,29 @@ rect.recharts-brush-slide {
     position: absolute;
     left: 98%;
   }
+  .barChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.grid-container {
+    width: 500px;
+  }
+  div.grid-child {
+    height: 100px;
+    width: 100px;
+  }
+  .fancy {
+    position: relative;
+    background-color: #ffc;
+    padding: 2rem;
+    text-align: center;
+    max-width: 300px;
+    max-height: 300px;
+    left: 90px;
+    font-family: 'Gill Sans', 'Gill Sans MT';
+  }
+  /*  */
 }
 
 @media screen and (min-width: 500px) {
@@ -263,10 +293,60 @@ rect.recharts-brush-slide {
     height: 340px;
     width: 450px;
   }
+  /* svg.recharts-surface {
+    height: 400px;
+    width: 650px;
+  } */
+  .barChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.grid-container {
+    width: 900px;
+    top: 200px;
+  }
+  div.grid-child {
+    height: 100px;
+    width: 200px;
+  }
+  div.article-upload {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+  }
+  article.tile.is-child.box {
+    height: 100px;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    padding: 10px;
+    align-content: center;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
+
 @media screen and (min-width: 400px) {
   .fancy {
     left: 42%;
+  }
+  .barChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.grid-container {
+    width: 500px;
+  }
+  div.grid-child {
+    height: 100px;
   }
 }
 
@@ -276,6 +356,17 @@ rect.recharts-brush-slide {
   }
   article.tile {
     width: 300px;
+  }
+  .barChart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  div.grid-container {
+    width: 500px;
+  }
+  div.grid-child {
+    height: 100px;
   }
 }
 

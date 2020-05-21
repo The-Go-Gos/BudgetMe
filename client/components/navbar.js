@@ -83,6 +83,7 @@ const mapState = state => {
     isLoggedIn: !!state.user.id
   }
 }
+const wh = window.matchMedia('(min-width: 700px)')
 
 const mapDispatch = dispatch => {
   return {
@@ -90,19 +91,11 @@ const mapDispatch = dispatch => {
       dispatch(logout())
     },
     openNav() {
-      if (window.matchMedia('(max-width: 765px)')) {
-        document.getElementById('mySidenav').style.width = '50%'
+      if (wh.matches) {
+        document.getElementById('mySidenav').style.width = '18%'
       } else {
-        document.getElementById('mySidenav').style.width = '20%'
+        document.getElementById('mySidenav').style.width = '50%'
       }
-      // if(window.matchMedia("(min-width: 800px)")){
-      //   document.getElementById('mySidenav').style.width = '20%'
-      // }else if(window.matchMedia("(min-width: 766px)")){
-      //   document.getElementById('mySidenav').style.width = '30%'
-      // }
-      // else{
-      // document.getElementById('mySidenav').style.width = '50%'
-      // }
     },
     closeNav() {
       document.getElementById('mySidenav').style.width = '0'
@@ -119,20 +112,3 @@ Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
-
-/*
- <nav>
-      {isLoggedIn && (
-        <div>
-            <Link to="/receipts">Receipts</Link>
-            <Link to="/spendDash">SpenDash</Link>
-            <Link to="/settings">Settings</Link>
-            <a href="#" onClick={handleClick}>
-              Logout
-            </a>
-            </div>
-      )}
-    </nav>
-    <hr />
-
-    */

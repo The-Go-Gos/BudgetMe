@@ -228,7 +228,7 @@ class ReceiptDetail extends React.Component {
                         </div>
                         <div className="column">
                           <div className="control">
-                            <label className="label is-small">Categoty</label>
+                            <label className="label is-small">Category</label>
                             <select
                               id={index}
                               onChange={e => this.handleCategoryChange(e)}

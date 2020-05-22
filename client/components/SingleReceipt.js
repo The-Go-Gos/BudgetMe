@@ -26,8 +26,8 @@ class SingleReceipt extends React.Component {
             this.props.receipt.products.map(product => {
               return (
                 <tr key={product.id}>
-                  <td>{product.name}</td>
-                  <td>${product.price / 100}</td>
+                  <td align="left">{product.name}</td>
+                  <td align="right">${(product.price / 100).toFixed(2)}</td>
                 </tr>
               )
             })}

@@ -53,9 +53,9 @@ class Receipts extends React.Component {
                 return (
                   <tr key={receipt.id}>
                     <td>{receipt.vendor}</td>
-                    <td>${receipt.totalPrice / 100}</td>
+                    <td align="right">${receipt.totalPrice / 100}</td>
                     <td>{receipt.date.slice(0, 10)}</td>
-                    <td>
+                    <td align="center">
                       <Popup
                         trigger={
                           <img

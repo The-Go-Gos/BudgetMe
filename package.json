@@ -1,5 +1,5 @@
 {
-  "name": "BudgetMe",
+  "name": "budgetme",
   "version": "2.0.0",
   "description": "Some boilerplate code to get you started - get shakin'!",
   "engines": {
@@ -41,13 +41,18 @@
   "author": "Fullstack Academy of Code",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/vision": "^1.11.0",
     "axios": "^0.19.0",
+    "bulma": "^0.8.2",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
+    "d3": "^5.16.0",
     "express": "^4.16.4",
     "express-session": "^1.15.1",
     "history": "^4.9.0",
+    "lodash.throttle": "^4.1.1",
     "morgan": "^1.9.1",
+    "multer": "^1.4.2",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.9.0",
@@ -57,11 +62,21 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
+    "react-toast-notifications": "^2.4.0",
+    "react-toastify": "^6.0.4",
+    "reactjs-popup": "^1.5.0",
+    "recharts": "^1.8.5",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "resize-optimize-images": "^1.1.0",
     "sequelize": "^5.3.1",
-    "socket.io": "^2.2.0"
+    "sharp": "^0.25.2",
+    "socket.io": "^2.2.0",
+    "twilio": "^3.43.1",
+    "uuid": "^8.0.0",
+    "uuidv4": "^6.0.8",
+    "victory": "^34.3.4"
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

@@ -2,8 +2,21 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome} from './components'
+import {
+  Login,
+  Signup,
+  UserHome,
+  SpenDash,
+  Setting,
+  StartHome,
+  ViewUser,
+  EditUser
+} from './components'
 import {me} from './store'
+import ReceiptDetail from './components/ReceiptDetails'
+import AddRecordForm from './components/AddRecordForm'
+import Receipts from './components/Receipts'
+import SingleReceipt from './components/SingleReceipt'
 
 /**
  * COMPONENT
@@ -19,16 +32,32 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/" component={StartHome} />
+
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route
+              exact
+              path="/spendDash"
+              render={routeProps => <SpenDash {...routeProps} />}
+            />
+            <Route exact path="/settings" component={Setting} />
+            <Route exact path="/receiptdetail" component={ReceiptDetail} />
+            <Route exact path="/manualreceipt" component={AddRecordForm} />
+            <Route exact path="/view" component={ViewUser} />
+            <Route exact path="/update" component={EditUser} />
+            <Route exact path="/receipts" component={Receipts} />
+            {/* <Route
+              exact
+              path="/receipts/:receiptId"
+              component={SingleReceipt}
+            /> */}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
       </Switch>
     )
   }
